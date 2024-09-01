@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
         >
           {`Last Updated: 2024-08-08
 
-Thank you for visiting PregnantMeal ("we," "us," or "our"). This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website located at https://pregnantmeal.com (the "Website").
+Thank you for visiting ${customConfig.seo.applicationName} ("we," "us," or "our"). This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website located at ${customConfig.domainWithHttps} (the "Website").
 
 By accessing or using the Website, you agree to the terms of this Privacy Policy. If you do not agree with the practices described in this policy, please do not use the Website.
 
@@ -59,7 +59,7 @@ We do not share your personal data with any third parties except as required for
 
 4. Children's Privacy
 
-PregnantMeal is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at the email address provided below.
+${customConfig.seo.applicationName} is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at the email address provided below.
 
 5. Updates to the Privacy Policy
 
@@ -71,7 +71,7 @@ If you have any questions, concerns, or requests related to this Privacy Policy,
 
 **Email:** nurgasab@gmail.com
 
-By using PregnantMeal, you consent to the terms of this Privacy Policy.`}
+By using ${customConfig.seo.applicationName}, you consent to the terms of this Privacy Policy.`}
         </pre>
       </div>
     </main>
