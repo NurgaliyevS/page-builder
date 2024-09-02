@@ -7,10 +7,10 @@ import Hero from "@/components/Hero";
 import Main from "@/components/Main";
 import Pricing from "@/components/Pricing";
 import { customConfig } from "@/project.custom.config";
-import { Noto_Sans } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Head from "next/head";
 
-const lato = Noto_Sans({
+const lato = Roboto({
   subsets: ["latin"],
   weight: ["400"],
 });
