@@ -3,7 +3,7 @@ import { handleSignIn } from "./handleSignIn";
 import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
-const CTANAME = "Make My Meals";
+const CTANAME = "Create page in 30 seconds";
 
 function CTAButton(props) {
   const { plausibleNameBeforeLogin, plausibleNameAfterLogin  } = props;

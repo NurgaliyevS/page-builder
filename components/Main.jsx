@@ -11,37 +11,17 @@ function Main() {
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-16">
         <div className="flex flex-col gap-10 lg:gap-14 items-center lg:items-start text-center lg:text-left w-full lg:w-2/3">
           <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center">
-            <span className="hidden lg:block whitespace-wrap lg:whitespace-nowrap relative">
-              Eat <strong className="relative text-primary">Right </strong> for{" "}
-              <strong className="relative text-primary">Your</strong> Baby
-            </span>
-            <span className="lg:hidden whitespace-wrap lg:whitespace-nowrap relative">
-              Eat <strong className="relative text-primary">Right </strong> for
-              <br /> <strong className="relative text-primary">
-                Your
-              </strong>{" "}
-              Baby
+            <span className="whitespace-wrap lg:whitespace-nowrap relative">
+              Create your{" "}
+              <strong className="relative text-primary">page</strong>
             </span>
           </h1>
-          <p className="hidden lg:block text-xl opacity-90 leading-relaxed">
-            Personal <strong className="relative text-primary">meal </strong>
-            plan for <strong className="relative text-primary">
-              pregnant
-            </strong>{" "}
-            women. <br />
-            Get daily, <strong className="relative text-primary">weekly</strong>
-            , and monthly{" "}
-            <strong className="relative text-primary">meal</strong> plan.
-          </p>
-          <p className="lg:hidden block text-base opacity-90 leading-relaxed overflow-x-auto whitespace-nowrap">
-            Personal <strong className="relative text-primary">meal </strong>
-            plan for <strong className="relative text-primary">
-              pregnant
-            </strong>{" "}
-            women. <br /> Get daily,{" "}
-            <strong className="relative text-primary">weekly</strong>, and
-            monthly <strong className="relative text-primary">meal</strong>{" "}
-            plan.
+          <p className="text-xl opacity-90 leading-relaxed">
+            Our tool helps{" "}
+            <strong className="relative text-primary">you</strong> capture
+            <strong className="relative text-primary"> emails</strong> and grow
+            your <strong className="relative text-primary"> audience</strong>{" "}
+            fast.
           </p>
           <CTAButton plausibleNameBeforeLogin="GET_STARTED_MAIN" />
         </div>
@@ -59,7 +39,7 @@ function Main() {
       </div>
 
       <div className="w-full text-center">
-        <p className="text-lg text-neutral-500">Yummy Meals, Strong Baby</p>
+        <p className="text-lg text-neutral-500">No coding skills required. </p>
       </div>
     </section>
   );
