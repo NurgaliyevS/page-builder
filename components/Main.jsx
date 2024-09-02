@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import { handleSignIn } from "./handleSignIn";
 import { usePlausible } from "next-plausible";
 import CTAButton from "./CTAButton";
 
@@ -27,14 +24,12 @@ function Main() {
         </div>
 
         <div className="hidden lg:block relative max-md:-m-4 lg:w-1/2">
-          <Image
-            src={"/main.webp"}
-            alt="Uptime 24/7 notify via SMS, EMAIL"
-            width={1080}
-            height={1080}
-            className="w-full max-w-xl ml-auto"
-            priority={true}
-          />
+          <div className="mockup-phone">
+            <div className="camera"></div>
+            <div className="display">
+              <div className="artboard artboard-demo phone-1">Hi.</div>
+            </div>
+          </div>
         </div>
       </div>
 
