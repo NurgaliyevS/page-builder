@@ -23,7 +23,6 @@ const connectMongoDB = async () => {
     console.log('Attempting to connect to MongoDB...');
     const db = await mongoose.connect(uri, {
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
       ...(isDevelopment() && {
         authSource: "admin",
       }),
