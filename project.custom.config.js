@@ -14,7 +14,7 @@ export const customConfig = {
     supportEmail: "support@subpage.io",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
-  documentTitle: "Yummy Meals, Strong Baby - SubPage",
+  documentTitle: "Webpage Builder - SubPage",
   domainWithHttps: "https://subpage.io",
   seo: {
     keywords:
