@@ -14,7 +14,7 @@ export const customConfig = {
     supportEmail: "support@subpage.io",
     forwardRepliesTo: "nurgasab@gmail.com",
   },
-  documentTitle: "Webpage Builder - SubPage",
+  documentTitle: "Page Builder - SubPage",
   domainWithHttps: "https://subpage.io",
   seo: {
     keywords:
