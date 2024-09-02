@@ -76,11 +76,6 @@ export default function Document() {
           // SubPage - Monitor your website, and server
           content={customConfig.seo.og.title}
         />
-        <meta
-          name="twitter:description"
-          // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
-          content={customConfig.seo.description}
-        />
         {/* example as https://subpage.io/twitter.png */}
         <meta name="twitter:image" content={customConfig.seo.og.twitterImage} />
         <link

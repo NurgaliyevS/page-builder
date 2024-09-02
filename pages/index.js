@@ -21,6 +21,11 @@ export default function Home() {
       <Head>
         <title>{customConfig.documentTitle}</title>
         <link rel="canonical" href={customConfig.domainWithHttps} />
+        <meta
+          name="twitter:description"
+          // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
+          content={customConfig.seo.description}
+        />
       </Head>
       <header className={lato.className}>
         <Header />

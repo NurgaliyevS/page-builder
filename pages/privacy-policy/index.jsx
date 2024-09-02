@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head"; // Import Head component
 import { customConfig } from "@/project.custom.config";
 
 export const metadata = {
@@ -9,6 +10,10 @@ export const metadata = {
 const PrivacyPolicy = () => {
   return (
     <main className="max-w-xl mx-auto">
+      <Head>
+        <title>{metadata.title}</title> {/* Add title tag */}
+        <meta name="robots" content="index, follow" />
+      </Head>
       <div className="p-5">
         <Link href="/" className="btn btn-ghost">
           <svg
