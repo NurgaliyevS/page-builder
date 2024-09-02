@@ -45,7 +45,7 @@ export default function Document() {
           // example as PregnantMeal - Monitor your website, and server
           content={customConfig.seo.description}
         />
-        {/* example as https://pregnantmeal.com/ */}
+        {/* example as https://subpage.io/ */}
         <meta property="og:url" content={customConfig.domainWithHttps} />
         <meta property="og:type" content="website" />
         {/* example as PregnantMeal */}
@@ -56,7 +56,7 @@ export default function Document() {
         <meta property="og:locale" content="en_US" />
         <meta
           property="og:image"
-          // add to public og image and it will be as https://pregnantmeal.com/og-image.png
+          // add to public og image and it will be as https://subpage.io/og-image.png
           content={customConfig.seo.og.image}
         />
         <meta property="og:image:alt" content={customConfig.seo.og.imageAlt} />
@@ -81,7 +81,7 @@ export default function Document() {
           // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
           content={customConfig.seo.description}
         />
-        {/* example as https://pregnantmeal.com/twitter.png */}
+        {/* example as https://subpage.io/twitter.png */}
         <meta name="twitter:image" content={customConfig.seo.og.twitterImage} />
         <link
           rel="icon"

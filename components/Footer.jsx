@@ -127,7 +127,7 @@ function Footer({ bgColor }) {
                 <Link
                   className="link link-hover"
                   href={
-                    isDevelopment() ? "/blog" : "https://pregnantmeal.com/blog"
+                    isDevelopment() ? "/blog" : "https://subpage.io/blog"
                   }
                   title="Uptime Friend - blog"
                 >

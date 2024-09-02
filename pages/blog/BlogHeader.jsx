@@ -12,7 +12,7 @@ function BlogHeader() {
           <Link
             className="flex items-center gap-2 shrink-0 "
             href="/"
-            title="PregnantMeal.com home page"
+            title="subpage.io home page"
           >
             <Image
               src={"/company_related/logo.webp"}
@@ -54,7 +54,7 @@ function BlogHeader() {
           <Link
             className="link link-hover text-base-content/80 hover:text-base-content active:text-base-content focus:text-base-content duration-100"
             href="/blog"
-            title="PregnantMeal.com blog page"
+            title="subpage.io blog page"
           >
             <span className="font-extrabold text-lg">All Posts</span>
           </Link>
@@ -126,7 +126,7 @@ function BlogHeader() {
                 <Link
                   className="link link-hover"
                   href="/blog"
-                  title="PregnantMeal.com blog page"
+                  title="subpage.io blog page"
                 >
                   All Posts
                 </Link>

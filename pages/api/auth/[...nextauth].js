@@ -25,7 +25,7 @@ export const authOptions = {
       ? [
           EmailProvider({
             server: process.env.EMAIL_SERVER,
-            from: "noreply@mg.pregnantmeal.com",
+            from: "noreply@mg.subpage.io",
           }),
         ]
       : []),
