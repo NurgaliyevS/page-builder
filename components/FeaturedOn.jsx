@@ -7,7 +7,7 @@ function FeaturedOn() {
       <Link
         href="https://news.ycombinator.com/item?id=41106325"
         target="_blank"
-        title="Featured on Hackers New - PregnantMeal"
+        title="Featured on Hackers New - SubPage"
         className="cursor-not-allowed"
       >
         <svg
@@ -47,9 +47,9 @@ function FeaturedOn() {
         </svg>
       </Link>
       <Link
-        href="https://www.producthunt.com/posts/PregnantMeal"
+        href="https://www.producthunt.com/posts/SubPage"
         target="_blank"
-        title="Featured on Product Hunt - PregnantMeal"
+        title="Featured on Product Hunt - SubPage"
         className="cursor-not-allowed"
       >
         <svg
@@ -89,7 +89,7 @@ function FeaturedOn() {
       <Link
         href="#Reddit"
         target="_blank"
-        title="Featured on Reddit - PregnantMeal"
+        title="Featured on Reddit - SubPage"
         className="cursor-not-allowed"
       >
         <svg
@@ -151,7 +151,7 @@ function FeaturedOn() {
       <Link
         href="#X"
         target="_blank"
-        title="Featured on X - PregnantMeal"
+        title="Featured on X - SubPage"
         className="cursor-not-allowed"
       >
         <svg

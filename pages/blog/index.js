@@ -27,7 +27,7 @@ export default function BlogIndex({ posts }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>PregnantMeal Blog</title>
+        <title>SubPage Blog</title>
         <meta
           name="description"
           content={customConfig.seo.description}

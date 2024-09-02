@@ -29,7 +29,7 @@ function Footer({ bgColor }) {
                 width={24}
                 height={24}
               />
-              <span className="font-extrabold text-lg">PregnantMeal</span>
+              <span className="font-extrabold text-lg">SubPage</span>
             </Link>
 
             <p className="mt-3 text-sm leading-relaxed">

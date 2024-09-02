@@ -59,7 +59,7 @@ function Ads() {
                 <time className="pl-1 text-xs opacity-50">12:46</time>
               </div>
               <div className="chat-bubble bg-white my-2 text-[#394e6a]">
-                Thanks, hun! It's this app called PregnantMeal. Helps me eat
+                Thanks, hun! It's this app called SubPage. Helps me eat
                 right without the stress. You pregnant too?
               </div>
               <div className="chat-footer opacity-50">Seen at 12:48</div>

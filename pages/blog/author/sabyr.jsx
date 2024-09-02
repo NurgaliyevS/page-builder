@@ -10,10 +10,10 @@ function Sabyr({ posts }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>{customConfig.blog.author.name}, author at PregnantMeal Blog</title>
+        <title>{customConfig.blog.author.name}, author at SubPage Blog</title>
         <meta
           name="description"
-          content={`${customConfig.blog.author.name}, Author at PregnantMeal's Blog`}
+          content={`${customConfig.blog.author.name}, Author at SubPage's Blog`}
         />
         <meta name="keywords" content={"subpage.io"} />
         <link
@@ -22,7 +22,7 @@ function Sabyr({ posts }) {
         />
         <meta
           property="og:title"
-          content={`Sabyr Nurgaliyev, Author at PregnantMeal's Blog`}
+          content={`Sabyr Nurgaliyev, Author at SubPage's Blog`}
         />
         <meta
           property="og:description"
@@ -46,7 +46,7 @@ function Sabyr({ posts }) {
               {customConfig.blog.author.name}
             </h1>
             <p className="md:text-lg mb-6 md:mb-10 font-medium">
-              Creator of PregnantMeal
+              Creator of SubPage
             </p>
             <p className="md:text-lg text-base-content/80">
               {customConfig.blog.author.description}
@@ -55,7 +55,7 @@ function Sabyr({ posts }) {
           <div className="max-md:order-first flex md:flex-col gap-4 shrink-0">
             <Image
               src={"/Sabyr_Nurgaliyev.webp"}
-              alt={`Sabyr Nurgaliyev - PregnantMeal Founder`}
+              alt={`Sabyr Nurgaliyev - SubPage Founder`}
               width={256}
               height={256}
               className="rounded-2xl"

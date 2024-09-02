@@ -32,7 +32,7 @@ function Hero() {
             </h3>
             <p className="py-6 opacity-60 text-center lg:text-left">
               As a new mom, I barely had time to think about cooking. But
-              <strong className="text-primary"> PregnantMeal</strong> changed
+              <strong className="text-primary"> SubPage</strong> changed
               that! The recipes are so yummy, even my husband loves them!
             </p>
           </div>
@@ -60,7 +60,7 @@ function Hero() {
             </h3>
             <p className="py-6 opacity-60 text-center lg:text-left">
               As a new mom, I barely had time to think about cooking. But
-              <strong className="text-primary"> PregnantMeal</strong> changed
+              <strong className="text-primary"> SubPage</strong> changed
               that! The recipes are so yummy, even my husband loves them!
             </p>
           </div>
