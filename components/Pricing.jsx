@@ -8,7 +8,7 @@ function Pricing(props) {
   const plausible = usePlausible();
   return (
     <section className="bg-neutral py-44 flex flex-col overflow-hidden">
-      <div className="container max-w-6xl mx-auto">
+      <div className="container max-w-6xl mx-auto space-y-8 p-6 py-16 md:space-y-16 md:py-32">
         <div className="flex justify-center items-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
           <div>
             <div className="badge animate-bounce whitespace-nowrap badge-primary">
