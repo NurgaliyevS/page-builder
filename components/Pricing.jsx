@@ -122,7 +122,7 @@ function Pricing(props) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                28 themes and 9 fonts
+                30 themes and 10 fonts
               </li>
             </ul>
           </div>
