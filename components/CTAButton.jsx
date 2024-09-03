@@ -3,10 +3,8 @@ import { handleSignIn } from "./handleSignIn";
 import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
-const CTANAME = "Create page in 30 seconds";
-
 function CTAButton(props) {
-  const { plausibleNameBeforeLogin, plausibleNameAfterLogin  } = props;
+  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page in 30 seconds"  } = props;
 
   const { data: session } = useSession();
   const plausible = usePlausible();
@@ -23,7 +21,7 @@ function CTAButton(props) {
             handleSignIn(e);
           }}
         >
-          {CTANAME}
+          {ctaName}
         </Link>
       ) : (
         <Link
@@ -35,7 +33,7 @@ function CTAButton(props) {
             plausible(plausibleNameAfterLogin);
           }}
         >
-          {CTANAME}
+          {ctaName}
         </Link>
       )}
     </>

@@ -1,9 +1,10 @@
 import Ads from "@/components/Ads";
+import Ads2 from "@/components/Ads2";
+import Ads3 from "@/components/Ads3";
 import Demo from "@/components/Demo";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
 import Main from "@/components/Main";
 import Pricing from "@/components/Pricing";
 import { customConfig } from "@/project.custom.config";
@@ -33,8 +34,9 @@ export default function Home() {
       <main className={`flex flex-col min-h-screen mx-auto ${lato.className}`}>
         <Main />
         <Ads />
-        <Hero />
-        <Demo />
+        <Ads2 />
+        <Ads3 />
+        {/* <Demo /> */}
         <Pricing />
         <FAQ />
       </main>

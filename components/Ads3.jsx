@@ -1,7 +1,7 @@
 import { usePlausible } from "next-plausible";
 import CTAButton from "./CTAButton";
 
-function Ads() {
+function Ads3() {
   const plausible = usePlausible();
   return (
     <section className="bg-neutral p-6 py-16 md:py-32 text-gray-300">
@@ -27,17 +27,17 @@ function Ads() {
         </video>
         <div className="max-w-lg space-y-6 md:space-y-8">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Build Minimal Valuable Product
+            Create your portfolio
           </h2>
           <p className="leading-relaxed">
-            Collect emails right away. Just pick a template. Validate your idea
-            with minimal resources.
+            Share your journey. Link your startups. Write about your failures,
+            wins.
           </p>
-          <CTAButton ctaName="Build MVP" />
+          <CTAButton ctaName="Create portfolio" />
         </div>
       </div>
     </section>
   );
 }
 
-export default Ads;
+export default Ads3;
