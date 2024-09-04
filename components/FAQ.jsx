@@ -8,79 +8,80 @@ import CTAButton from "./CTAButton";
 
 const faqList = [
   {
-    question: "What foods should I avoid during pregnancy?",
-    answer: (
-      <p>Don't eat raw fish, unpasteurized cheese, or undercooked meat.</p>
-    ),
-  },
-  {
-    question: "What's the best drink for energy during pregnancy?",
+    question: "What is a landing page builder?",
     answer: (
       <p>
-        Water is best. Some caffeine-free teas are okay. Ask your doctor about
-        energy drinks.
+        A landing page builder helps you create a simple web page where people
+        can sign up for your email list. It's perfect for getting more
+        subscribers!
       </p>
     ),
   },
   {
-    question: "What is gestational diabetes?",
-    answer: <p>It's when your blood sugar gets too high during pregnancy.</p>,
-  },
-  {
-    question: "How can I count calories during pregnancy?",
-    answer: <p>Use a food tracking app or write down what you eat.</p>,
-  },
-  {
-    question: "What are food aversions in pregnancy?",
+    question: "What does 'No coding skills required' mean?",
     answer: (
       <p>
-        It's normal to dislike foods you usually enjoy. Try eating small,
-        frequent meals.
+        It means you can create your landing page without any programming
+        knowledge. Our tool is designed to be simple and user-friendly, so you
+        can focus on building your audience, not learning to code.
       </p>
     ),
   },
   {
-    question: "How many extra calories do I need when pregnant?",
+    question: "How quickly can I build my Minimal Viable Product (MVP)?",
     answer: (
       <p>
-        It depends on your size and activity, but usually 300-500 extra calories
-        per day.
+        You can build your MVP in minutes! Just pick a template, customize it,
+        and start collecting emails right away. It’s the fastest way to validate
+        your idea with minimal resources.
       </p>
     ),
   },
   {
-    question: "What should a 7-day meal plan for a pregnant woman include?",
+    question: "What is the 'Personal Link' feature?",
     answer: (
       <p>
-        Include fruits, veggies, whole grains, lean proteins, and healthy fats
-        each day.
+        The "Personal Link" lets you share your landing page or portfolio with a
+        custom URL. It's perfect for sharing your journey, linking your
+        startups, and writing about your failures and wins.
       </p>
     ),
   },
   {
-    question: "What are good dinner ideas for the first trimester?",
+    question: "How does the 1-Year Pass work?",
     answer: (
       <p>
-        Light, easy-to-digest foods like crackers, fruits, and soups often work
-        well.
+        The 1-Year Pass gives you access to all features for a full year with a
+        one-time payment of $25. No subscription is required, and you can use
+        any of the 30 themes and 10 fonts to customize your landing page.
       </p>
     ),
   },
   {
-    question: "What's a healthy meal plan during pregnancy?",
+    question: "What’s included in the Lifetime Deal?",
     answer: (
       <p>
-        Focus on balanced meals with variety. Include all food groups and take
-        prenatal vitamins.
+        The Lifetime Deal gives you permanent access to all features for just
+        $45. Pay once and enjoy all future updates and features without any
+        additional costs.
       </p>
     ),
   },
   {
-    question: "What's an example of a one-day meal plan for a pregnant woman?",
+    question: "How can this tool boost SEO for my projects?",
     answer: (
       <p>
-        Breakfast: oatmeal with fruit. Lunch: salad with chicken. Dinner: fish
-        with veggies. Snacks: yogurt and nuts
+        Our tool includes built-in SEO features that help improve your search
+        engine rankings. Also you can add links to your existing projects.
+      </p>
+    ),
+  },
+  {
+    question: "Can I manage my email subscription list?",
+    answer: (
+      <p>
+        You can easily manage your subscription list, and export your data
+        whenever you need to.
       </p>
     ),
   },
@@ -166,7 +167,10 @@ function FAQ() {
       </div>
 
       <div className="flex items-center justify-center mt-20">
-        <CTAButton plausibleNameBeforeLogin="GET_STARTED_FAQ" plausibleNameAfterLogin="GET_STARTED_FAQ_AFTER_LOGIN" />
+        <CTAButton
+          plausibleNameBeforeLogin="GET_STARTED_FAQ"
+          plausibleNameAfterLogin="GET_STARTED_FAQ_AFTER_LOGIN"
+        />
       </div>
     </section>
   );
