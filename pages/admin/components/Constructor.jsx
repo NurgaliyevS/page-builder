@@ -17,7 +17,7 @@ const Constructor = ({ onUpdate, content }) => {
             type="text"
             id="userName"
             name="userName"
-            value={content.userName}
+            value={content?.userName}
             onChange={handleInputChange}
             className="input input-bordered flex-grow"
           />
@@ -26,7 +26,7 @@ const Constructor = ({ onUpdate, content }) => {
             <input
               type="checkbox"
               name="showUserIcon"
-              checked={content.showUserIcon}
+              checked={content?.showUserIcon}
               onChange={handleInputChange}
               className="checkbox checkbox-primary"
             />
@@ -41,7 +41,7 @@ const Constructor = ({ onUpdate, content }) => {
           type="text"
           id="mainHeadline"
           name="mainHeadline"
-          value={content.mainHeadline}
+          value={content?.mainHeadline}
           onChange={handleInputChange}
           className="input input-bordered w-full"
         />
@@ -53,7 +53,7 @@ const Constructor = ({ onUpdate, content }) => {
         <textarea
           id="mainDescription"
           name="mainDescription"
-          value={content.mainDescription}
+          value={content?.mainDescription}
           onChange={handleInputChange}
           className="textarea textarea-bordered h-24"
         />
@@ -68,7 +68,7 @@ const Constructor = ({ onUpdate, content }) => {
             type="text"
             id="emailInputValue"
             name="emailInputValue"
-            value={content.emailInputValue}
+            value={content?.emailInputValue}
             onChange={handleInputChange}
             className="input input-bordered flex-grow"
           />
@@ -77,7 +77,7 @@ const Constructor = ({ onUpdate, content }) => {
             <input
               type="checkbox"
               name="showEmailInput"
-              checked={content.showEmailInput}
+              checked={content?.showEmailInput}
               onChange={handleInputChange}
               className="checkbox checkbox-primary"
             />
@@ -94,7 +94,7 @@ const Constructor = ({ onUpdate, content }) => {
             type="text"
             id="ctaButtonText"
             name="ctaButtonText"
-            value={content.ctaButtonText}
+            value={content?.ctaButtonText}
             onChange={handleInputChange}
             className="input input-bordered flex-grow"
           />
@@ -103,7 +103,7 @@ const Constructor = ({ onUpdate, content }) => {
             <input
               type="checkbox"
               name="showCTAButton"
-              checked={content.showCTAButton}
+              checked={content?.showCTAButton}
               onChange={handleInputChange}
               className="checkbox checkbox-primary"
             />
