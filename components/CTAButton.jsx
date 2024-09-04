@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
 function CTAButton(props) {
-  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page in 30 seconds"  } = props;
+  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page in 30 seconds", customStyle  } = props;
 
   const { data: session } = useSession();
   const plausible = usePlausible();
@@ -14,7 +14,7 @@ function CTAButton(props) {
       {!session?.user ? (
         <Link
           href="#"
-          className="btn btn-primary btn-wide no-underline"
+          className={`btn btn-primary btn-wide no-underline ${customStyle}`}
           onClick={(e) => {
             e.preventDefault();
             plausible(plausibleNameBeforeLogin);
@@ -26,7 +26,7 @@ function CTAButton(props) {
       ) : (
         <Link
           href="/meal"
-          className="btn btn-primary btn-wide no-underline"
+          className={`btn btn-primary btn-wide no-underline ${customStyle}`}
           title="Meal page"
           rel="nofollow"
           onClick={() => {

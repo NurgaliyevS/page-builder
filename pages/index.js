@@ -5,6 +5,7 @@ import Demo from "@/components/Demo";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 import Main from "@/components/Main";
 import Pricing from "@/components/Pricing";
 import { customConfig } from "@/project.custom.config";
@@ -39,6 +40,7 @@ export default function Home() {
         {/* <Demo /> */}
         <Pricing />
         <FAQ />
+        <Hero />
       </main>
       <footer className={lato.className}>
         <Footer />
