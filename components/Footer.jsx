@@ -126,9 +126,7 @@ function Footer({ bgColor }) {
                 </Link>
                 <Link
                   className="link link-hover"
-                  href={
-                    isDevelopment() ? "/blog" : "https://subpage.io/blog"
-                  }
+                  href={isDevelopment() ? "/blog" : "https://subpage.io/blog"}
                   title="Uptime Friend - blog"
                 >
                   Blog
@@ -140,6 +138,17 @@ function Footer({ bgColor }) {
                 More
               </div>
               <div className="flex flex-col justify-center items-center md:items-start gap-2 mb-10 text-sm">
+                <Link
+                  className="link link-hover"
+                  href="https://pregnantmeal.com/"
+                  target="_blank"
+                  title="PregnantMeal - home page"
+                  onClick={() => {
+                    plausible("PregnantMeal");
+                  }}
+                >
+                  PregnantMeal
+                </Link>
                 <Link
                   className="link link-hover"
                   href="http://uptimefriend.com/"
