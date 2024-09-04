@@ -7,15 +7,15 @@ const PhoneMockup = ({ content }) => {
       <div className="display bg-white">
         <div className="artboard bg-white phone-1">
           <div className="flex mt-8 gap-4 items-start justify-start ml-2">
-            <span className="relative">
-              {content.userImage && (
+            {content.showUserIcon && content.userImage && (
+              <span className="relative">
                 <img
                   src={content.userImage}
                   alt={content.userName}
                   className="w-12 h-12 rounded-full"
                 />
-              )}
-            </span>
+              </span>
+            )}
             <div className="flex-1">
               <h1 className="mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold">
                 {content.userName}

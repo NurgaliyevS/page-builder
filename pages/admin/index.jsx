@@ -14,15 +14,21 @@ function Admin() {
       "Our new project is launching soon. Join our waitlist to be the first to know when we launch. Stay tuned!",
     userName: "",
     userImage: "",
+    showUserIcon: true,
   });
 
+  const isInitialMount = React.useRef(false);
+
   useEffect(() => {
-    if (session?.user) {
-      setPageContent(prevContent => ({
-        ...prevContent,
-        userName: session.user.name || "",
-        userImage: session.user.image || "",
-      }));
+    if (!isInitialMount.current) {
+      if (session?.user) {
+        setPageContent(prevContent => ({
+          ...prevContent,
+          userName: session.user.name || "",
+          userImage: session.user.image || "",
+        }));
+      isInitialMount.current = true;
+      }
     }
   }, [session]);
 
@@ -39,7 +45,7 @@ function Admin() {
             <h1 className="text-3xl font-bold mb-6 text-gray-300">Page Constructor</h1>
             <div className="card bg-base-100 shadow-xl">
               <div className="card-body">
-                <Constructor onUpdate={handleUpdate} session={session} />
+                <Constructor onUpdate={handleUpdate} content={pageContent} />
               </div>
             </div>
           </div>

@@ -1,23 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Constructor = ({ onUpdate, session }) => {
-  const [state, setState] = useState({
-    ctaButtonText: "Subscribe",
-    mainHeadline: "Join our Waitlist!",
-    mainDescription: "Our SaaS software is launching soon. Join our waitlist to be the first to know when we launch. Stay tuned!",
-    userName: "",
-  });
-
-  useEffect(() => {
-    if (session?.user?.name) {
-      setState(prevState => ({ ...prevState, userName: session.user.name }));
-    }
-  }, [session]);
-
+const Constructor = ({ onUpdate, content }) => {
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setState((prevState) => ({ ...prevState, [name]: value }));
-    onUpdate({ [name]: value });
+    const { name, value, type, checked } = e.target;
+    onUpdate({ [name]: type === 'checkbox' ? checked : value });
   };
 
   return (
@@ -26,14 +12,26 @@ const Constructor = ({ onUpdate, session }) => {
         <label htmlFor="userName" className="label">
           <span className="label-text">User Name</span>
         </label>
-        <input
-          type="text"
-          id="userName"
-          name="userName"
-          value={state.userName}
-          onChange={handleInputChange}
-          className="input input-bordered w-full"
-        />
+        <div className="flex items-center space-x-2">
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            value={content.userName}
+            onChange={handleInputChange}
+            className="input input-bordered flex-grow"
+          />
+          <label className="cursor-pointer label">
+            <span className="label-text mr-2">Show Icon</span>
+            <input
+              type="checkbox"
+              name="showUserIcon"
+              checked={content.showUserIcon}
+              onChange={handleInputChange}
+              className="checkbox checkbox-primary"
+            />
+          </label>
+        </div>
       </div>
       <div className="form-control">
         <label htmlFor="ctaButtonText" className="label">
@@ -43,7 +41,7 @@ const Constructor = ({ onUpdate, session }) => {
           type="text"
           id="ctaButtonText"
           name="ctaButtonText"
-          value={state.ctaButtonText}
+          value={content.ctaButtonText}
           onChange={handleInputChange}
           className="input input-bordered w-full"
         />
@@ -56,7 +54,7 @@ const Constructor = ({ onUpdate, session }) => {
           type="text"
           id="mainHeadline"
           name="mainHeadline"
-          value={state.mainHeadline}
+          value={content.mainHeadline}
           onChange={handleInputChange}
           className="input input-bordered w-full"
         />
@@ -68,7 +66,7 @@ const Constructor = ({ onUpdate, session }) => {
         <textarea
           id="mainDescription"
           name="mainDescription"
-          value={state.mainDescription}
+          value={content.mainDescription}
           onChange={handleInputChange}
           className="textarea textarea-bordered h-24"
         />
