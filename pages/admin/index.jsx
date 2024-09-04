@@ -16,6 +16,8 @@ function Admin() {
     userImage: "",
     showUserIcon: true,
     showCTAButton: true,
+    showEmailInput: true,
+    emailInputValue: "Enter your email:",
   });
 
   const isInitialMount = React.useRef(false);
@@ -38,7 +40,7 @@ function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral">
+    <div className="bg-neutral min-h-screen pb-96">
       <HeaderAdmin />
       <main className="container mx-auto p-4 lg:p-8 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-8 max-w-full">

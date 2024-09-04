@@ -23,11 +23,29 @@ const PhoneMockup = ({ content }) => {
               <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
             </div>
           </div>
-          <div className="p-4 flex flex-col">
-            <h1 className="text-2xl font-bold mb-4 mt-4 text-center">
+          <div className="p-4 flex flex-col gap-4">
+            <h2 className="text-2xl font-bold mb-4 mt-4 text-center">
               {content.mainHeadline}
-            </h1>
-            <p className="mb-6 flex-grow text-center">{content.mainDescription}</p>
+            </h2>
+            <p className="mb-6 flex-grow text-center">
+              {content.mainDescription}
+            </p>
+
+            {content.showEmailInput && (
+              <div className="mb-2">
+                <label htmlFor="email-input" className="block mb-1 text-sm font-medium text-gray-700">
+                  {content.emailInputValue}
+                </label>
+                <input
+                  id="email-input"
+                  type="email"
+                  placeholder="example@gmail.com"
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+            )}
+
             {content.showCTAButton && content.ctaButtonText && (
               <button className="btn btn-primary w-full">
                 {content.ctaButtonText}
