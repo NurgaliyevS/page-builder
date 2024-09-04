@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderAdmin from "./components/HeaderAdmin";
 import Constructor from "./components/Constructor";
 import PhoneMockup from "./components/PhoneMockup";
@@ -12,7 +12,19 @@ function Admin() {
     mainHeadline: "Join our Waitlist!",
     mainDescription:
       "Our new project is launching soon. Join our waitlist to be the first to know when we launch. Stay tuned!",
+    userName: "",
+    userImage: "",
   });
+
+  useEffect(() => {
+    if (session?.user) {
+      setPageContent(prevContent => ({
+        ...prevContent,
+        userName: session.user.name || "",
+        userImage: session.user.image || "",
+      }));
+    }
+  }, [session]);
 
   const handleUpdate = (updates) => {
     setPageContent((prevContent) => ({ ...prevContent, ...updates }));
@@ -33,7 +45,7 @@ function Admin() {
           </div>
           <div className="flex-1/2">
             <h2 className="text-2xl font-semibold mb-4 text-gray-300">Preview</h2>
-            <PhoneMockup content={pageContent} session={session} />
+            <PhoneMockup content={pageContent} />
           </div>
         </div>
       </main>

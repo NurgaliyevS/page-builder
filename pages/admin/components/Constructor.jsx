@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const Constructor = ({ onUpdate, session }) => {
-  console.log(session, 'session cos')
-
   const [state, setState] = useState({
     ctaButtonText: "Subscribe",
     mainHeadline: "Join our Waitlist!",
