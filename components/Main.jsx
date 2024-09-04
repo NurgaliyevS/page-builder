@@ -66,7 +66,7 @@ function Main() {
         </div>
 
         <div className="relative max-md:-m-4">
-          <div className="mockup-phone">
+          <div className="mockup-phone max-h-96 lg:max-h-full">
             <div className="camera"></div>
             <div className="display">
               <div className="artboard artboard-demo phone-1">Hi.</div>
