@@ -3,7 +3,7 @@ import React from "react";
 const Constructor = ({ onUpdate, content }) => {
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    onUpdate({ [name]: type === 'checkbox' ? checked : value });
+    onUpdate({ [name]: type === "checkbox" ? checked : value });
   };
 
   return (
@@ -37,14 +37,26 @@ const Constructor = ({ onUpdate, content }) => {
         <label htmlFor="ctaButtonText" className="label">
           <span className="label-text">CTA Button Text</span>
         </label>
-        <input
-          type="text"
-          id="ctaButtonText"
-          name="ctaButtonText"
-          value={content.ctaButtonText}
-          onChange={handleInputChange}
-          className="input input-bordered w-full"
-        />
+        <div className="flex items-center space-x-2">
+          <input
+            type="text"
+            id="ctaButtonText"
+            name="ctaButtonText"
+            value={content.ctaButtonText}
+            onChange={handleInputChange}
+            className="input input-bordered flex-grow"
+          />
+          <label className="cursor-pointer label">
+            <span className="label-text mr-2">Show CTA</span>
+            <input
+              type="checkbox"
+              name="showCTAButton"
+              checked={content.showCTAButton}
+              onChange={handleInputChange}
+              className="checkbox checkbox-primary"
+            />
+          </label>
+        </div>
       </div>
       <div className="form-control">
         <label htmlFor="mainHeadline" className="label">

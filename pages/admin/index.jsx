@@ -15,6 +15,7 @@ function Admin() {
     userName: "",
     userImage: "",
     showUserIcon: true,
+    showCTAButton: true,
   });
 
   const isInitialMount = React.useRef(false);

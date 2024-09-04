@@ -28,9 +28,11 @@ const PhoneMockup = ({ content }) => {
               {content.mainHeadline}
             </h1>
             <p className="mb-6 flex-grow text-center">{content.mainDescription}</p>
-            <button className="btn btn-primary w-full">
-              {content.ctaButtonText}
-            </button>
+            {content.showCTAButton && content.ctaButtonText && (
+              <button className="btn btn-primary w-full">
+                {content.ctaButtonText}
+              </button>
+            )}
           </div>
         </div>
       </div>
