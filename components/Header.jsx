@@ -235,7 +235,7 @@ const Header = ({ linksOutside, buttonCore }) => {
             ) : (
               <div className="flex flex-col">
                 <Link
-                  href="/meal"
+                  href="/admin"
                   className="btn btn-sm w-full btn-neutral"
                   title="Admin page"
                   rel="nofollow"
