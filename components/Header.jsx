@@ -145,7 +145,7 @@ const Header = ({ linksOutside, buttonCore }) => {
               </Link>
             ) : (
               <Link
-                href="/meal"
+                href="/admin"
                 className="btn btn-sm btn-neutral"
                 title="Admin page"
                 rel="nofollow"

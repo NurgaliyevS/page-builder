@@ -25,9 +25,9 @@ function CTAButton(props) {
         </Link>
       ) : (
         <Link
-          href="/meal"
+          href="/admin"
           className={`btn btn-primary btn-wide no-underline ${customStyle}`}
-          title="Meal page"
+          title="Admin page"
           rel="nofollow"
           onClick={() => {
             plausible(plausibleNameAfterLogin);
