@@ -9,7 +9,7 @@ function Products({ onUpdate, product }) {
       onUpdate({
         products: [
           {
-            ...product.products[0],
+            ...product?.products[0],
             [name]: value
           }
         ]
@@ -21,13 +21,13 @@ function Products({ onUpdate, product }) {
     <div className="space-y-4">
       <div className="form-control">
         <button
-          onClick={() => handleInputChange({ target: { name: "isOpenProduct", type: "checkbox", checked: !product.isOpenProduct } })}
+          onClick={() => handleInputChange({ target: { name: "isOpenProduct", type: "checkbox", checked: !product?.isOpenProduct } })}
           className="btn btn-primary w-full"
         >
-          {product.isOpenProduct ? "Save Product" : "Add Product"}
+          {product?.isOpenProduct ? "Save Product" : "Add Product"}
         </button>
       </div>
-      <div className={`space-y-4 overflow-hidden transition-all duration-300 ${product.isOpenProduct ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`space-y-4 overflow-hidden transition-all duration-300 ${product?.isOpenProduct ? 'max-h-96' : 'max-h-0'}`}>
         <div className="form-control">
           <label htmlFor="productURL" className="label">
             <span className="label-text">Product URL</span>
@@ -37,7 +37,7 @@ function Products({ onUpdate, product }) {
             id="productURL"
             name="productURL"
             placeholder="https://"
-            value={product.products[0].productURL}
+            value={product?.products[0]?.productURL}
             onChange={handleInputChange}
             className="input input-bordered w-full"
           />
@@ -51,7 +51,7 @@ function Products({ onUpdate, product }) {
             id="productName"
             name="productName"
             placeholder="Product Name"
-            value={product.products[0].productName}
+            value={product?.products[0]?.productName}
             onChange={handleInputChange}
             className="input input-bordered w-full"
           />
@@ -65,7 +65,7 @@ function Products({ onUpdate, product }) {
             id="productDescription"
             name="productDescription"
             placeholder="Product Description"
-            value={product.products[0].productDescription}
+            value={product?.products[0].productDescription}
             onChange={handleInputChange}
             className="input input-bordered w-full"
           />
@@ -77,7 +77,7 @@ function Products({ onUpdate, product }) {
           <select
             id="productStage"
             name="productStage"
-            value={product.products[0].productStage}
+            value={product?.products[0].productStage}
             onChange={handleInputChange}
             className="select select-bordered w-full"
           >
