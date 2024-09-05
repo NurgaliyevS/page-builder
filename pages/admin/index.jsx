@@ -21,6 +21,18 @@ function Admin() {
     emailInputValue: "Enter your email:",
   });
 
+  const [productContent, setProductContent] = useState({
+    isOpenProduct: false,
+    products: [
+      {
+        productURL: "",
+        productName: "",
+        productDescription: "",
+        productStage: "",
+      },
+    ],
+  });
+
   const isInitialMount = React.useRef(false);
 
   useEffect(() => {
@@ -40,40 +52,42 @@ function Admin() {
     setPageContent((prevContent) => ({ ...prevContent, ...updates }));
   };
 
+  const handleUpdateProduct = (updates) => {
+    setProductContent((prevContent) => ({ ...prevContent, ...updates }));
+  };
+
   return (
-    <div className="bg-neutral min-h-screen pb-96">
+    <div className="min-h-screen bg-gray-100">
       <HeaderAdmin />
-      <main className="container mx-auto p-4 lg:p-8 max-w-7xl">
-        <div className="flex flex-col lg:flex-row gap-8 max-w-full">
-          <div className="flex-1">
-            <h1 className="text-3xl font-bold mb-6 text-gray-300">
-              Page Constructor
-            </h1>
-            <div className="card bg-base-100 shadow-xl">
-              <div className="card-body">
-                <Constructor onUpdate={handleUpdate} content={pageContent} />
-              </div>
+      <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
+        <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
+          <h1 className="text-3xl font-bold mb-6 ">
+            Page Constructor
+          </h1>
+          <div className="card bg-white shadow-lg">
+            <div className="card-body">
+              <Constructor onUpdate={handleUpdate} content={pageContent} />
             </div>
           </div>
-          <div className="flex-1/2">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-300">
-              Preview
-            </h2>
-            <PhoneMockup content={pageContent} />
+
+          <h1 className="text-3xl font-bold mb-6">
+            Product Constructor
+          </h1>
+          <div className="card bg-base-100 shadow-lg">
+            <div className="card-body">
+              <Products
+                onUpdate={handleUpdateProduct}
+                product={productContent}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 max-w-full">
-          <div className="flex-1">
-            <div className="w-2/3">
-              <h1 className="text-3xl font-bold mb-6 text-gray-300">
-                Product Constructor
-              </h1>
-              <Products />
-            </div>
-          </div>
+        <div className="hidden md:block md:basis-2/5 mx-auto max-w-sm">
+          <h2 className="text-2xl font-semibold mb-4">Preview</h2>
+          <PhoneMockup content={pageContent} product={productContent}/>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

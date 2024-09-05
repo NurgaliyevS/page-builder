@@ -1,11 +1,11 @@
 import React from "react";
 
-const PhoneMockup = ({ content }) => {
+const PhoneMockup = ({ content, product }) => {
   return (
-    <div className="mockup-phone border-neutral">
+    <div className="mockup-phone border-neutral w-full">
       <div className="camera"></div>
       <div className="display bg-white">
-        <div className="artboard bg-white phone-1">
+        <div className="artboard bg-white min-h-screen">
           <div className="flex mt-8 gap-4 items-start justify-start ml-2">
             {content?.showUserIcon && content?.userImage && (
               <span className="relative">
@@ -33,7 +33,10 @@ const PhoneMockup = ({ content }) => {
 
             {content?.showEmailInput && (
               <div className="mb-2">
-                <label htmlFor="email-input" className="block mb-1 text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email-input"
+                  className="block mb-1 text-sm font-medium text-gray-700"
+                >
                   {content?.emailInputValue}
                 </label>
                 <input
@@ -52,6 +55,43 @@ const PhoneMockup = ({ content }) => {
               </button>
             )}
           </div>
+
+          <div
+            className={`divider my-0 px-6 ${
+              product?.isOpenProduct ? "" : "hidden"
+            }`}
+          ></div>
+
+          {product?.isOpenProduct && product?.products?.length > 0 && (
+            <ul className="p-4 space-y-4 overflow-y-auto max-h-[60vh]">
+              {product.products.map((item, index) => (
+                <li key={index} className="card bg-gray-100 duration-200">
+                  <a
+                    className="group rounded-box cursor-pointer p-3 duration-200 hover:scale-[1.02] hover:bg-base-300"
+                    href={item?.productURL}
+                    target="_blank"
+                    rel="nofollow noopener"
+                  >
+                    <span className="flex items-center">
+                      <p className="font-bold text-sm flex-grow truncate mr-auto lg:text-lg">
+                        {item?.productName}
+                      </p>
+                      {item?.productStage && (
+                        <p className="badge badge-outline text-xs">
+                          {item?.productStage}
+                        </p>
+                      )}
+                    </span>
+                    {item?.productDescription && (
+                      <p className="text-sm lg:text-base">
+                        {item?.productDescription}
+                      </p>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
