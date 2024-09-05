@@ -81,7 +81,7 @@ function Products({ onUpdate, product }) {
             onChange={handleInputChange}
             className="select select-bordered w-full"
           >
-            <option disabled value="">
+            <option value="">
               Select product stage
             </option>
             <option value="development">Development</option>

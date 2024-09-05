@@ -64,7 +64,7 @@ const PhoneMockup = ({ content, product }) => {
 
           {product?.isOpenProduct && product?.products?.length > 0 && (
             <ul className="p-4 space-y-4 overflow-y-auto max-h-[60vh]">
-              {product.products.map((item, index) => (
+              {product?.products.map((item, index) => (
                 <li key={index} className="card bg-gray-100 duration-200">
                   <a
                     className="group rounded-box cursor-pointer p-3 duration-200 hover:scale-[1.02] hover:bg-base-300"
