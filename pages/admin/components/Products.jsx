@@ -36,7 +36,7 @@ function Products({ onUpdate, product }) {
 
   const addProduct = () => {
     const newId = shortUUID.generate();
-    const newNumber = Math.max(...breadcrumbs.map(b => b.number), 0) + 1;
+    const newNumber = breadcrumbs.length + 1;
     setBreadcrumbs([...breadcrumbs, { id: newId, number: newNumber }]);
     setCurrentProductId(newId);
     onUpdate({
@@ -59,11 +59,16 @@ function Products({ onUpdate, product }) {
 
   const removeProduct = (id) => {
     const updatedBreadcrumbs = breadcrumbs.filter(b => b.id !== id);
-    setBreadcrumbs(updatedBreadcrumbs);
+    // Renumber the remaining products
+    const renumberedBreadcrumbs = updatedBreadcrumbs.map((crumb, index) => ({
+      ...crumb,
+      number: index + 1
+    }));
+    setBreadcrumbs(renumberedBreadcrumbs);
     const updatedProducts = product.products.filter(p => p.id !== id);
     onUpdate({ products: updatedProducts });
     if (currentProductId === id) {
-      setCurrentProductId(updatedBreadcrumbs[0]?.id || null);
+      setCurrentProductId(renumberedBreadcrumbs[0]?.id || null);
     }
   };
 
@@ -72,7 +77,7 @@ function Products({ onUpdate, product }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <div className="breadcrumbs max-w-xs text-sm">
+        <div className="breadcrumbs max-w-xs lg:max-w-full text-sm">
           <ul>
             {breadcrumbs.map((crumb) => (
               <li key={crumb.id}>
