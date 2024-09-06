@@ -35,7 +35,7 @@ function Admin() {
 
   const [accordionState, setAccordionState] = useState({
     constructor: true,
-    products: true,
+    products: false,
   });
 
   const isInitialMount = React.useRef(false);
@@ -104,7 +104,13 @@ function Admin() {
             <div className="card-body">
               <button
                 className="text-xl font-bold mb-2 w-full text-left flex justify-between items-center"
-                onClick={() => toggleAccordion('products')}
+                onClick={() => {
+                  toggleAccordion('products')
+                  setProductContent((prevContent) => ({
+                    ...prevContent,
+                    isOpenProduct: !accordionState.products,
+                  }));
+                }}
               >
                 Product Constructor
                 <svg

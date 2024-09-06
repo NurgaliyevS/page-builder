@@ -19,15 +19,7 @@ function Products({ onUpdate, product }) {
 
   return (
     <div className="space-y-4">
-      <div className="form-control">
-        <button
-          onClick={() => handleInputChange({ target: { name: "isOpenProduct", type: "checkbox", checked: !product?.isOpenProduct } })}
-          className="btn btn-primary w-full"
-        >
-          {product?.isOpenProduct ? "Save Product" : "Add Product"}
-        </button>
-      </div>
-      <div className={`space-y-4 overflow-hidden transition-all duration-300 ${product?.isOpenProduct ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`space-y-4 overflow-hidden transition-all duration-300 max-h-96`}>
         <div className="form-control">
           <label htmlFor="productURL" className="label">
             <span className="label-text">Product URL</span>
