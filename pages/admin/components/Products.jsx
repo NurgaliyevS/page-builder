@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import shortUUID from 'short-uuid';
 
 function Products({ onUpdate, product }) {
+  // Check if product exists and has a products array
+  const productList = product?.products || [];
+
   // Initialize products with IDs if they don't have them
-  const initialProducts = product.products.map((p, index) => ({
+  const initialProducts = productList.map((p, index) => ({
     ...p,
     id: p.id || shortUUID.generate()
   }));
@@ -18,29 +21,29 @@ function Products({ onUpdate, product }) {
   const [currentProductId, setCurrentProductId] = useState(initialProducts[0]?.id || null);
 
   // Update products if IDs were added
-  if (JSON.stringify(initialProducts) !== JSON.stringify(product.products)) {
-    onUpdate({ products: initialProducts });
+  if (JSON.stringify(initialProducts) !== JSON.stringify(productList)) {
+    onUpdate?.({ products: initialProducts });
   }
 
   const handleInputChange = (e, id) => {
     const { name, value } = e.target;
-    const updatedProducts = product.products.map(p => 
+    const updatedProducts = productList.map(p => 
       p.id === id ? { ...p, [name]: value } : p
     );
-    onUpdate({ products: updatedProducts });
+    onUpdate?.({ products: updatedProducts });
   };
 
   const addProduct = () => {
-    const currentProduct = product.products.find(p => p.id === currentProductId) || {};
+    const currentProduct = productList.find(p => p.id === currentProductId) || {};
     if (!currentProduct.productURL || !currentProduct.productName) return;
 
     const newId = shortUUID.generate();
     const newNumber = breadcrumbs.length + 1;
     setBreadcrumbs([...breadcrumbs, { id: newId, number: newNumber }]);
     setCurrentProductId(newId);
-    onUpdate({
+    onUpdate?.({
       products: [
-        ...product.products,
+        ...productList,
         {
           id: newId,
           productURL: "",
@@ -64,14 +67,14 @@ function Products({ onUpdate, product }) {
       number: index + 1
     }));
     setBreadcrumbs(renumberedBreadcrumbs);
-    const updatedProducts = product.products.filter(p => p.id !== id);
-    onUpdate({ products: updatedProducts });
+    const updatedProducts = productList.filter(p => p.id !== id);
+    onUpdate?.({ products: updatedProducts });
     if (currentProductId === id) {
       setCurrentProductId(renumberedBreadcrumbs[0]?.id || null);
     }
   };
 
-  const currentProduct = product.products.find(p => p.id === currentProductId) || {};
+  const currentProduct = productList.find(p => p.id === currentProductId) || {};
   const canAddProduct = !!currentProduct.productURL && !!currentProduct.productName;
 
   return (
