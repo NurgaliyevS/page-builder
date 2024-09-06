@@ -208,6 +208,8 @@ function Products({ onUpdate, product }) {
             <option value="development">Development</option>
             <option value="testing">Testing</option>
             <option value="production">Production</option>
+            <option value="forsale">For Sale</option>
+            <option value="disconnected">Disconnected</option>
           </select>
         </div>
       </div>
