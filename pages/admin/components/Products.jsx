@@ -35,6 +35,9 @@ function Products({ onUpdate, product }) {
   };
 
   const addProduct = () => {
+    const currentProduct = product.products.find(p => p.id === currentProductId) || {};
+    if (!currentProduct.productURL || !currentProduct.productName) return;
+
     const newId = shortUUID.generate();
     const newNumber = breadcrumbs.length + 1;
     setBreadcrumbs([...breadcrumbs, { id: newId, number: newNumber }]);
@@ -73,6 +76,7 @@ function Products({ onUpdate, product }) {
   };
 
   const currentProduct = product.products.find(p => p.id === currentProductId) || {};
+  const canAddProduct = !!currentProduct.productURL && !!currentProduct.productName;
 
   return (
     <div className="space-y-4">
@@ -115,7 +119,11 @@ function Products({ onUpdate, product }) {
             ))}
           </ul>
         </div>
-        <button onClick={addProduct} className="btn btn-circle btn-sm">
+        <button 
+          onClick={addProduct} 
+          className={`btn btn-circle btn-sm ${canAddProduct ? '' : 'btn-disabled'}`}
+          disabled={!canAddProduct}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
