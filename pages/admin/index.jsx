@@ -25,6 +25,7 @@ function Admin() {
     isOpenProduct: false,
     products: [
       {
+        id: "",
         productURL: "",
         productName: "",
         productDescription: "",

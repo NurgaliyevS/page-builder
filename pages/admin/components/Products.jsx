@@ -1,30 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import shortUUID from 'short-uuid';
 
 function Products({ onUpdate, product }) {
-  const [breadcrumbs, setBreadcrumbs] = useState([1]);
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [currentProductId, setCurrentProductId] = useState(null);
 
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const updatedProducts = [...product.products];
-    if (!updatedProducts[index]) {
-      updatedProducts[index] = {};
+  useEffect(() => {
+    // Initialize breadcrumbs and currentProductId based on existing products
+    const initialProducts = product.products.map((p, index) => ({
+      id: p.id || shortUUID.generate(),
+      number: index + 1
+    }));
+    
+    setBreadcrumbs(initialProducts);
+    setCurrentProductId(initialProducts[0]?.id || null);
+
+    // Update products with generated IDs if needed
+    const updatedProducts = product.products.map((p, index) => ({
+      ...p,
+      id: initialProducts[index].id
+    }));
+    
+    if (JSON.stringify(updatedProducts) !== JSON.stringify(product.products)) {
+      onUpdate({ products: updatedProducts });
     }
-    updatedProducts[index] = {
-      ...updatedProducts[index],
-      [name]: value,
-    };
+  }, []);
+
+  const handleInputChange = (e, id) => {
+    const { name, value } = e.target;
+    const updatedProducts = product.products.map(p => 
+      p.id === id ? { ...p, [name]: value } : p
+    );
     onUpdate({ products: updatedProducts });
   };
 
   const addProduct = () => {
-    const newIndex = breadcrumbs.length;
-    setBreadcrumbs([...breadcrumbs, newIndex + 1]);
-    setCurrentProductIndex(newIndex);
+    const newId = shortUUID.generate();
+    const newNumber = Math.max(...breadcrumbs.map(b => b.number), 0) + 1;
+    setBreadcrumbs([...breadcrumbs, { id: newId, number: newNumber }]);
+    setCurrentProductId(newId);
     onUpdate({
       products: [
         ...product.products,
         {
+          id: newId,
           productURL: "",
           productName: "",
           productDescription: "",
@@ -34,25 +53,59 @@ function Products({ onUpdate, product }) {
     });
   };
 
-  const switchToProduct = (index) => {
-    setCurrentProductIndex(index);
+  const switchToProduct = (id) => {
+    setCurrentProductId(id);
   };
+
+  const removeProduct = (id) => {
+    const updatedBreadcrumbs = breadcrumbs.filter(b => b.id !== id);
+    setBreadcrumbs(updatedBreadcrumbs);
+    const updatedProducts = product.products.filter(p => p.id !== id);
+    onUpdate({ products: updatedProducts });
+    if (currentProductId === id) {
+      setCurrentProductId(updatedBreadcrumbs[0]?.id || null);
+    }
+  };
+
+  const currentProduct = product.products.find(p => p.id === currentProductId) || {};
 
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
         <div className="breadcrumbs max-w-xs text-sm">
           <ul>
-            {breadcrumbs.map((crumb, index) => (
-              <li key={crumb}>
+            {breadcrumbs.map((crumb) => (
+              <li key={crumb.id}>
                 <button
                   className={`${
-                    index === currentProductIndex ? "text-primary" : ""
+                    crumb.id === currentProductId ? "text-primary" : ""
                   }`}
-                  onClick={() => switchToProduct(index)}
+                  onClick={() => switchToProduct(crumb.id)}
                 >
-                  Product {crumb}
+                  Product {crumb.number}
                 </button>
+                {breadcrumbs.length > 1 && (
+                  <button
+                    onClick={() => removeProduct(crumb.id)}
+                    className="btn btn-ghost btn-xs ml-2"
+                    aria-label="Remove product"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                      />
+                    </svg>
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -79,72 +132,67 @@ function Products({ onUpdate, product }) {
       >
         <div className="form-control">
           <label
-            htmlFor={`productURL-${currentProductIndex}`}
+            htmlFor={`productURL-${currentProductId}`}
             className="label"
           >
             <span className="label-text">Product URL</span>
           </label>
           <input
             type="text"
-            id={`productURL-${currentProductIndex}`}
+            id={`productURL-${currentProductId}`}
             name="productURL"
             placeholder="https://"
-            value={product?.products[currentProductIndex]?.productURL || ""}
-            onChange={(e) => handleInputChange(e, currentProductIndex)}
+            value={currentProduct.productURL || ""}
+            onChange={(e) => handleInputChange(e, currentProductId)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productName-${currentProductIndex}`}
+            htmlFor={`productName-${currentProductId}`}
             className="label"
           >
             <span className="label-text">Product Name</span>
           </label>
           <input
             type="text"
-            id={`productName-${currentProductIndex}`}
+            id={`productName-${currentProductId}`}
             name="productName"
             placeholder="Product Name"
-            value={product?.products[currentProductIndex]?.productName || ""}
-            onChange={(e) => handleInputChange(e, currentProductIndex)}
+            value={currentProduct.productName || ""}
+            onChange={(e) => handleInputChange(e, currentProductId)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productDescription-${currentProductIndex}`}
+            htmlFor={`productDescription-${currentProductId}`}
             className="label"
           >
             <span className="label-text">Product Description</span>
           </label>
           <input
             type="text"
-            id={`productDescription-${currentProductIndex}`}
+            id={`productDescription-${currentProductId}`}
             name="productDescription"
             placeholder="Product Description"
-            value={
-              product?.products[currentProductIndex]?.productDescription ||
-              ""
-            }
-            onChange={(e) => handleInputChange(e, currentProductIndex)}
+            value={currentProduct.productDescription || ""}
+            onChange={(e) => handleInputChange(e, currentProductId)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productStage-${currentProductIndex}`}
+            htmlFor={`productStage-${currentProductId}`}
             className="label"
           >
             <span className="label-text">Product Stage</span>
           </label>
           <select
-            id={`productStage-${currentProductIndex}`}
+            id={`productStage-${currentProductId}`}
             name="productStage"
-            value={
-              product?.products[currentProductIndex]?.productStage || ""
-            }
-            onChange={(e) => handleInputChange(e, currentProductIndex)}
+            value={currentProduct.productStage || ""}
+            onChange={(e) => handleInputChange(e, currentProductId)}
             className="select select-bordered w-full"
           >
             <option value="">Select product stage</option>
