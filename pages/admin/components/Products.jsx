@@ -205,11 +205,11 @@ function Products({ onUpdate, product }) {
             className="select select-bordered w-full"
           >
             <option value="">Select product stage</option>
-            <option value="development">Development</option>
-            <option value="testing">Testing</option>
-            <option value="production">Production</option>
-            <option value="forsale">For Sale</option>
-            <option value="disconnected">Disconnected</option>
+            <option value="development">🛠️ Development</option>
+            <option value="testing">🧪 Testing</option>
+            <option value="production">🚀 Production</option>
+            <option value="forsale">💰 For Sale</option>
+            <option value="disconnected">🔌 Disconnected</option>
           </select>
         </div>
       </div>

@@ -77,8 +77,20 @@ const PhoneMockup = ({ content, product }) => {
                         {item?.productName}
                       </p>
                       {item?.productStage && (
-                        <p className="badge badge-outline text-xs">
-                          {item?.productStage}
+                        <p className={`badge text-xs ${
+                          item.productStage === 'development' ? 'badge-info' :
+                          item.productStage === 'testing' ? 'badge-warning' :
+                          item.productStage === 'production' ? 'badge-success' :
+                          item.productStage === 'forsale' ? 'badge-secondary' :
+                          item.productStage === 'disconnected' ? 'badge-error' :
+                          ''
+                        }`}>
+                          {item.productStage === 'development' && '🛠️'}
+                          {item.productStage === 'testing' && '🧪'}
+                          {item.productStage === 'production' && '🚀'}
+                          {item.productStage === 'forsale' && '💰'}
+                          {item.productStage === 'disconnected' && '🔌'}
+                          {' '}{item?.productStage}
                         </p>
                       )}
                     </span>
