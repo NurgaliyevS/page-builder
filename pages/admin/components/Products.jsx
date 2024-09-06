@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import shortUUID from 'short-uuid';
 
 function Products({ onUpdate, product }) {
-  const [breadcrumbs, setBreadcrumbs] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(null);
+  // Initialize products with IDs if they don't have them
+  const initialProducts = product.products.map((p, index) => ({
+    ...p,
+    id: p.id || shortUUID.generate()
+  }));
 
-  useEffect(() => {
-    // Initialize breadcrumbs and currentProductId based on existing products
-    const initialProducts = product.products.map((p, index) => ({
-      id: p.id || shortUUID.generate(),
-      number: index + 1
-    }));
-    
-    setBreadcrumbs(initialProducts);
-    setCurrentProductId(initialProducts[0]?.id || null);
+  // Initialize breadcrumbs based on products
+  const initialBreadcrumbs = initialProducts.map((p, index) => ({
+    id: p.id,
+    number: index + 1
+  }));
 
-    // Update products with generated IDs if needed
-    const updatedProducts = product.products.map((p, index) => ({
-      ...p,
-      id: initialProducts[index].id
-    }));
-    
-    if (JSON.stringify(updatedProducts) !== JSON.stringify(product.products)) {
-      onUpdate({ products: updatedProducts });
-    }
-  }, []);
+  const [breadcrumbs, setBreadcrumbs] = useState(initialBreadcrumbs);
+  const [currentProductId, setCurrentProductId] = useState(initialProducts[0]?.id || null);
+
+  // Update products if IDs were added
+  if (JSON.stringify(initialProducts) !== JSON.stringify(product.products)) {
+    onUpdate({ products: initialProducts });
+  }
 
   const handleInputChange = (e, id) => {
     const { name, value } = e.target;
