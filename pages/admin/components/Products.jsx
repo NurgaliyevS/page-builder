@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 function Products({ onUpdate, product }) {
   const [breadcrumbs, setBreadcrumbs] = useState([1]);
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
 
   const handleInputChange = (e, index) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     const updatedProducts = [...product.products];
     if (!updatedProducts[index]) {
       updatedProducts[index] = {};
@@ -17,7 +18,9 @@ function Products({ onUpdate, product }) {
   };
 
   const addProduct = () => {
-    setBreadcrumbs([...breadcrumbs, breadcrumbs.length + 1]);
+    const newIndex = breadcrumbs.length;
+    setBreadcrumbs([...breadcrumbs, newIndex + 1]);
+    setCurrentProductIndex(newIndex);
     onUpdate({
       products: [
         ...product.products,
@@ -31,6 +34,10 @@ function Products({ onUpdate, product }) {
     });
   };
 
+  const switchToProduct = (index) => {
+    setCurrentProductIndex(index);
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
@@ -40,9 +47,9 @@ function Products({ onUpdate, product }) {
               <li key={crumb}>
                 <button
                   className={`${
-                    index === breadcrumbs.length - 1 ? "text-primary" : ""
+                    index === currentProductIndex ? "text-primary" : ""
                   }`}
-                  onClick={() => setBreadcrumbs(breadcrumbs.slice(0, index + 1))}
+                  onClick={() => switchToProduct(index)}
                 >
                   Product {crumb}
                 </button>
@@ -72,72 +79,72 @@ function Products({ onUpdate, product }) {
       >
         <div className="form-control">
           <label
-            htmlFor={`productURL-${breadcrumbs.length - 1}`}
+            htmlFor={`productURL-${currentProductIndex}`}
             className="label"
           >
             <span className="label-text">Product URL</span>
           </label>
           <input
             type="text"
-            id={`productURL-${breadcrumbs.length - 1}`}
+            id={`productURL-${currentProductIndex}`}
             name="productURL"
             placeholder="https://"
-            value={product?.products[breadcrumbs.length - 1]?.productURL || ""}
-            onChange={(e) => handleInputChange(e, breadcrumbs.length - 1)}
+            value={product?.products[currentProductIndex]?.productURL || ""}
+            onChange={(e) => handleInputChange(e, currentProductIndex)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productName-${breadcrumbs.length - 1}`}
+            htmlFor={`productName-${currentProductIndex}`}
             className="label"
           >
             <span className="label-text">Product Name</span>
           </label>
           <input
             type="text"
-            id={`productName-${breadcrumbs.length - 1}`}
+            id={`productName-${currentProductIndex}`}
             name="productName"
             placeholder="Product Name"
-            value={product?.products[breadcrumbs.length - 1]?.productName || ""}
-            onChange={(e) => handleInputChange(e, breadcrumbs.length - 1)}
+            value={product?.products[currentProductIndex]?.productName || ""}
+            onChange={(e) => handleInputChange(e, currentProductIndex)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productDescription-${breadcrumbs.length - 1}`}
+            htmlFor={`productDescription-${currentProductIndex}`}
             className="label"
           >
             <span className="label-text">Product Description</span>
           </label>
           <input
             type="text"
-            id={`productDescription-${breadcrumbs.length - 1}`}
+            id={`productDescription-${currentProductIndex}`}
             name="productDescription"
             placeholder="Product Description"
             value={
-              product?.products[breadcrumbs.length - 1]?.productDescription ||
+              product?.products[currentProductIndex]?.productDescription ||
               ""
             }
-            onChange={(e) => handleInputChange(e, breadcrumbs.length - 1)}
+            onChange={(e) => handleInputChange(e, currentProductIndex)}
             className="input input-bordered w-full"
           />
         </div>
         <div className="form-control">
           <label
-            htmlFor={`productStage-${breadcrumbs.length - 1}`}
+            htmlFor={`productStage-${currentProductIndex}`}
             className="label"
           >
             <span className="label-text">Product Stage</span>
           </label>
           <select
-            id={`productStage-${breadcrumbs.length - 1}`}
+            id={`productStage-${currentProductIndex}`}
             name="productStage"
             value={
-              product?.products[breadcrumbs.length - 1]?.productStage || ""
+              product?.products[currentProductIndex]?.productStage || ""
             }
-            onChange={(e) => handleInputChange(e, breadcrumbs.length - 1)}
+            onChange={(e) => handleInputChange(e, currentProductIndex)}
             className="select select-bordered w-full"
           >
             <option value="">Select product stage</option>
