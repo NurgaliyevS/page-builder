@@ -32,7 +32,7 @@ const HeaderAdmin = () => {
               <div className="text-sm">Page</div>
             </div>
           </Link>
-          <Link href="/admin/appearance" passHref>
+          <Link href="/admin/style" passHref>
             <div
               className={`btn-ghost btn-sm btn gap-1.5 lg:btn-md ${
                 router.pathname === "/admin/appearance" ? "btn-active" : ""
