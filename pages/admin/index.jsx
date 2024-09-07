@@ -8,6 +8,8 @@ import Products from "./components/Products";
 function Admin() {
   const { data: session } = useSession();
 
+  console.log(session, 'session')
+
   const [pageContent, setPageContent] = useState({
     ctaButtonText: "Subscribe",
     mainHeadline: "Join our Waitlist!",

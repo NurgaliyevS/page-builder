@@ -1,6 +1,8 @@
 import React from "react";
 
 const Constructor = ({ onUpdate, content }) => {
+  console.log(content?.userName, 'content');
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     onUpdate({ [name]: type === "checkbox" ? checked : value });
