@@ -51,11 +51,6 @@ function Admin() {
   useEffect(() => {
     if (!isInitialMount.current) {
       if (session?.user) {
-        setPageContent((prevContent) => ({
-          ...prevContent,
-          userName: session.user.name || "",
-          userImage: session.user.image || "",
-        }));
         isInitialMount.current = true;
         fetchLandingPage();
       }
