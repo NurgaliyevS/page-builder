@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const HeaderAdmin = ({ handleSubmit, disabledPublish }) => {
-  console.log(handleSubmit, 'handle submit')
-
   const router = useRouter();
 
   return (
