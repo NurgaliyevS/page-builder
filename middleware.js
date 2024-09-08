@@ -32,5 +32,5 @@
   }
 
   export const config = {
-    matcher: ["/api/auth/signin/email", "/api/admin/landing-page"],
+    matcher: ["/api/auth/signin/email"],
   };
