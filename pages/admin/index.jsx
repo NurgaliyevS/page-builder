@@ -183,7 +183,7 @@ function Admin() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <HeaderAdmin />
+      <HeaderAdmin handleSubmit={handleSubmit} />
       <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
         <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
           <div className="card bg-white shadow-lg">

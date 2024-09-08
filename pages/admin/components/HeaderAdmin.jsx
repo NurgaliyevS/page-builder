@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const HeaderAdmin = () => {
+const HeaderAdmin = ({ handleSubmit }) => {
   const router = useRouter();
 
   return (
@@ -50,7 +50,7 @@ const HeaderAdmin = () => {
           </Link>
         </div>
         <div className="flex-none">
-          <Link href="/admin/upgrade" passHref>
+          <Link href="/admin/publish" passHref onClick={handleSubmit}>
             <div className="btn-primary btn-sm btn gap-1.5 lg:btn-md">
               <span>
                 <svg
