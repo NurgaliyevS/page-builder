@@ -4,30 +4,31 @@ import { handleSignIn } from "./handleSignIn";
 import { buyProduct } from "./buyProduct";
 import { usePlausible } from "next-plausible";
 
-function Pricing(props) {
+function Pricing({ customStyle }) {
   const plausible = usePlausible();
   return (
-    <section className="bg-neutral py-44 flex flex-col overflow-hidden">
-      <div className="container max-w-6xl mx-auto space-y-8 p-6 py-16 md:space-y-16 md:py-32">
-        <div className="flex justify-center items-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
-          <div>
-            <div className="badge animate-bounce whitespace-nowrap badge-primary">
-              ✨ LAUNCH discount — 50% OFF 3 months ✨
+    <section
+      className={`bg-neutral py-44 flex flex-col overflow-hidden ${customStyle}`}
+    >
+      <div className={`container max-w-6xl mx-auto space-y-8 p-6 md:space-y-16 ${customStyle}`}>
+        {!customStyle && (
+          <div className="flex justify-center items-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
+            <div>
+              <div className="badge animate-bounce whitespace-nowrap badge-primary">
+                ✨ LAUNCH discount — 50% OFF 3 months ✨
+              </div>
             </div>
+            <h2
+              className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4"
+              id="pricing"
+            >
+              <strong className="relative text-primary">Pricing</strong>
+            </h2>
           </div>
-          <h2
-            className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4"
-            id="pricing"
-          >
-            <strong className="relative text-primary">Pricing</strong>
-          </h2>
-        </div>
-
-        <div class="mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6">
+        )}
+        <div class={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle}`}>
           <div class="space-y-6 flex-1 w-full">
-            <p class="text-2xl tracking-tight font-bold">
-              Create your product
-            </p>
+            <p class="text-2xl tracking-tight font-bold">Create your product</p>
             <ul class="space-y-4 text-base-content-secondary">
               <li class="flex gap-3 items-center">
                 <svg
@@ -58,9 +59,7 @@ function Pricing(props) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>
-                  Build MVP in minutes
-                </span>
+                <span>Build MVP in minutes</span>
               </li>
               <li class="flex gap-3 items-center">
                 <svg
@@ -75,9 +74,7 @@ function Pricing(props) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>
-                  Manage your subscriptions list
-                </span>
+                <span>Manage your subscriptions list</span>
               </li>
               <li class="flex gap-3 items-center">
                 <svg
