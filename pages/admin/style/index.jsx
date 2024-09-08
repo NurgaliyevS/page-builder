@@ -9,11 +9,11 @@ function Style() {
   const { data: session } = useSession();
   const [styleSettings, setStyleSettings] = useState({
     theme: "light",
-    font: "Roboto",
+    font: "Lato",
   });
   const [previewSettings, setPreviewSettings] = useState({
     theme: "light",
-    font: "Roboto",
+    font: "Lato",
   });
   const [landingPageId, setLandingPageId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,9 +55,9 @@ function Style() {
   ];
 
   const fonts = [
+    "Lato",
     "Roboto",
     "Open Sans",
-    "Lato",
     "Montserrat",
     "Raleway",
     "Poppins",
@@ -85,7 +85,7 @@ function Style() {
       if (response.data && response.data.length > 0) {
         const landingPage = response.data[0];
         setLandingPageId(landingPage._id);
-        const initialSettings = landingPage.customizations || { theme: "light", font: "Roboto" };
+        const initialSettings = landingPage.customizations || { theme: "light", font: "Lato" };
         setStyleSettings(initialSettings);
         setPreviewSettings(initialSettings);
         setPageContent(landingPage.content || {});

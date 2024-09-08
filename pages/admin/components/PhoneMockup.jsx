@@ -4,6 +4,7 @@ const PhoneMockup = ({ content, product, customizations }) => {
   const { theme, font } = customizations || {};
 
   const fontStyle = font ? { fontFamily: font } : {};
+  
 
   return (
     <div className={`mockup-phone border-neutral w-full`} data-theme={theme} style={fontStyle}>

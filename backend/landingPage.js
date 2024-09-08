@@ -7,7 +7,7 @@ const LandingPageSchema = new mongoose.Schema({
   template: { type: String },
   customizations: {
     theme: { type: String, default: 'light' },
-    font: { type: String, default: 'Roboto' },
+    font: { type: String, default: 'Lato' },
   },
   content: {
     constructor: [{
