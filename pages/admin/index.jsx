@@ -6,11 +6,10 @@ import { useSession } from "next-auth/react";
 import Products from "./components/Products";
 import axios from "axios";
 import FirstStep from "./FirstStep";
+import { toast } from "react-toastify";
 
 function Admin() {
   const { data: session } = useSession();
-
-  console.log(session, "session");
 
   const [pageContent, setPageContent] = useState({
     ctaButtonText: "Subscribe",
@@ -45,6 +44,7 @@ function Admin() {
 
   const [landingPageId, setLandingPageId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingButton, setIsLoadingButton] = useState(false);
 
   const isInitialMount = React.useRef(false);
 
@@ -102,6 +102,7 @@ function Admin() {
   };
 
   const handleSubmit = async () => {
+    setIsLoadingButton(true);
     const landingPageData = {
       userId: session.user.id,
       title: pageContent.mainHeadline,
@@ -111,37 +112,55 @@ function Admin() {
         ...pageContent,
         products: productContent,
       },
-      personalLink: `${session.user.name
-        .toLowerCase()
-        .replace(/\s+/g, "-")}-landing-page`,
     };
 
     try {
       if (landingPageId) {
         // Update existing landing page
-        await axios.put(
+        const response = await axios.put(
           `/api/admin/landing-page?id=${landingPageId}`,
           landingPageData
         );
-        console.log("Landing page updated successfully");
-      } else {
-        // Create new landing page
-        const response = await axios.post(
-          "/api/admin/landing-page",
-          landingPageData
-        );
-        setLandingPageId(response.data.landingPage._id);
-        console.log("Landing page created successfully");
+        if (response.status === 200) {
+          toast("Landing page updated successfully")
+        }
       }
     } catch (error) {
       console.error("Error submitting landing page:", error);
+    } finally {
+      setIsLoadingButton(false);
     }
   };
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-ball loading-lg"></span>
+      <div className="min-h-screen bg-gray-100">
+        <HeaderAdmin />
+        <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
+          <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
+            <div className="card bg-white shadow-lg animate-pulse">
+              <div className="card-body">
+                <div className="h-8 bg-gray-300 rounded w-3/4 mb-4"></div>
+                <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+              </div>
+            </div>
+            <div className="card bg-white shadow-lg animate-pulse">
+              <div className="card-body">
+                <div className="h-8 bg-gray-300 rounded w-3/4 mb-4"></div>
+                <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+              </div>
+            </div>
+            <div className="animate-pulse">
+              <div className="h-10 bg-gray-300 rounded w-full"></div>
+            </div>
+          </div>
+          <div className="hidden md:block md:basis-2/5 mx-auto max-w-sm">
+            <div className="h-8 bg-gray-300 rounded w-1/2 mb-4"></div>
+            <div className="h-96 bg-gray-300 rounded w-full"></div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -150,7 +169,6 @@ function Admin() {
     return (
       <div className="min-h-screen bg-gray-100">
         <HeaderAdmin />
-
         <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
           <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
             <FirstStep session={session} setLandingPageId={setLandingPageId} />
@@ -234,7 +252,7 @@ function Admin() {
             </div>
           </div>
 
-          <button className="btn btn-primary w-full" onClick={handleSubmit}>
+          <button className="btn btn-primary w-full" onClick={handleSubmit} disabled={isLoadingButton}>
             Submit
           </button>
         </div>
