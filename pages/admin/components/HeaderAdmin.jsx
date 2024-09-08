@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 const HeaderAdmin = () => {
   const router = useRouter();
 
-  console.log(router, 'router')
-
   return (
     <header className="bg-white shadow-lg sticky top-0 z-40 mb-4 p-2 md:p-4">
       <div className="navbar container mx-auto">
