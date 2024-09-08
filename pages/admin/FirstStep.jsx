@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 function FirstStep({ session, setLandingPageId }) {
   const [personalLink, setPersonalLink] = useState("");
   const [showTip, setShowTip] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post("/api/admin/landing-page", {
         personalLink: personalLink,
@@ -22,6 +24,8 @@ function FirstStep({ session, setLandingPageId }) {
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "An error occurred")
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,6 +75,7 @@ function FirstStep({ session, setLandingPageId }) {
           <button
             type="submit"
             className="group btn-block btn btn-primary no-underline"
+            disabled={loading}
           >
             Create page
           </button>
