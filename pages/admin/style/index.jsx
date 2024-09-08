@@ -7,19 +7,39 @@ import PhoneMockup from "../components/PhoneMockup";
 
 function Style() {
   const { data: session } = useSession();
-  const [styleSettings, setStyleSettings] = useState({
-    theme: "light",
-    font: "Lato",
-  });
   const [previewSettings, setPreviewSettings] = useState({
     theme: "light",
     font: "Lato",
   });
   const [landingPageId, setLandingPageId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingButton, setIsLoadingButton] = useState(false);
   const isInitialMount = useRef(true);
-  const [pageContent, setPageContent] = useState({});
-  const [productContent, setProductContent] = useState({});
+  const [pageContent, setPageContent] = useState({
+    ctaButtonText: "Subscribe",
+    mainHeadline: "Join our Waitlist!",
+    mainDescription:
+      "Our new project is launching soon. Join our waitlist to be the first to know when we launch. Stay tuned!",
+    userName: "",
+    userImage: "",
+    showUserIcon: true,
+    showCTAButton: true,
+    showEmailInput: true,
+    emailInputValue: "Enter your email:",
+  });
+
+  const [productContent, setProductContent] = useState({
+    isOpenProduct: false,
+    products: [
+      {
+        id: "",
+        productURL: "",
+        productName: "",
+        productDescription: "",
+        productStage: "",
+      },
+    ],
+  });
 
   const themes = [
     "light",
@@ -85,11 +105,22 @@ function Style() {
       if (response.data && response.data.length > 0) {
         const landingPage = response.data[0];
         setLandingPageId(landingPage._id);
-        const initialSettings = landingPage.customizations || { theme: "light", font: "Lato" };
-        setStyleSettings(initialSettings);
+        const initialSettings = landingPage.customizations || {
+          theme: "light",
+          font: "Lato",
+        };
         setPreviewSettings(initialSettings);
-        setPageContent(landingPage.content || {});
-        setProductContent(landingPage.content.products || {});
+        setPageContent((prevContent) => ({
+          ...prevContent,
+          ...landingPage.content,
+          customizations: landingPage.customizations,
+        }));
+        setProductContent(
+          landingPage.content.products || {
+            isOpenProduct: false,
+            products: [],
+          }
+        );
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
@@ -108,12 +139,12 @@ function Style() {
   };
 
   const handleSubmit = async () => {
+    setIsLoadingButton(true);
     try {
       if (landingPageId) {
         await axios.put(`/api/admin/landing-page?id=${landingPageId}`, {
           customizations: previewSettings,
         });
-        setStyleSettings(previewSettings);
         toast.success("Style settings updated successfully");
       } else {
         toast.error("No landing page found to update");
@@ -121,6 +152,8 @@ function Style() {
     } catch (error) {
       console.error("Error updating style settings:", error);
       toast.error("Failed to update style settings");
+    } finally {
+      setIsLoadingButton(false);
     }
   };
 
@@ -211,14 +244,22 @@ function Style() {
             </div>
           </div>
 
-          <button className="btn btn-primary w-full" onClick={handleSubmit}>
+          <button
+            className="btn btn-primary w-full"
+            onClick={handleSubmit}
+            disabled={isLoadingButton}
+          >
             Submit
           </button>
         </div>
 
         <div className="hidden md:block md:basis-2/5 mx-auto max-w-sm">
           <h2 className="text-2xl font-semibold mb-4">Preview</h2>
-          <PhoneMockup content={pageContent} product={productContent} customizations={previewSettings} />
+          <PhoneMockup
+            content={pageContent}
+            product={productContent}
+            customizations={previewSettings}
+          />
         </div>
       </div>
     </div>
