@@ -71,10 +71,10 @@ function Admin() {
           ...landingPage.content,
           customizations: landingPage.customizations,
         }));
-        setProductContent(landingPage.content.products || {
-          isOpenProduct: false,
-          products: [],
-        });
+        setProductContent((prevProduct) => ({
+          ...prevProduct,
+          ...landingPage.products
+        }))
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
@@ -104,7 +104,10 @@ function Admin() {
       template: "default",
       content: {
         ...pageContent,
-        products: productContent,
+        products: {
+          isOpenProduct: productContent.isOpenProduct,
+          ...productContent.products,
+        },
       },
     };
 
@@ -165,7 +168,11 @@ function Admin() {
         <HeaderAdmin />
         <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
           <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
-            <FirstStep session={session} setLandingPageId={setLandingPageId} />
+            <FirstStep 
+              session={session} 
+              setLandingPageId={setLandingPageId} 
+              onLandingPageCreated={fetchLandingPage}
+            />
           </div>
         </div>
       </div>

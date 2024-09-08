@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function FirstStep({ session, setLandingPageId }) {
+function FirstStep({ session, setLandingPageId, onLandingPageCreated }) {
   const [personalLink, setPersonalLink] = useState("");
   const [showTip, setShowTip] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,9 +20,11 @@ function FirstStep({ session, setLandingPageId }) {
         }
       });
       if (response.status === 201) {
-        // Handle successful creation (e.g., redirect or show success message)
         console.log("Personal link created successfully");
-        setLandingPageId(response?.data?.landingPage?._id)
+        setLandingPageId(response?.data?.landingPage?._id);
+        // Call the onLandingPageCreated function to trigger fetchLandingPage
+        onLandingPageCreated();
+        toast.success("Landing page created successfully");
       } else {
         toast.error(response.data.message || "An error occurred")
       }
