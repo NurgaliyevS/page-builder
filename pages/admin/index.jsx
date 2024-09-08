@@ -74,8 +74,13 @@ function Admin() {
         setProductContent((prevProduct) => ({
           ...prevProduct,
           isOpenProduct: landingPage?.content?.isOpenProduct,
-          products: [...landingPage.content.products],
         }));
+        if (landingPage?.content?.products?.length) {
+          setProductContent((prevProduct) => ({
+            ...prevProduct,
+            products: [...landingPage.content.products]
+          }));
+        }
         if (landingPage?.content?.isOpenProduct) {
           toggleAccordion("products");
         }
