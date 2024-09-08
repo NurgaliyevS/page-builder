@@ -4,6 +4,8 @@ import Constructor from "./components/Constructor";
 import PhoneMockup from "./components/PhoneMockup";
 import { useSession } from "next-auth/react";
 import Products from "./components/Products";
+import axios from "axios";
+import FirstStep from "./FirstStep";
 
 function Admin() {
   const { data: session } = useSession();
@@ -41,6 +43,8 @@ function Admin() {
     products: false,
   });
 
+  const [landingPageId, setLandingPageId] = useState(null);
+
   const isInitialMount = React.useRef(false);
 
   useEffect(() => {
@@ -52,9 +56,26 @@ function Admin() {
           userImage: session.user.image || "",
         }));
         isInitialMount.current = true;
+        fetchLandingPage();
       }
     }
   }, [session]);
+
+  const fetchLandingPage = async () => {
+    try {
+      const response = await axios.get("/api/admin/landing-page", {
+        params: { user_email: session.user.email },
+      });
+      if (response.data && response.data.length > 0) {
+        const landingPage = response.data[0];
+        setLandingPageId(landingPage._id);
+        setPageContent(landingPage.content);
+        setProductContent(landingPage.content.products);
+      }
+    } catch (error) {
+      console.error("Error fetching landing page:", error);
+    }
+  };
 
   const handleUpdate = (updates) => {
     setPageContent((prevContent) => ({ ...prevContent, ...updates }));
@@ -68,10 +89,64 @@ function Admin() {
     setAccordionState((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const handleSubmit = () => {
-    // TODO: Implement submission logic here
-    console.log("Submitting data:", { pageContent, productContent });
+  const handleSubmit = async () => {
+    const landingPageData = {
+      userId: session.user.id,
+      title: pageContent.mainHeadline,
+      description: pageContent.mainDescription,
+      template: "default",
+      content: {
+        ...pageContent,
+        products: productContent,
+      },
+      personalLink: `${session.user.name
+        .toLowerCase()
+        .replace(/\s+/g, "-")}-landing-page`,
+    };
+
+    try {
+      if (landingPageId) {
+        // Update existing landing page
+        await axios.put(
+          `/api/admin/landing-page?id=${landingPageId}`,
+          landingPageData
+        );
+        console.log("Landing page updated successfully");
+      } else {
+        // Create new landing page
+        const response = await axios.post(
+          "/api/admin/landing-page",
+          landingPageData
+        );
+        setLandingPageId(response.data.landingPage._id);
+        console.log("Landing page created successfully");
+      }
+    } catch (error) {
+      console.error("Error submitting landing page:", error);
+    }
   };
+
+  if (landingPageId === null && isInitialMount.current) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <HeaderAdmin />
+
+        <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
+          <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
+            <FirstStep />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (landingPageId === null && !isInitialMount.current) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ball loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">

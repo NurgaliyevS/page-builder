@@ -1,5 +1,4 @@
 import LandingPage from "@/backend/landingPage";
-import UserMealPreference from "@/backend/mealPreference";
 import connectMongoDB from "@/backend/mongodb";
 
 export default async function handler(req, res) {
