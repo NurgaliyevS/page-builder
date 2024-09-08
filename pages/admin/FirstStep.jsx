@@ -13,7 +13,11 @@ function FirstStep({ session, setLandingPageId }) {
     try {
       const response = await axios.post("/api/admin/landing-page", {
         personalLink: personalLink,
-        userId: session?.user?.id
+        userId: session?.user?.id,
+        content: {
+          userName: session?.user?.name,
+          userImage: session?.user?.image
+        }
       });
       if (response.status === 201) {
         // Handle successful creation (e.g., redirect or show success message)

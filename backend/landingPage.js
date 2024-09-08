@@ -22,6 +22,7 @@ const LandingPageSchema = new mongoose.Schema({
     showEmailInput: { type: Boolean, default: true },
     showCTAButton: { type: Boolean, default: true },
     userName: { type: String },
+    userImage: { type: String },
     products: {
       isOpenProduct: { type: Boolean, default: false },
       productName: String,
