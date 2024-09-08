@@ -167,7 +167,7 @@ function Admin() {
   if (landingPageId === null && !isLoading) {
     return (
       <div className="min-h-screen bg-gray-100">
-        <HeaderAdmin />
+        <HeaderAdmin disabledPublish={true} />
         <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
           <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
             <FirstStep
