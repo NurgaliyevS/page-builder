@@ -73,8 +73,12 @@ function Admin() {
         }));
         setProductContent((prevProduct) => ({
           ...prevProduct,
-          ...landingPage.products
-        }))
+          isOpenProduct: landingPage?.content?.isOpenProduct,
+          products: [...landingPage.content.products],
+        }));
+        if (landingPage?.content?.isOpenProduct) {
+          toggleAccordion("products");
+        }
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
@@ -104,10 +108,8 @@ function Admin() {
       template: "default",
       content: {
         ...pageContent,
-        products: {
-          isOpenProduct: productContent.isOpenProduct,
-          ...productContent.products,
-        },
+        isOpenProduct: productContent.isOpenProduct,
+        products: [...productContent.products],
       },
     };
 
@@ -119,7 +121,7 @@ function Admin() {
           landingPageData
         );
         if (response.status === 200) {
-          toast("Landing page updated successfully")
+          toast("Landing page updated successfully");
         }
       }
     } catch (error) {
@@ -168,9 +170,9 @@ function Admin() {
         <HeaderAdmin />
         <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
           <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
-            <FirstStep 
-              session={session} 
-              setLandingPageId={setLandingPageId} 
+            <FirstStep
+              session={session}
+              setLandingPageId={setLandingPageId}
               onLandingPageCreated={fetchLandingPage}
             />
           </div>
@@ -253,14 +255,22 @@ function Admin() {
             </div>
           </div>
 
-          <button className="btn btn-primary w-full" onClick={handleSubmit} disabled={isLoadingButton}>
+          <button
+            className="btn btn-primary w-full"
+            onClick={handleSubmit}
+            disabled={isLoadingButton}
+          >
             Submit
           </button>
         </div>
 
         <div className="hidden md:block md:basis-2/5 mx-auto max-w-sm">
           <h2 className="text-2xl font-semibold mb-4">Preview</h2>
-          <PhoneMockup content={pageContent} product={productContent} customizations={pageContent?.customizations} />
+          <PhoneMockup
+            content={pageContent}
+            product={productContent}
+            customizations={pageContent?.customizations}
+          />
         </div>
       </div>
     </div>

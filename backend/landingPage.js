@@ -23,13 +23,14 @@ const LandingPageSchema = new mongoose.Schema({
     showCTAButton: { type: Boolean, default: true },
     userName: { type: String },
     userImage: { type: String },
-    products: {
-      isOpenProduct: { type: Boolean, default: false },
-      productName: String,
+    products: [{
+      id: String,
       productDescription: String,
-      productPrice: Number,
-      productImage: String
-    }
+      productName: String,
+      productStage: String,
+      productURL: String,
+    }],
+    isOpenProduct: { type: Boolean, default: false }
   },
   personalLink: { type: String, unique: true },
   createdAt: { type: Date, default: Date.now },

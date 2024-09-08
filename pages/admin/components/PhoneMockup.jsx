@@ -68,7 +68,7 @@ const PhoneMockup = ({ content, product, customizations }) => {
           ></div>
 
           {product?.isOpenProduct && product?.products?.length > 0 && (
-            <ul className="p-4 space-y-4 overflow-y-auto max-h-[60vh]">
+            <ul className="p-4 space-y-4 overflow-y-auto">
               {product?.products.map((item, index) => (
                 <li key={index} className="card bg-base-200 duration-200">
                   <a

@@ -115,12 +115,11 @@ function Style() {
           ...landingPage.content,
           customizations: landingPage.customizations,
         }));
-        setProductContent(
-          landingPage.content.products || {
-            isOpenProduct: false,
-            products: [],
-          }
-        );
+        setProductContent((prevProduct) => ({
+          ...prevProduct,
+          isOpenProduct: landingPage?.content?.isOpenProduct,
+          products: [...landingPage.content.products],
+        }));
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
