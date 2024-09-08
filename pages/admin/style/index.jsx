@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import HeaderAdmin from '../components/HeaderAdmin';
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
 
-function Style(props) {
+function Style() {
+    const { data: session } = useSession();
     const [styleSettings, setStyleSettings] = useState({
         theme: 'light',
         font: 'Roboto'
     });
+    const [landingPageId, setLandingPageId] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const isInitialMount = useRef(true);
 
     const themes = [
         'light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk',
@@ -19,6 +26,34 @@ function Style(props) {
         'Poppins', 'Oswald', 'Source Sans Pro', 'Slabo 27px', 'Merriweather'
     ];
 
+    useEffect(() => {
+        if (isInitialMount.current) {
+            if (session?.user) {
+                fetchLandingPage();
+                isInitialMount.current = false;
+            }
+        }
+    }, [session]);
+
+    const fetchLandingPage = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get("/api/admin/landing-page", {
+                params: { userId: session.user.id },
+            });
+            if (response.data && response.data.length > 0) {
+                const landingPage = response.data[0];
+                setLandingPageId(landingPage._id);
+                setStyleSettings(landingPage.customizations || { theme: 'light', font: 'Roboto' });
+            }
+        } catch (error) {
+            console.error("Error fetching landing page:", error);
+            toast.error("Failed to fetch style settings");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const handleThemeChange = (theme) => {
         setStyleSettings(prev => ({ ...prev, theme }));
     };
@@ -27,7 +62,29 @@ function Style(props) {
         setStyleSettings(prev => ({ ...prev, font }));
     };
 
-    // hello
+    const handleSubmit = async () => {
+        try {
+            if (landingPageId) {
+                await axios.put(`/api/admin/landing-page?id=${landingPageId}`, {
+                    customizations: styleSettings
+                });
+                toast.success("Style settings updated successfully");
+            } else {
+                toast.error("No landing page found to update");
+            }
+        } catch (error) {
+            console.error("Error updating style settings:", error);
+            toast.error("Failed to update style settings");
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-ball loading-lg"></span>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -69,7 +126,7 @@ function Style(props) {
               </div>
             </div>
   
-            <button className="btn btn-primary w-full" onClick={() => console.log(styleSettings)}>
+            <button className="btn btn-primary w-full" onClick={handleSubmit}>
               Submit
             </button>
           </div>
