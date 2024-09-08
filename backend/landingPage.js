@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const LandingPageSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  title: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  title: { type: String },
   description: String,
-  template: { type: String, required: true },
+  template: { type: String },
   customizations: {
     theme: { type: String, default: 'light' },
     font: { type: String, default: 'Roboto' },

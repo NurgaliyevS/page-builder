@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
 function CTAButton(props) {
-  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page in 30 seconds", customStyle  } = props;
+  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page", customStyle  } = props;
 
   const { data: session } = useSession();
   const plausible = usePlausible();

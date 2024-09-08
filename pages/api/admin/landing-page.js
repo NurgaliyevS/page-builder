@@ -19,14 +19,18 @@ export default async function handler(req, res) {
           landingPage,
         });
       } catch (error) {
-        console.error("Error landing page:", error);
-        res.status(500).json({ message: "Error creating landing page" });
+        console.error("Error creating landing page:", error);
+        if (error.code === 11000 && error.keyPattern && error.keyPattern.personalLink) {
+          res.status(400).json({ message: "Personal link already exists. Please choose a different one." });
+        } else {
+          res.status(500).json({ message: "Error creating landing page" });
+        }
       }
       break;
 
     case "GET":
       try {
-        const { id, page, user_email } = req.query;
+        const { id, page, userId } = req.query;
 
         if (id) {
           const landingPage = await LandingPage.findById(id);
@@ -53,9 +57,9 @@ export default async function handler(req, res) {
           return res.status(200).json(landingPage);
         }
 
-        if (user_email) {
+        if (userId) {
           const landingPages = await LandingPage.find({
-            user_email,
+            userId,
           }).sort({ dateModified: -1 });
           return res.status(200).json(landingPages);
         }

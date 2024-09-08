@@ -44,6 +44,7 @@ function Admin() {
   });
 
   const [landingPageId, setLandingPageId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isInitialMount = React.useRef(false);
 
@@ -62,9 +63,10 @@ function Admin() {
   }, [session]);
 
   const fetchLandingPage = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get("/api/admin/landing-page", {
-        params: { user_email: session.user.email },
+        params: { userId: session.user.id },
       });
       if (response.data && response.data.length > 0) {
         const landingPage = response.data[0];
@@ -74,6 +76,8 @@ function Admin() {
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -126,24 +130,24 @@ function Admin() {
     }
   };
 
-  if (landingPageId === null && isInitialMount.current) {
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ball loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (landingPageId === null && !isLoading) {
     return (
       <div className="min-h-screen bg-gray-100">
         <HeaderAdmin />
 
         <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
           <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
-            <FirstStep />
+            <FirstStep session={session} setLandingPageId={setLandingPageId} />
           </div>
         </div>
-      </div>
-    );
-  }
-
-  if (landingPageId === null && !isInitialMount.current) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-ball loading-lg"></span>
       </div>
     );
   }

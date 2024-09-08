@@ -9,7 +9,7 @@
 
   const ratelimit = new Ratelimit({
     redis: redis,
-    limiter: Ratelimit.slidingWindow(5, "60 s"),
+    limiter: Ratelimit.slidingWindow(15, "60 s"),
   });
 
   export default async function middleware(request) {
@@ -32,5 +32,5 @@
   }
 
   export const config = {
-    matcher: ["/api/auth/signin/email"],
+    matcher: ["/api/auth/signin/email", "/api/admin/landing-page"],
   };
