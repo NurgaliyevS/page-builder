@@ -18,6 +18,10 @@ const LandingPageSchema = new mongoose.Schema({
     mainDescription: { type: String },
     inputField: { type: String },
     ctaText: { type: String },
+    showUserIcon: { type: Boolean, default: true },
+    showEmailInput: { type: Boolean, default: true },
+    showCTAButton: { type: Boolean, default: true },
+    userName: { type: String },
     products: {
       isOpenProduct: { type: Boolean, default: false },
       productName: String,
