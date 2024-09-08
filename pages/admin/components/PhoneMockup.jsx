@@ -1,11 +1,15 @@
 import React from "react";
 
-const PhoneMockup = ({ content, product }) => {
+const PhoneMockup = ({ content, product, customizations }) => {
+  const { theme, font } = customizations || {};
+
+  const fontStyle = font ? { fontFamily: font } : {};
+
   return (
-    <div className="mockup-phone border-neutral w-full">
+    <div className={`mockup-phone border-neutral w-full`} data-theme={theme} style={fontStyle}>
       <div className="camera"></div>
-      <div className="display bg-white">
-        <div className="artboard bg-white min-h-screen">
+      <div className="display bg-base-100">
+        <div className="artboard bg-base-100 min-h-screen">
           <div className="flex mt-8 gap-4 items-start justify-start ml-2">
             {content?.showUserIcon && content?.userImage && (
               <span className="relative">
@@ -17,17 +21,17 @@ const PhoneMockup = ({ content, product }) => {
               </span>
             )}
             <div className="flex-1">
-              <h1 className="mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold">
+              <h1 className="mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold text-base-content">
                 {content?.userName}
               </h1>
               <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
             </div>
           </div>
           <div className="p-4 flex flex-col gap-4">
-            <h2 className="text-2xl font-bold mb-4 mt-4 text-center">
+            <h2 className="text-2xl font-bold mb-4 mt-4 text-center text-base-content">
               {content?.mainHeadline}
             </h2>
-            <p className="mb-6 flex-grow text-center">
+            <p className="mb-6 flex-grow text-center text-base-content">
               {content?.mainDescription}
             </p>
 
@@ -35,7 +39,7 @@ const PhoneMockup = ({ content, product }) => {
               <div className="mb-2">
                 <label
                   htmlFor="email-input"
-                  className="block mb-1 text-sm font-medium text-gray-700"
+                  className="block mb-1 text-sm font-medium text-base-content"
                 >
                   {content?.emailInputValue}
                 </label>
@@ -43,7 +47,7 @@ const PhoneMockup = ({ content, product }) => {
                   id="email-input"
                   type="email"
                   placeholder="example@gmail.com"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
                   readOnly
                 />
               </div>
@@ -65,7 +69,7 @@ const PhoneMockup = ({ content, product }) => {
           {product?.isOpenProduct && product?.products?.length > 0 && (
             <ul className="p-4 space-y-4 overflow-y-auto max-h-[60vh]">
               {product?.products.map((item, index) => (
-                <li key={index} className="card bg-gray-100 duration-200">
+                <li key={index} className="card bg-base-200 duration-200">
                   <a
                     className="group rounded-box cursor-pointer p-3 duration-200 hover:scale-[1.02] hover:bg-base-300"
                     href={item?.productURL}
@@ -73,7 +77,7 @@ const PhoneMockup = ({ content, product }) => {
                     rel="nofollow noopener"
                   >
                     <span className="flex items-center">
-                      <p className="font-bold text-sm flex-grow truncate mr-auto lg:text-lg">
+                      <p className="font-bold text-sm flex-grow truncate mr-auto lg:text-lg text-base-content">
                         {item?.productName}
                       </p>
                       {item?.productStage && (
@@ -95,7 +99,7 @@ const PhoneMockup = ({ content, product }) => {
                       )}
                     </span>
                     {item?.productDescription && (
-                      <p className="text-sm lg:text-base">
+                      <p className="text-sm lg:text-base text-base-content">
                         {item?.productDescription}
                       </p>
                     )}

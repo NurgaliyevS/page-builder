@@ -69,7 +69,6 @@ function Admin() {
         params: { userId: session.user.id },
       });
       if (response.data && response.data.length > 0) {
-        console.log(response.data, 'data')
         const landingPage = response.data[0];
         setLandingPageId(landingPage._id);
         setPageContent((prevContent) => ({
@@ -259,7 +258,7 @@ function Admin() {
 
         <div className="hidden md:block md:basis-2/5 mx-auto max-w-sm">
           <h2 className="text-2xl font-semibold mb-4">Preview</h2>
-          <PhoneMockup content={pageContent} product={productContent} />
+          <PhoneMockup content={pageContent} product={productContent} customizations={pageContent?.customizations} />
         </div>
       </div>
     </div>
