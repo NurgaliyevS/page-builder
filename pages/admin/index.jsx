@@ -69,10 +69,18 @@ function Admin() {
         params: { userId: session.user.id },
       });
       if (response.data && response.data.length > 0) {
+        console.log(response.data, 'data')
         const landingPage = response.data[0];
         setLandingPageId(landingPage._id);
-        setPageContent(landingPage.content);
-        setProductContent(landingPage.content.products);
+        setPageContent((prevContent) => ({
+          ...prevContent,
+          ...landingPage.content,
+          customizations: landingPage.customizations,
+        }));
+        setProductContent(landingPage.content.products || {
+          isOpenProduct: false,
+          products: [],
+        });
       }
     } catch (error) {
       console.error("Error fetching landing page:", error);
