@@ -35,7 +35,7 @@ function Pricing({ customStyle }) {
           </div>
         )}
         <div
-          class={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle}`}
+          className={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle ? `lg:${customStyle}` : ''}`}
         >
           <div class="space-y-6 flex-1 w-full">
             <p class="text-2xl tracking-tight font-bold">Create your product</p>
