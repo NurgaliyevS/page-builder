@@ -1,6 +1,6 @@
 import React from "react";
 
-const PhoneMockup = ({ content, product, customizations }) => {
+const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
   const { theme, font } = customizations || {};
 
   const fontStyle = font ? { fontFamily: font } : {};
@@ -10,6 +10,14 @@ const PhoneMockup = ({ content, product, customizations }) => {
       <div className="camera"></div>
       <div className="display bg-base-100">
         <div className="artboard bg-base-100 min-h-screen overflow-y-auto">
+          {togglePreview && (
+            <button
+              className="btn btn-sm btn-circle absolute right-5 top-5 z-10 btn-primary"
+              onClick={togglePreview}
+            >
+              ✕
+            </button>
+          )}
           <div className="flex mt-4 sm:mt-8 gap-2 sm:gap-4 items-start justify-start ml-2">
             {content?.showUserIcon && content?.userImage && (
               <span className="relative">

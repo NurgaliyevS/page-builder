@@ -10,7 +10,7 @@ function PreviewButton({ content, product, customizations }) {
 
   return (
     <>
-      <div className="fixed top-30 left-1/2 z-20 -translate-x-1/2 md:hidden">
+      <div className="fixed top-20 left-1/2 z-20 -translate-x-1/2 md:hidden">
         <button className="btn gap-1 shadow-lg" onClick={togglePreview}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,13 +30,14 @@ function PreviewButton({ content, product, customizations }) {
       </div>
       {showPreview && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center md:hidden">
-          <div className="bg-white p-4 rounded-lg">
+          <div className="bg-white p-4 rounded-lg max-h-[90vh] overflow-y-auto">
             <PhoneMockup
               content={content}
               product={product}
               customizations={customizations}
+              togglePreview={togglePreview}
             />
-            <button className="btn mt-4" onClick={togglePreview}>
+            <button className="btn mt-4 w-full" onClick={togglePreview}>
               Close Preview
             </button>
           </div>
