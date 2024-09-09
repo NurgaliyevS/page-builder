@@ -10,7 +10,7 @@ function PreviewButton({ content, product, customizations }) {
 
   return (
     <>
-      <div className="fixed top-20 left-1/2 z-20 -translate-x-1/2 md:hidden">
+      <div className="fixed top-25 left-1/2 z-20 -translate-x-1/2 md:hidden">
         <button className="btn gap-1 shadow-lg" onClick={togglePreview}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
