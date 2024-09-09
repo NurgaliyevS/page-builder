@@ -121,7 +121,7 @@ const HeaderAdmin = ({ handleSubmit, disabledPublish }) => {
         <div className="flex justify-center gap-2 md:hidden">
           <Link href="/admin" passHref>
             <div
-              className={`btn-ghost btn-block btn flex-1 flex-col gap-1.5 ${
+              className={`btn-ghost btn-block btn flex-1 flex-col gap-1 ${
                 router.pathname === "/admin" ? "btn-active" : ""
               }`}
             >
@@ -141,7 +141,7 @@ const HeaderAdmin = ({ handleSubmit, disabledPublish }) => {
           </Link>
           <Link href="/admin/style" passHref>
             <div
-              className={`btn-ghost btn-block btn flex-1 flex-col gap-1.5 ${
+              className={`btn-ghost btn-block btn flex-1 flex-col gap-1 ${
                 router.pathname === "/admin/style" ? "btn-active" : ""
               }`}
             >
