@@ -7,6 +7,7 @@ import Products from "./components/Products";
 import axios from "axios";
 import FirstStep from "./FirstStep";
 import { toast } from "react-toastify";
+import PreviewButton from "./components/PreviewButton";
 
 function Admin() {
   const { data: session } = useSession();
@@ -78,7 +79,7 @@ function Admin() {
         if (landingPage?.content?.products?.length) {
           setProductContent((prevProduct) => ({
             ...prevProduct,
-            products: [...landingPage.content.products]
+            products: [...landingPage.content.products],
           }));
         }
         if (landingPage?.content?.isOpenProduct) {
@@ -190,6 +191,11 @@ function Admin() {
     <div className="min-h-screen bg-gray-100">
       <HeaderAdmin handleSubmit={handleSubmit} />
       <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
+        <PreviewButton
+          content={pageContent}
+          product={productContent}
+          customizations={pageContent?.customizations}
+        />
         <div className="max-w-3xl mx-auto md:basis-3/5 space-y-4 overflow-y-auto pb-44">
           <div className="card bg-white shadow-lg">
             <div className="card-body">

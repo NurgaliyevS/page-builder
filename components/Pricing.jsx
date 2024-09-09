@@ -1,21 +1,29 @@
-import Image from "next/image";
-import Link from "next/link";
-import { handleSignIn } from "./handleSignIn";
-import { buyProduct } from "./buyProduct";
 import { usePlausible } from "next-plausible";
 
 function Pricing({ customStyle }) {
   const plausible = usePlausible();
+
   return (
     <section
-      className={`bg-neutral py-44 flex flex-col overflow-hidden ${customStyle}`}
+      className={`bg-neutral flex flex-col overflow-hidden ${
+        customStyle ? "py-2 my-0" : "py-44"
+      }`}
     >
-      <div className={`container max-w-6xl mx-auto space-y-8 p-6 md:space-y-16 ${customStyle}`}>
+      <div
+        className={`container max-w-6xl mx-auto space-y-8 p-6 md:space-y-16 ${customStyle}`}
+      >
+        {customStyle && (
+          <div className="flex justify-center items-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
+            <div className="badge animate-bounce whitespace-nowrap badge-primary">
+              ✨ LAUNCH discount — 50% OFF ✨
+            </div>
+          </div>
+        )}
         {!customStyle && (
           <div className="flex justify-center items-center px-10 text-center mb-20 flex-col gap-10 lg:gap-14">
             <div>
               <div className="badge animate-bounce whitespace-nowrap badge-primary">
-                ✨ LAUNCH discount — 50% OFF 3 months ✨
+                ✨ LAUNCH discount — 50% OFF ✨
               </div>
             </div>
             <h2
@@ -26,7 +34,9 @@ function Pricing({ customStyle }) {
             </h2>
           </div>
         )}
-        <div class={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle}`}>
+        <div
+          class={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle}`}
+        >
           <div class="space-y-6 flex-1 w-full">
             <p class="text-2xl tracking-tight font-bold">Create your product</p>
             <ul class="space-y-4 text-base-content-secondary">
@@ -141,7 +151,7 @@ function Pricing({ customStyle }) {
                 </p>
                 <div class="w-full">
                   <a class="btn-primary btn-block btn" href="/#signup">
-                    Start now
+                    {customStyle ? "Publish now" : "Start now"}
                   </a>
                 </div>
               </div>
@@ -166,7 +176,7 @@ function Pricing({ customStyle }) {
                 </p>
                 <div class="w-full">
                   <a class="btn-primary btn-block btn" href="/#signup">
-                    Start now
+                    {customStyle ? "Publish now" : "Start now"}
                   </a>
                 </div>
               </div>

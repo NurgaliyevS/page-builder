@@ -95,7 +95,8 @@ const PhoneMockup = ({ content, product, customizations }) => {
                           {item.productStage === 'production' && '🚀'}
                           {item.productStage === 'forsale' && '💰'}
                           {item.productStage === 'disconnected' && '🔌'}
-                          {' '}{item?.productStage}
+                          {' '}
+                          {item?.productStage?.charAt(0).toUpperCase() + item?.productStage?.slice(1)}
                         </p>
                       )}
                     </span>
