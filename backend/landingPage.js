@@ -16,8 +16,8 @@ const LandingPageSchema = new mongoose.Schema({
     }],
     mainHeadline: { type: String },
     mainDescription: { type: String },
-    inputField: { type: String },
-    ctaText: { type: String },
+    emailInputValue: { type: String },
+    ctaButtonText: { type: String },
     showUserIcon: { type: Boolean, default: true },
     showEmailInput: { type: Boolean, default: true },
     showCTAButton: { type: Boolean, default: true },
@@ -33,6 +33,7 @@ const LandingPageSchema = new mongoose.Schema({
     isOpenProduct: { type: Boolean, default: false }
   },
   personalLink: { type: String, unique: true },
+  isPaid: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   dateModified: { type: Date, default: Date.now }
