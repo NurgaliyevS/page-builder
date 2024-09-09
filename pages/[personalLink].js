@@ -35,14 +35,14 @@ function LandingPageTemplate({ landingPage }) {
     // Implement email submission logic here
   };
 
-  console.log(landingPage, 'landing page')
+  const hasProducts = landingPage?.content?.products && landingPage?.content?.products.length > 0;
 
   return (
     <main className="min-h-screen" data-theme={landingPage?.customizations?.theme} style={{ fontFamily: landingPage?.customizations?.font }}>
       <div className="relative min-h-screen bg-base-200" data-theme={landingPage?.customizations?.theme}>
-        <div className="mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 lg:flex-row">
-          <section className="shrink-0 space-y-4 p-6 lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16">
-            <div className="flex items-start justify-start gap-4 lg:flex-col lg:gap-8">
+        <div className={`mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 ${hasProducts ? 'lg:flex-row' : 'items-center justify-center'}`}>
+          <section className={`shrink-0 space-y-4 p-6 ${hasProducts ? 'lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16' : 'w-full max-w-2xl'}`}>
+            <div className={`flex items-start justify-start gap-4 lg:flex-col lg:gap-8 ${!hasProducts ? 'items-center' : ''}`}>
               {landingPage?.content?.showUserIcon && (
                 <span className="relative shrink-0">
                   <img
@@ -55,12 +55,12 @@ function LandingPageTemplate({ landingPage }) {
                   <div className="absolute inset-0 rounded-full shadow-[0_0_0px_1px_rgba(0,0,0,0.06)]"></div>
                 </span>
               )}
-              <div className="flex-1">
-                <h1 className="mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold">{landingPage?.content?.mainHeadline}</h1>
+              <div className={`flex-1 ${!hasProducts ? 'text-center' : ''}`}>
+                <h1 className={`mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts ? 'mx-auto' : ''}`}>{landingPage?.content?.mainHeadline}</h1>
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
             </div>
-            <div className="reactMarkDown -space-y-4 leading-relaxed lg:text-lg">
+            <div className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${!hasProducts ? 'text-center' : ''}`}>
               <p>{landingPage?.content?.mainDescription}</p>
             </div>
             {landingPage?.content?.showEmailInput && (
@@ -78,26 +78,28 @@ function LandingPageTemplate({ landingPage }) {
               </form>
             )}
           </section>
-          <section className="noscrollbar w-full lg:h-screen lg:overflow-scroll">
-            <div className="divider my-0 px-6 lg:hidden"></div>
-            <ul className="p-6 max-lg:space-y-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:p-16">
-              {landingPage?.content?.products && landingPage?.content?.products.map((product, index) => (
-                <li key={index} className="card h-min bg-base-100 duration-200 col-span-1">
-                  <Link href={product?.productURL} target="_blank" className="group rounded-box cursor-pointer p-4 duration-200 hover:scale-[1.02] hover:bg-base-300 lg:p-6 space-y-1 lg:space-y-2">
-                    <div className="flex flex-wrap items-center gap-y-1 gap-x-2 lg:gap-x-3">
-                      <p className="mr-auto font-bold lg:text-lg">{product?.productName}</p>
-                      <div className="flex gap-2">
-                        <span className="badge badge-primary badge-sm lg:badge-md whitespace-nowrap duration-200">
-                          {product?.productStage}
-                        </span>
+          {hasProducts && (
+            <section className="noscrollbar w-full lg:h-screen lg:overflow-scroll">
+              <div className="divider my-0 px-6 lg:hidden"></div>
+              <ul className="p-6 max-lg:space-y-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:p-16">
+                {landingPage.content.products.map((product, index) => (
+                  <li key={index} className="card h-min bg-base-100 duration-200 col-span-1">
+                    <Link href={product?.productURL} target="_blank" className="group rounded-box cursor-pointer p-4 duration-200 hover:scale-[1.02] hover:bg-base-300 lg:p-6 space-y-1 lg:space-y-2">
+                      <div className="flex flex-wrap items-center gap-y-1 gap-x-2 lg:gap-x-3">
+                        <p className="mr-auto font-bold lg:text-lg">{product?.productName}</p>
+                        <div className="flex gap-2">
+                          <span className="badge badge-primary badge-sm lg:badge-md whitespace-nowrap duration-200">
+                            {product?.productStage}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <p className="text-base-content/80 text-sm lg:text-base">{product?.productDescription}</p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+                      <p className="text-base-content/80 text-sm lg:text-base">{product?.productDescription}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       </div>
       <div className="fixed bottom-4 select-none max-lg:right-4 lg:bottom-16 lg:left-16">
