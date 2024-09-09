@@ -40,8 +40,8 @@ function LandingPageTemplate({ landingPage }) {
   return (
     <main className="min-h-screen" data-theme={landingPage?.customizations?.theme} style={{ fontFamily: landingPage?.customizations?.font }}>
       <div className="relative min-h-screen bg-base-200" data-theme={landingPage?.customizations?.theme}>
-        <div className="mx-auto flex min-h-screen max-w-[1800px] flex-col max-lg:pb-16 lg:flex-row">
-          <section className="shrink-0 space-y-4 p-6 lg:w-[350px] lg:space-y-8 lg:p-16 lg:pr-0 xl:w-[500px] xl:pr-16">
+        <div className="mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 lg:flex-row">
+          <section className="shrink-0 space-y-4 p-6 lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16">
             <div className="flex items-start justify-start gap-4 lg:flex-col lg:gap-8">
               {landingPage?.content?.showUserIcon && (
                 <span className="relative shrink-0">
@@ -78,7 +78,7 @@ function LandingPageTemplate({ landingPage }) {
               </form>
             )}
           </section>
-          <section className="noscrollbar w-full max-w-[1100px] lg:h-screen lg:overflow-scroll">
+          <section className="noscrollbar w-full lg:h-screen lg:overflow-scroll">
             <div className="divider my-0 px-6 lg:hidden"></div>
             <ul className="p-6 max-lg:space-y-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:p-16">
               {landingPage?.content?.products && landingPage?.content?.products.map((product, index) => (
