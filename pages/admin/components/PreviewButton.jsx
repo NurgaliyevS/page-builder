@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PhoneMockup from "./PhoneMockup";
 
-function PreviewButton({ pageContent, productContent, customizations }) {
+function PreviewButton({ content, product, customizations }) {
   const [showPreview, setShowPreview] = useState(false);
 
   const togglePreview = () => {
@@ -31,8 +31,14 @@ function PreviewButton({ pageContent, productContent, customizations }) {
       {showPreview && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center md:hidden">
           <div className="bg-white p-4 rounded-lg">
-            <PhoneMockup pageContent={pageContent} productContent={productContent} customizations={customizations} />
-            <button className="btn mt-4" onClick={togglePreview}>Close Preview</button>
+            <PhoneMockup
+              content={content}
+              product={product}
+              customizations={customizations}
+            />
+            <button className="btn mt-4" onClick={togglePreview}>
+              Close Preview
+            </button>
           </div>
         </div>
       )}
