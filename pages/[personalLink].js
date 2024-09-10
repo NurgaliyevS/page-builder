@@ -64,12 +64,12 @@ function LandingPageTemplate({ landingPage }) {
             }`}
           >
             <div
-              className={`flex items-start justify-start gap-4 lg:flex-col lg:gap-8 ${
+              className={`hidden mg:flex items-start justify-start gap-8 lg:flex-col ${
                 !hasProducts ? "items-center" : ""
               }`}
             >
               {landingPage?.content?.showUserIcon && (
-                <span className="relative shrink-0">
+                <span className="relative shrink-0 flex">
                   <img
                     alt={`${landingPage?.content?.userName} profile picture`}
                     src={landingPage?.content?.userImage}
@@ -82,7 +82,7 @@ function LandingPageTemplate({ landingPage }) {
               )}
               <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
                 <h2
-                  className={`mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                  className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
                     !hasProducts ? "mx-auto" : ""
                   }`}
                 >
@@ -91,17 +91,73 @@ function LandingPageTemplate({ landingPage }) {
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
 
-              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
+              <div
+                className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
+              >
                 <h1
-                  className={`mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
                     !hasProducts ? "mx-auto" : ""
                   }`}
                 >
                   {landingPage?.content?.mainHeadline}
                 </h1>
-                <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
             </div>
+
+            <div
+              className={`flex mg:hidden items-start justify-start gap-4 lg:flex-col ${
+                !hasProducts ? "items-center" : ""
+              }`}
+            >
+              <div className="flex items-center justify-center gap-2 w-full">
+                {landingPage?.content?.showUserIcon && (
+                  <span className="relative flex">
+                    <img
+                      alt={`${landingPage?.content?.userName} profile picture`}
+                      src={landingPage?.content?.userImage}
+                      width={176}
+                      height={176}
+                      className="h-20 w-20 rounded-full object-cover"
+                    />
+                  </span>
+                )}
+                <div>
+                  <h2
+                    className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
+                      !hasProducts ? "mx-auto" : ""
+                    }`}
+                  >
+                    {landingPage?.content?.userName}
+                  </h2>
+                  <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
+                </div>
+              </div>
+
+              <div
+                className={`flex-1 ${!hasProducts ? "text-center" : ""} mb-10`}
+              >
+                <h1
+                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                    !hasProducts ? "mx-auto" : ""
+                  }`}
+                >
+                  {landingPage?.content?.mainHeadline}
+                </h1>
+              </div>
+            </div>
+
+            <div
+              className={`flex-1 ${!hasProducts ? "text-center" : ""} mb-10`}
+            >
+              <h1
+                className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                  !hasProducts ? "mx-auto" : ""
+                }`}
+              >
+                {landingPage?.content?.mainHeadline}
+              </h1>
+            </div>
+
             <div
               className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${
                 !hasProducts ? "text-center" : ""
