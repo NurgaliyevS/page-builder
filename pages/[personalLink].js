@@ -109,7 +109,7 @@ function LandingPageTemplate({ landingPage }) {
                 !hasProducts ? "items-center" : ""
               }`}
             >
-              <div className="flex items-center justify-center gap-2 w-full">
+              <div className="flex items-center justify-center gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
                   <span className="relative flex">
                     <img
@@ -227,7 +227,7 @@ function LandingPageTemplate({ landingPage }) {
         </div>
       </div>
       <div className="fixed bottom-4 select-none max-lg:right-4 lg:bottom-16 lg:left-16">
-        <div className="group flex cursor-pointer items-center gap-1 rounded-lg bg-neutral px-3 py-1.5 text-sm text-neutral-content shadow-lg duration-200 hover:scale-[1.02] hover:shadow-xl">
+        <a href="/#create" className="group flex cursor-pointer items-center gap-1 rounded-lg bg-neutral px-3 py-1.5 text-sm text-neutral-content shadow-lg duration-200 hover:scale-[1.02] hover:shadow-xl">
           <Image
             alt="Indie Page logo"
             src="/company_related/logo.webp"
@@ -239,7 +239,7 @@ function LandingPageTemplate({ landingPage }) {
             <span className="inline md:hidden">Built w/</span>
             <span className="hidden md:inline">Create your</span> Indie Page
           </div>
-        </div>
+        </a>
       </div>
     </main>
   );
