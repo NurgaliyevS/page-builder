@@ -26,12 +26,12 @@ export const customConfig = {
     og: {
       title: "SubPage - Yummy Meals, Strong Baby!",
       url: "https://subpage.io",
-      image: "https://subpage.io/company_related/og-image.webp",
+      image: "https://subpage.io/company_related/og_image.webp",
       imageAlt:
         "SubPage - Yummy Meals, Strong Baby! Get personalized daily, weekly, and monthly meal plans for a healthy pregnancy. Eat smart and grow a happy baby with our easy-to-use food guide.",
       content: "https://x.com/tech_nurgaliyev",
       twitterSite: "@tech_nurgaliyev",
-      twitterImage: "https://subpage.io/company_related/og-image.webp",
+      twitterImage: "https://subpage.io/company_related/og_image.webp",
     },
   },
   blog: {
