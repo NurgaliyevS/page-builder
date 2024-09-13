@@ -130,7 +130,7 @@ function Admin() {
         );
         if (response.status === 200) {
           toast("Landing page updated successfully");
-          if (response?.data?.userPlan && response?.data?.userPlan === "free") {
+          if (response?.data?.userPlan && response?.data?.userPlan !== "free") {
             if (response?.data?.landingPage?.personalLink) {
               router.push(`/${response.data.landingPage.personalLink}`);
             }
