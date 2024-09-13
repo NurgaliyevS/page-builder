@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import CTAButton from "./CTAButton";
 
 function Hero(props) {
+  const [personalLink, setPersonalLink] = useState('');
+
+  const handleInputChange = (e) => {
+    setPersonalLink(e.target.value);
+  };
+
   return (
     <section
       className="hero relative min-h-screen overflow-hidden bg-neutral text-gray-300"
@@ -31,11 +37,13 @@ function Hero(props) {
                       minLength="2"
                       maxLength="20"
                       required
+                      value={personalLink} // Set the input value from state
+                      onChange={handleInputChange} // Update state on change
                     />
                   </label>
                 </div>
               </div>
-              <CTAButton customStyle={"group btn-block"} />
+              <CTAButton customStyle={"group btn-block"} personalLink={personalLink} />
             </form>
           </div>
         </div>

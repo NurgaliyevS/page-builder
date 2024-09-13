@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { usePlausible } from "next-plausible";
 import CTAButton from "./CTAButton";
+import { signIn } from 'next-auth/react';
 
 function Main() {
   const plausible = usePlausible();
+  const [personalLink, setPersonalLink] = useState('');
+
+  const handleInputChange = (e) => {
+    setPersonalLink(e.target.value);
+  };
+
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 gap-10">
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between w-full gap-16">
@@ -38,29 +46,13 @@ function Main() {
                       minLength="2"
                       maxLength="20"
                       required
+                      value={personalLink} // Set the input value from state
+                      onChange={handleInputChange} // Update state on change
                     />
                   </label>
                 </div>
               </div>
-              <CTAButton />
-              {/* <button
-                className="btn btn-primary btn-wide group shadow-lg"
-                type="submit"
-              >
-                GET MY PAGE
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5 ml-1 group-hover:translate-x-1 duration-200"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button> */}
+              <CTAButton personalLink={personalLink} /> {/* Pass the personalLink to CTAButton */}
             </form>
           </div>
         </div>

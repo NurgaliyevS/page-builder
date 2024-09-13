@@ -1,6 +1,12 @@
-import { signIn } from "next-auth/react";
+import { signIn } from 'next-auth/react';
 
-export const handleSignIn = (e) => {
+export const handleSignIn = (e, personalLink) => {
   e.preventDefault();
-  signIn(undefined, { callbackUrl: "/admin" });
+  
+  // Construct the callback URL conditionally
+  const callbackUrl = personalLink 
+    ? `/admin?personalLink=${encodeURIComponent(personalLink)}`
+    : '/admin';
+
+  signIn(undefined, { callbackUrl });
 };

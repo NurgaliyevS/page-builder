@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { usePlausible } from "next-plausible";
 
 function CTAButton(props) {
-  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page", customStyle  } = props;
+  const { plausibleNameBeforeLogin, plausibleNameAfterLogin, ctaName = "Create page", customStyle, personalLink  } = props;
 
   const { data: session } = useSession();
   const plausible = usePlausible();
@@ -18,7 +18,7 @@ function CTAButton(props) {
           onClick={(e) => {
             e.preventDefault();
             plausible(plausibleNameBeforeLogin);
-            handleSignIn(e);
+            handleSignIn(e, personalLink);
           }}
         >
           {ctaName}
