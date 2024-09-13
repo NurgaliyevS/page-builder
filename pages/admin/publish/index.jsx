@@ -1,10 +1,12 @@
 import React from "react";
 import HeaderAdmin from "../components/HeaderAdmin";
 import Pricing from "@/components/Pricing";
+import { toast } from "react-toastify";
 
 function Publish() {
   const handleSubmit = (e) => {
     e?.preventDefault(); // Prevent default form submission
+    toast.error("Buy 1-Year Pass or Lifetime Deal to Publish")
   };
 
   return (
