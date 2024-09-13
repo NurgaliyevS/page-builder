@@ -1,10 +1,16 @@
 import LandingPage from "@/backend/landingPage";
 import connectMongoDB from "@/backend/mongodb";
+import User from "@/backend/user";
+import mongoose from "mongoose";
 
 export default async function handler(req, res) {
   const { method } = req;
 
   await connectMongoDB();
+
+  if (!mongoose?.models?.User) {
+    mongoose?.model('User', User?.schema);
+  }
 
   switch (method) {
     case "POST":
@@ -20,8 +26,17 @@ export default async function handler(req, res) {
         });
       } catch (error) {
         console.error("Error creating landing page:", error);
-        if (error.code === 11000 && error.keyPattern && error.keyPattern.personalLink) {
-          res.status(400).json({ message: "Personal link already exists. Please choose a different one." });
+        if (
+          error.code === 11000 &&
+          error.keyPattern &&
+          error.keyPattern.personalLink
+        ) {
+          res
+            .status(400)
+            .json({
+              message:
+                "Personal link already exists. Please choose a different one.",
+            });
         } else {
           res.status(500).json({ message: "Error creating landing page" });
         }
@@ -82,18 +97,21 @@ export default async function handler(req, res) {
       try {
         const { id } = req.query;
         const updatedLandingPage = await LandingPage.findByIdAndUpdate(
-            id, 
-            { ...req.body, dateModified: new Date() },
-            { new: true }
-        )
+          id,
+          { ...req.body, dateModified: new Date() },
+          { new: true }
+        ).populate('userId', 'variant_name');
 
         if (!updatedLandingPage) {
-            return res.status(404).json({ 
-                message: "Landing page not found"
-            })
+          return res.status(404).json({
+            message: "Landing page not found",
+          });
         }
 
-        return res.status(200).json(updatedLandingPage);
+        return res.status(200).json({
+          landingPage: updatedLandingPage,
+          userPlan: updatedLandingPage?.userId ? updatedLandingPage?.userId?.variant_name : null
+        });
       } catch (error) {
         console.error("Error updating landing page:", error);
         res.status(500).json({ message: "Error updating landing page" });
@@ -105,15 +123,13 @@ export default async function handler(req, res) {
         const { id } = req.query;
 
         if (id) {
-            const deletedLandingPage = await LandingPage.findByIdAndDelete(
-                id
-            );
-            if (!deletedLandingPage) {
-                return res.status(404).json({
-                    message: "Landing page not found"
-                })
-            }
-            return res.status(200).json(deletedLandingPage)
+          const deletedLandingPage = await LandingPage.findByIdAndDelete(id);
+          if (!deletedLandingPage) {
+            return res.status(404).json({
+              message: "Landing page not found",
+            });
+          }
+          return res.status(200).json(deletedLandingPage);
         }
 
         return res.status(400).json({ message: "Invalid query" });

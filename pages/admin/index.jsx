@@ -8,9 +8,11 @@ import axios from "axios";
 import FirstStep from "./FirstStep";
 import { toast } from "react-toastify";
 import PreviewButton from "./components/PreviewButton";
+import { useRouter } from "next/router";
 
 function Admin() {
   const { data: session } = useSession();
+  const router = useRouter()
 
   const [pageContent, setPageContent] = useState({
     ctaButtonText: "Subscribe",
@@ -128,6 +130,11 @@ function Admin() {
         );
         if (response.status === 200) {
           toast("Landing page updated successfully");
+          if (response?.data?.userPlan && response?.data?.userPlan === "free") {
+            if (response?.data?.landingPage?.personalLink) {
+              router.push(`/${response.data.landingPage.personalLink}`);
+            }
+          }
         }
       }
     } catch (error) {

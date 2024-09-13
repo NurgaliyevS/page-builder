@@ -7,7 +7,7 @@ const HeaderAdmin = ({ handleSubmit, disabledPublish }) => {
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-40 mb-4 p-2 md:p-4">
-      <div class="mb-2 flex justify-end gap-2 pb-2 md:hidden">
+      <div className="mb-2 flex justify-end gap-2 pb-2 md:hidden">
         <Link href="/admin/publish" passHref onClick={handleSubmit}>
           <div className="btn-primary btn-sm btn gap-1.5 lg:btn-md">
             <span>
