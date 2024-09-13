@@ -109,7 +109,7 @@ function LandingPageTemplate({ landingPage }) {
                 !hasProducts ? "items-center" : ""
               }`}
             >
-              <div className="flex items-center justify-center gap-4 w-full">
+              <div className="flex items-start justify-center gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
                   <span className="relative flex">
                     <img
