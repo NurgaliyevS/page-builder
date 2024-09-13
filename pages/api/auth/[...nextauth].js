@@ -50,7 +50,7 @@ export const authOptions = {
     strategy: "jwt",
   },
   theme: {
-    logo: `https:/subpage.io/logoAndName.jpeg`,
+    logo: `https://subpage.io/logoAndName.jpeg`,
   },
   debug: true, // Enable debug mode for more detailed logs
 };
