@@ -12,7 +12,9 @@ import { useRouter } from "next/router";
 
 function Admin() {
   const { data: session } = useSession();
-  const router = useRouter()
+  const router = useRouter();
+
+  const { personalLink } = router.query;
 
   const [pageContent, setPageContent] = useState({
     ctaButtonText: "Subscribe",
@@ -187,6 +189,7 @@ function Admin() {
               session={session}
               setLandingPageId={setLandingPageId}
               onLandingPageCreated={fetchLandingPage}
+              personalLinkLanding={personalLink}
             />
           </div>
         </div>

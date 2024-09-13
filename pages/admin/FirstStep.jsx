@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function FirstStep({ session, setLandingPageId, onLandingPageCreated }) {
-  const [personalLink, setPersonalLink] = useState("");
+function FirstStep({ session, setLandingPageId, onLandingPageCreated, personalLinkLanding }) {
+  const [personalLink, setPersonalLink] = useState(personalLinkLanding || "");
   const [showTip, setShowTip] = useState(false);
   const [loading, setLoading] = useState(false);
 
