@@ -24,7 +24,7 @@ export const customConfig = {
     themeColor: "#ffffff",
     applicationName: "SubPage",
     og: {
-      title: "SubPage - Yummy Meals, Strong Baby!",
+      title: "SubPage - Build Your Landing Page and Grow Your Audience",
       url: "https://subpage.io",
       image: "https://subpage.io/company_related/og_image.webp",
       imageAlt:
