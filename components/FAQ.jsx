@@ -149,7 +149,7 @@ function FAQ() {
   const plausible = usePlausible();
   return (
     <section
-      className="bg-neutral text-gray-300 py-44 overflow-hidden"
+      className="bg-neutral text-gray-300 py-30 overflow-hidden"
       id="faq"
     >
       <div className="px-8 container max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
