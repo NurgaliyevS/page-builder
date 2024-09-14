@@ -7,7 +7,7 @@ function Ads2() {
     <section className="bg-neutral p-6 py-16 md:py-32 text-gray-300">
       <div className="mx-auto flex container max-w-7xl items-center justify-center flex-col gap-8 md:flex-row md:gap-16">
         <video
-          className="aspect-square w-full rounded-3xl border-2 border-base-content/20 sm:w-96 md:border-4 md:order-last"
+          className="aspect-square w-full rounded-2xl border-2 border-base-content/20 sm:w-96 md:border-4 md:order-last"
           autoPlay
           muted
           loop
