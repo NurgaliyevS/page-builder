@@ -26,12 +26,12 @@ export const customConfig = {
     og: {
       title: "SubPage - Build Your Landing Page and Grow Your Audience",
       url: "https://subpage.io",
-      image: "https://subpage.io/company_related/og_image.webp",
+      image: "https://subpage.io/company_related/og-image.png",
       imageAlt:
         "SubPage - helps you create landing pages, build MVPs, and grow your audience fast. No coding skills required. Capture emails, validate ideas, and boost your online presence with our easy-to-use tools.",
       content: "https://x.com/tech_nurgaliyev",
       twitterSite: "@tech_nurgaliyev",
-      twitterImage: "https://subpage.io/company_related/og_image.webp",
+      twitterImage: "https://subpage.io/company_related/og-image.png",
     },
   },
   blog: {
