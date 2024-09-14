@@ -109,7 +109,7 @@ function LandingPageTemplate({ landingPage }) {
                 !hasProducts ? "items-center" : ""
               }`}
             >
-              <div className="flex items-start justify-center gap-4 w-full">
+              <div className="flex items-start justify-center md:justify-start gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
                   <span className="relative flex">
                     <img
@@ -134,7 +134,7 @@ function LandingPageTemplate({ landingPage }) {
               </div>
 
               <div
-                className={`flex-1 ${!hasProducts ? "text-center" : ""} mb-10`}
+                className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
               >
                 <h1
                   className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
@@ -147,7 +147,7 @@ function LandingPageTemplate({ landingPage }) {
             </div>
 
             <div
-              className={`flex-1 ${!hasProducts ? "text-center" : ""} mb-10`}
+              className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
             >
               <h1
                 className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${

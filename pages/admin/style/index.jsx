@@ -5,9 +5,12 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import PhoneMockup from "../components/PhoneMockup";
 import PreviewButton from "../components/PreviewButton";
+import { useRouter } from "next/router";
 
 function Style() {
   const { data: session } = useSession();
+  const router = useRouter();
+
   const [previewSettings, setPreviewSettings] = useState({
     theme: "light",
     font: "Lato",
@@ -142,10 +145,18 @@ function Style() {
     setIsLoadingButton(true);
     try {
       if (landingPageId) {
-        await axios.put(`/api/admin/landing-page?id=${landingPageId}`, {
+        const response = await axios.put(`/api/admin/landing-page?id=${landingPageId}`, {
           customizations: previewSettings,
         });
-        toast.success("Style settings updated successfully");
+        if (response.status === 200) {
+          toast("Landing page updated successfully");
+          console.log(response.data.userPlan, 'plan')
+          if (response?.data?.userPlan && response?.data?.userPlan !== "free") {
+            if (response?.data?.landingPage?.personalLink) {
+              router.push(`/${response.data.landingPage.personalLink}`);
+            }
+          }
+        }
       } else {
         toast.error("No landing page found to update");
       }
