@@ -229,7 +229,7 @@ function LandingPageTemplate({ landingPage }) {
       <div className="fixed bottom-4 select-none max-lg:right-4 lg:bottom-16 lg:left-16">
         <a href="/#create" className="group flex cursor-pointer items-center gap-1 rounded-lg bg-neutral px-3 py-1.5 text-sm text-neutral-content shadow-lg duration-200 hover:scale-[1.02] hover:shadow-xl">
           <Image
-            alt="Indie Page logo"
+            alt="SubPage logo"
             src="/company_related/logo.webp"
             width={20}
             height={20}
@@ -237,7 +237,7 @@ function LandingPageTemplate({ landingPage }) {
           />
           <div className="font-medium">
             <span className="inline md:hidden">Built w/</span>
-            <span className="hidden md:inline">Create your</span> Indie Page
+            <span className="hidden md:inline">Create your</span> SubPage
           </div>
         </a>
       </div>
