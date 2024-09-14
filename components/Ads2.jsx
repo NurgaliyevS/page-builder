@@ -16,14 +16,8 @@ function Ads2() {
           width="500"
           height="500"
         >
-          {/* <source
-            src="https://d3m8mk7e1mf7xn.cloudfront.net/app/create.webm"
-            type="video/webm"
-          />
-          <source
-            src="https://d3m8mk7e1mf7xn.cloudfront.net/app/create.mp4"
-            type="video/mp4"
-          /> */}
+          <source src="/video/style.mov" type="video/mov" />
+          <source src="/video/style.mp4" type="video/mp4" />
         </video>
         <div className="max-w-lg space-y-6 md:space-y-8">
           <h2 className="text-3xl md:text-5xl font-bold">
