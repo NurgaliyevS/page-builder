@@ -6,7 +6,11 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
   const fontStyle = font ? { fontFamily: font } : {};
 
   return (
-    <div className={`mockup-phone border-neutral w-full h-full sm:w-auto sm:h-auto fixed inset-0 z-50 sm:static`} data-theme={theme} style={fontStyle}>
+    <div
+      className={`mockup-phone border-neutral w-full h/2/3 sm:w-auto sm:h-auto fixed inset-0 z-50 sm:static min-w-96`}
+      data-theme={theme}
+      style={fontStyle}
+    >
       <div className="camera"></div>
       <div className="display bg-base-100">
         <div className="artboard bg-base-100 min-h-screen overflow-y-auto">
@@ -36,12 +40,16 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
             </div>
           </div>
           <div className="p-2 sm:p-4 flex flex-col gap-2 sm:gap-4">
-            <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 mt-2 sm:mt-4 text-center text-base-content">
-              {content?.mainHeadline}
-            </h2>
-            <p className="mb-3 sm:mb-6 flex-grow text-sm sm:text-base text-center text-base-content">
-              {content?.mainDescription}
-            </p>
+            {content?.mainHeadline && (
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 mt-2 sm:mt-4 text-center text-base-content">
+                {content?.mainHeadline}
+              </h2>
+            )}
+            {content?.mainDescription && (
+              <p className="mb-3 sm:mb-6 flex-grow text-sm sm:text-base text-center text-base-content">
+                {content?.mainDescription}
+              </p>
+            )}
 
             {content?.showEmailInput && (
               <div className="mb-2">
@@ -89,21 +97,28 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
                         {item?.productName}
                       </p>
                       {item?.productStage && (
-                        <p className={`badge text-xs ${
-                          item.productStage === 'development' ? 'badge-info' :
-                          item.productStage === 'testing' ? 'badge-warning' :
-                          item.productStage === 'production' ? 'badge-success' :
-                          item.productStage === 'forsale' ? 'badge-secondary' :
-                          item.productStage === 'disconnected' ? 'badge-error' :
-                          ''
-                        }`}>
-                          {item.productStage === 'development' && '🛠️'}
-                          {item.productStage === 'testing' && '🧪'}
-                          {item.productStage === 'production' && '🚀'}
-                          {item.productStage === 'forsale' && '💰'}
-                          {item.productStage === 'disconnected' && '🔌'}
-                          {' '}
-                          {item?.productStage?.charAt(0).toUpperCase() + item?.productStage?.slice(1)}
+                        <p
+                          className={`badge text-xs ${
+                            item.productStage === "development"
+                              ? "badge-info"
+                              : item.productStage === "testing"
+                              ? "badge-warning"
+                              : item.productStage === "production"
+                              ? "badge-success"
+                              : item.productStage === "forsale"
+                              ? "badge-secondary"
+                              : item.productStage === "disconnected"
+                              ? "badge-error"
+                              : ""
+                          }`}
+                        >
+                          {item.productStage === "development" && "🛠️"}
+                          {item.productStage === "testing" && "🧪"}
+                          {item.productStage === "production" && "🚀"}
+                          {item.productStage === "forsale" && "💰"}
+                          {item.productStage === "disconnected" && "🔌"}{" "}
+                          {item?.productStage?.charAt(0).toUpperCase() +
+                            item?.productStage?.slice(1)}
                         </p>
                       )}
                     </span>
