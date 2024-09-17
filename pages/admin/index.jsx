@@ -109,7 +109,7 @@ function Admin() {
     setAccordionState((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (source = "default") => {
     setIsLoadingButton(true);
     const landingPageData = {
       userId: session.user.id,
@@ -132,7 +132,11 @@ function Admin() {
         );
         if (response.status === 200) {
           toast("Landing page updated successfully");
-          if (response?.data?.userPlan && response?.data?.userPlan !== "free") {
+          if (
+            response?.data?.userPlan &&
+            response?.data?.userPlan !== "free" &&
+            source === "HeaderAdmin"
+          ) {
             if (response?.data?.landingPage?.personalLink) {
               router.push(`/${response.data.landingPage.personalLink}`);
             }
@@ -199,7 +203,7 @@ function Admin() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <HeaderAdmin handleSubmit={handleSubmit} />
+      <HeaderAdmin handleSubmit={() => handleSubmit("HeaderAdmin")} />
       <div className="md:flex p-4 h-full max-w-7xl mx-auto overflow-auto">
         <PreviewButton
           content={pageContent}

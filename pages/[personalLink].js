@@ -51,23 +51,9 @@ function LandingPageTemplate({ landingPage }) {
         className="relative min-h-screen bg-base-200"
         data-theme={landingPage?.customizations?.theme}
       >
-        <div
-          className={`mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 ${
-            hasProducts ? "lg:flex-row" : "items-center justify-center"
-          }`}
-        >
-          <section
-            className={`shrink-0 space-y-4 p-6 ${
-              hasProducts
-                ? "lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16"
-                : "w-full max-w-2xl"
-            }`}
-          >
-            <div
-              className={`hidden mg:flex items-start justify-start gap-8 lg:flex-col ${
-                !hasProducts ? "items-center" : ""
-              }`}
-            >
+        <div className={`mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 ${hasProducts ? "lg:flex-row" : "items-center justify-center"}`}>
+          <section className={`shrink-0 space-y-4 p-6 ${hasProducts ? "lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16" : "w-full max-w-2xl"}`}>
+            <div className={`hidden mg:flex items-start justify-start gap-8 lg:flex-col ${!hasProducts && "items-center"}`}>
               {landingPage?.content?.showUserIcon && (
                 <span className="relative shrink-0 flex">
                   <img
@@ -80,33 +66,21 @@ function LandingPageTemplate({ landingPage }) {
                   <div className="absolute inset-0 rounded-full shadow-[0_0_0px_1px_rgba(0,0,0,0.06)]"></div>
                 </span>
               )}
-              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
-                <h2
-                  className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
-                    !hasProducts ? "mx-auto" : ""
-                  }`}
-                >
+              <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+                <h2 className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
                   {landingPage?.content?.userName}
                 </h2>
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
 
-              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
-                <h1
-                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
-                    !hasProducts ? "mx-auto" : ""
-                  }`}
-                >
+              <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+                <h1 className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
                   {landingPage?.content?.mainHeadline}
                 </h1>
               </div>
             </div>
 
-            <div
-              className={`flex mg:hidden items-start justify-start gap-4 lg:flex-col ${
-                !hasProducts ? "items-center" : ""
-              }`}
-            >
+            <div className={`flex mg:hidden items-start justify-start gap-4 lg:flex-col ${!hasProducts && "items-center"}`}>
               <div className="flex items-start justify-start md:justify-start gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
                   <span className="relative flex">
@@ -120,43 +94,27 @@ function LandingPageTemplate({ landingPage }) {
                   </span>
                 )}
                 <div>
-                  <h2
-                    className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
-                      !hasProducts ? "mx-auto" : ""
-                    }`}
-                  >
+                  <h2 className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
                     {landingPage?.content?.userName}
                   </h2>
                   <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
                 </div>
               </div>
 
-              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
-                <h1
-                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
-                    !hasProducts ? "mx-auto" : ""
-                  }`}
-                >
+              <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+                <h1 className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
                   {landingPage?.content?.mainHeadline}
                 </h1>
               </div>
             </div>
 
-            <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
-              <h1
-                className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
-                  !hasProducts ? "mx-auto" : ""
-                }`}
-              >
+            <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+              <h1 className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
                 {landingPage?.content?.mainHeadline}
               </h1>
             </div>
 
-            <div
-              className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${
-                !hasProducts ? "text-center" : ""
-              }`}
-            >
+            <div className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${!hasProducts && "text-center"}`}>
               <p>{landingPage?.content?.mainDescription}</p>
             </div>
             {landingPage?.content?.showEmailInput && (
@@ -177,9 +135,7 @@ function LandingPageTemplate({ landingPage }) {
                 </div>
                 {landingPage?.content?.showCTAButton && (
                   <button type="submit" className="btn btn-primary mt-2 w-full">
-                    {landingPage?.content?.ctaButtonText
-                      ? landingPage?.content?.ctaButtonText
-                      : "Subscribe"}
+                    {landingPage?.content?.ctaButtonText || "Subscribe"}
                   </button>
                 )}
               </form>
