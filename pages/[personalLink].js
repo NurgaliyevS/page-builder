@@ -91,9 +91,7 @@ function LandingPageTemplate({ landingPage }) {
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
 
-              <div
-                className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
-              >
+              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
                 <h1
                   className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
                     !hasProducts ? "mx-auto" : ""
@@ -133,9 +131,7 @@ function LandingPageTemplate({ landingPage }) {
                 </div>
               </div>
 
-              <div
-                className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
-              >
+              <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
                 <h1
                   className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
                     !hasProducts ? "mx-auto" : ""
@@ -146,9 +142,7 @@ function LandingPageTemplate({ landingPage }) {
               </div>
             </div>
 
-            <div
-              className={`flex-1 ${!hasProducts ? "text-center" : ""}`}
-            >
+            <div className={`flex-1 ${!hasProducts ? "text-center" : ""}`}>
               <h1
                 className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
                   !hasProducts ? "mx-auto" : ""
@@ -183,7 +177,9 @@ function LandingPageTemplate({ landingPage }) {
                 </div>
                 {landingPage?.content?.showCTAButton && (
                   <button type="submit" className="btn btn-primary mt-2 w-full">
-                    {landingPage?.content?.ctaButtonText}
+                    {landingPage?.content?.ctaButtonText
+                      ? landingPage?.content?.ctaButtonText
+                      : "Subscribe"}
                   </button>
                 )}
               </form>
@@ -227,7 +223,10 @@ function LandingPageTemplate({ landingPage }) {
         </div>
       </div>
       <div className="fixed bottom-4 select-none max-lg:right-4 lg:bottom-16 lg:left-16">
-        <a href="/#create" className="group flex cursor-pointer items-center gap-1 rounded-lg bg-neutral px-3 py-1.5 text-sm text-neutral-content shadow-lg duration-200 hover:scale-[1.02] hover:shadow-xl">
+        <a
+          href="/#create"
+          className="group flex cursor-pointer items-center gap-1 rounded-lg bg-neutral px-3 py-1.5 text-sm text-neutral-content shadow-lg duration-200 hover:scale-[1.02] hover:shadow-xl"
+        >
           <Image
             alt="SubPage logo"
             src="/company_related/logo.webp"
