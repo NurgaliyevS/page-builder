@@ -19,6 +19,7 @@ function Main() {
     "/phone/subpage.io_magicscan.png",
     "/phone/subpage.io_riponsoum.png",
     "/phone/subpage.io_titothemo.png",
+    "/phone/subpage.io_sabyr.png"
   ];
 
   useEffect(() => {
