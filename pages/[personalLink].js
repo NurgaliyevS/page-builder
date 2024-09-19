@@ -51,9 +51,23 @@ function LandingPageTemplate({ landingPage }) {
         className="relative min-h-screen bg-base-200"
         data-theme={landingPage?.customizations?.theme}
       >
-        <div className={`mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 ${hasProducts ? "lg:flex-row" : "items-center justify-center"}`}>
-          <section className={`shrink-0 space-y-4 p-6 ${hasProducts ? "lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16" : "w-full max-w-2xl"}`}>
-            <div className={`hidden mg:flex items-start justify-start gap-8 lg:flex-col ${!hasProducts && "items-center"}`}>
+        <div
+          className={`mx-auto flex min-h-screen w-full flex-col max-lg:pb-16 ${
+            hasProducts ? "lg:flex-row" : "items-center justify-center"
+          }`}
+        >
+          <section
+            className={`shrink-0 space-y-4 p-6 ${
+              hasProducts
+                ? "lg:w-1/4 lg:space-y-8 lg:p-16 lg:pr-0 xl:w-1/3 xl:pr-16"
+                : "w-full max-w-2xl"
+            }`}
+          >
+            <div
+              className={`hidden mg:flex items-start justify-start gap-8 lg:flex-col ${
+                !hasProducts && "items-center"
+              }`}
+            >
               {landingPage?.content?.showUserIcon && (
                 <span className="relative shrink-0 flex">
                   <img
@@ -67,20 +81,32 @@ function LandingPageTemplate({ landingPage }) {
                 </span>
               )}
               <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-                <h2 className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
+                <h2
+                  className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
+                    !hasProducts && "mx-auto"
+                  }`}
+                >
                   {landingPage?.content?.userName}
                 </h2>
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
 
               <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-                <h1 className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
+                <h1
+                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                    !hasProducts && "mx-auto"
+                  }`}
+                >
                   {landingPage?.content?.mainHeadline}
                 </h1>
               </div>
             </div>
 
-            <div className={`flex mg:hidden items-start justify-start gap-4 lg:flex-col ${!hasProducts && "items-center"}`}>
+            <div
+              className={`flex mg:hidden items-start justify-start gap-4 lg:flex-col ${
+                !hasProducts && "items-center"
+              }`}
+            >
               <div className="flex items-start justify-start md:justify-start gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
                   <span className="relative flex">
@@ -94,7 +120,11 @@ function LandingPageTemplate({ landingPage }) {
                   </span>
                 )}
                 <div>
-                  <h2 className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
+                  <h2
+                    className={`mb-1 text-xl font-bold lg:mb-3 lg:text-3xl lg:font-extrabold ${
+                      !hasProducts && "mx-auto"
+                    }`}
+                  >
                     {landingPage?.content?.userName}
                   </h2>
                   <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
@@ -102,19 +132,31 @@ function LandingPageTemplate({ landingPage }) {
               </div>
 
               <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-                <h1 className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
+                <h1
+                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                    !hasProducts && "mx-auto"
+                  }`}
+                >
                   {landingPage?.content?.mainHeadline}
                 </h1>
               </div>
             </div>
 
             <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-              <h1 className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${!hasProducts && "mx-auto"}`}>
+              <h1
+                className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                  !hasProducts && "mx-auto"
+                }`}
+              >
                 {landingPage?.content?.mainHeadline}
               </h1>
             </div>
 
-            <div className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${!hasProducts && "text-center"}`}>
+            <div
+              className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${
+                !hasProducts && "text-center"
+              }`}
+            >
               <p>{landingPage?.content?.mainDescription}</p>
             </div>
             {landingPage?.content?.showEmailInput && (
@@ -161,9 +203,34 @@ function LandingPageTemplate({ landingPage }) {
                             {product?.productName}
                           </p>
                           <div className="flex gap-2">
-                            <span className="badge badge-primary badge-sm lg:badge-md whitespace-nowrap duration-200">
-                              {product?.productStage}
-                            </span>
+                            {product?.productStage && (
+                              <p
+                                className={`badge text-xs ${
+                                  product.productStage === "development"
+                                    ? "badge-info"
+                                    : product.productStage === "testing"
+                                    ? "badge-warning"
+                                    : product.productStage === "production"
+                                    ? "badge-success"
+                                    : product.productStage === "forsale"
+                                    ? "badge-secondary"
+                                    : product.productStage === "disconnected"
+                                    ? "badge-error"
+                                    : ""
+                                }`}
+                              >
+                                {product.productStage === "development" && "🛠️"}
+                                {product.productStage === "testing" && "🧪"}
+                                {product.productStage === "production" && "🚀"}
+                                {product.productStage === "forsale" && "💰"}
+                                {product.productStage === "disconnected" &&
+                                  "🔌"}{" "}
+                                {product?.productStage
+                                  ?.charAt(0)
+                                  .toUpperCase() +
+                                  product?.productStage?.slice(1)}
+                              </p>
+                            )}
                           </div>
                         </div>
                         <p className="text-base-content/80 text-sm lg:text-base">
