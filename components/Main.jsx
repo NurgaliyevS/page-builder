@@ -1,15 +1,34 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { usePlausible } from "next-plausible";
 import CTAButton from "./CTAButton";
-import { signIn } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 
 function Main() {
   const plausible = usePlausible();
-  const [personalLink, setPersonalLink] = useState('');
+  const [personalLink, setPersonalLink] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleInputChange = (e) => {
     setPersonalLink(e.target.value);
   };
+
+  const images = [
+    "/phone/subpage.io_bahmeteva.png",
+    "/phone/subpage.io_dmitry.png",
+    "/phone/subpage.io_magicscan.png",
+    "/phone/subpage.io_riponsoum.png",
+    "/phone/subpage.io_titothemo.png",
+  ];
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 gap-10">
@@ -46,22 +65,29 @@ function Main() {
                       minLength="2"
                       maxLength="20"
                       required
-                      value={personalLink} // Set the input value from state
-                      onChange={handleInputChange} // Update state on change
+                      value={personalLink}
+                      onChange={handleInputChange}
                     />
                   </label>
                 </div>
               </div>
-              <CTAButton personalLink={personalLink} /> {/* Pass the personalLink to CTAButton */}
+              <CTAButton personalLink={personalLink} />
             </form>
           </div>
         </div>
 
         <div className="relative max-md:-m-4">
           <div className="mockup-phone max-h-96 lg:max-h-full">
-            <div className="camera"></div>
+            <div className="camera">
+            </div>
             <div className="display">
-              <div className="artboard artboard-demo phone-1">Hi.</div>
+              <div className="artboard artboard-demo phone-1 cursor-not-allowed">
+                <img
+                  src={images[currentImageIndex]}
+                  alt="phone"
+                  className="phone-image w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
