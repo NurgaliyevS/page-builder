@@ -14,27 +14,38 @@ function Main() {
   };
 
   const images = [
+    "/phone/subpage.io_sabyr2.png",
     "/phone/subpage.io_bahmeteva.png",
     "/phone/subpage.io_dmitry.png",
     "/phone/subpage.io_magicscan.png",
     "/phone/subpage.io_riponsoum.png",
     "/phone/subpage.io_titothemo.png",
-    "/phone/subpage.io_sabyr.png"
   ];
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const transitionDuration = 200; // 200ms for the transition
+    const displayDuration = 1000; // 1.5 seconds display time for each image
+
+    const changeImage = () => {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
         setIsTransitioning(false);
-      }, 500); // Half of the transition duration
-    }, 1000); // Changed back to 5 seconds for a more natural pace
+      }, transitionDuration);
+    };
+
+    // Start changing images immediately
+    changeImage();
+
+    // Set up the interval
+    const intervalId = setInterval(changeImage, displayDuration + transitionDuration);
   
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [images.length]);
 
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 gap-10">
@@ -91,7 +102,7 @@ function Main() {
                 <img
                   src={images[currentImageIndex]}
                   alt="phone"
-                  className={`phone-image w-full h-full object-cover transition-opacity duration-1000 ${
+                  className={`phone-image w-full h-full object-cover transition-opacity duration-400 ${
                     isTransitioning ? 'opacity-35' : 'opacity-100'
                   }`}
                 />
