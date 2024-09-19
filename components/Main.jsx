@@ -7,6 +7,7 @@ function Main() {
   const plausible = usePlausible();
   const [personalLink, setPersonalLink] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleInputChange = (e) => {
     setPersonalLink(e.target.value);
@@ -22,11 +23,15 @@ function Main() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 1000);
-
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
+        setIsTransitioning(false);
+      }, 500); // Half of the transition duration
+    }, 1000); // Changed back to 5 seconds for a more natural pace
+  
     return () => clearInterval(intervalId);
   }, []);
 
@@ -85,7 +90,9 @@ function Main() {
                 <img
                   src={images[currentImageIndex]}
                   alt="phone"
-                  className="phone-image w-full h-full object-cover"
+                  className={`phone-image w-full h-full object-cover transition-opacity duration-1000 ${
+                    isTransitioning ? 'opacity-35' : 'opacity-100'
+                  }`}
                 />
               </div>
             </div>
