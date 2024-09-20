@@ -1,4 +1,5 @@
 import { usePlausible } from "next-plausible";
+import { buyProduct } from "./buyProduct";
 
 function Pricing({ customStyle }) {
   const plausible = usePlausible();
@@ -35,10 +36,14 @@ function Pricing({ customStyle }) {
           </div>
         )}
         <div
-          className={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${customStyle ? `lg:${customStyle}` : ''}`}
+          className={`mx-auto my-16 md:my-20 p-8 lg:p-12 bg-stone-100 rounded-3xl flex flex-col lg:flex-row gap-8 lg:gap-12 lg:justify-between lg:mr-6 ${
+            customStyle ? `lg:${customStyle}` : ""
+          }`}
         >
           <div className="space-y-6 flex-1 w-full">
-            <p className="text-2xl tracking-tight font-bold">Create your product</p>
+            <p className="text-2xl tracking-tight font-bold">
+              Create your product
+            </p>
             <ul className="space-y-4 text-base-content-secondary">
               <li className="flex gap-3 items-center">
                 <svg
@@ -150,7 +155,14 @@ function Pricing({ customStyle }) {
                   One-time payment. No subscription
                 </p>
                 <div className="w-full">
-                  <a className="btn-primary btn-block btn" href="/#signup">
+                  <a
+                    className="btn-primary btn-block btn"
+                    href="/#signup"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      buyProduct();
+                    }}
+                  >
                     {customStyle ? "Publish now" : "Start now"}
                   </a>
                 </div>
@@ -175,7 +187,14 @@ function Pricing({ customStyle }) {
                   One-time payment. No subscription
                 </p>
                 <div className="w-full">
-                  <a className="btn-primary btn-block btn" href="/#signup">
+                  <a
+                    className="btn-primary btn-block btn"
+                    href="/#signup"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      buyProduct("529217");
+                    }}
+                  >
                     {customStyle ? "Publish now" : "Start now"}
                   </a>
                 </div>

@@ -12,10 +12,11 @@ export async function buyProduct(variantId) {
       productId: isDevelopment() ? LEMON_SQEEZY_PRODUCT_ID_TEST : NEXT_PUBLIC_LEMON_SQEEZY_PRODUCT_ID, 
     };
 
+    console.log(payload, 'payload')
+    
     if (typeof variantId === 'string') {
       payload.variantId = variantId;
     }
-
     const response = await axios.post("/api/purchaseProduct/product", payload);
 
     const url = response.data?.data;

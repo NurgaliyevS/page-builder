@@ -11,6 +11,8 @@ export default async function handler(req, res) {
         .json({ success: false, message: "Product ID is required" });
     }
 
+    console.log("Request:", request);
+
     const response = await lemonSqueezyApiInstance.post("/checkouts", {
       data: {
         type: "checkouts",
@@ -20,7 +22,7 @@ export default async function handler(req, res) {
               user_id: request?.userId || "123",
               email: request?.email || "123",
             },
-            discount_code: isDevelopment() ? "C4MJAXOQ" : "Y2OTIXNQ",
+            discount_code: isDevelopment() ? "YXMDK1NA" : "Y2OTIXNQ",
           },
         },
         relationships: {
