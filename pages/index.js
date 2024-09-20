@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Main from "@/components/Main";
 import Pricing from "@/components/Pricing";
+import Reviews from "@/components/Reviews";
 import { customConfig } from "@/project.custom.config";
 import { Roboto } from "next/font/google";
 import Head from "next/head";
@@ -37,8 +38,8 @@ export default function Home() {
         <Ads />
         <Ads2 />
         <Ads3 />
-        {/* <Demo /> */}
         <Pricing />
+        <Reviews />
         <FAQ />
         <Hero />
       </main>
