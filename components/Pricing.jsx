@@ -139,7 +139,7 @@ function Pricing({ customStyle }) {
                 <p className="text-xl font-semibold">1-Year Pass</p>
                 <div className="flex items-baseline justify-center gap-x-2">
                   <span className="text-lg tracking-tight text-base-content-secondary/80 line-through decoration-1">
-                    $55
+                    $50
                   </span>
                   <div className="text-5xl font-bold tracking-tight">$25</div>
                   <span className="text-sm font-base leading-6 tracking-wide text-base-content-secondary/80">
@@ -164,7 +164,7 @@ function Pricing({ customStyle }) {
                 <p className="text-xl font-semibold">Lifetime Deal</p>
                 <div className="flex items-baseline justify-center gap-x-2">
                   <span className="text-lg tracking-tight text-base-content-secondary/80 line-through decoration-1">
-                    $75
+                    $90
                   </span>
                   <div className="text-5xl font-bold tracking-tight">$45</div>
                   <span className="text-sm font-base leading-6 tracking-wide text-base-content-secondary/80">
