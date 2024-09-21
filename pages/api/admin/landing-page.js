@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   await connectMongoDB();
 
   if (!mongoose?.models?.User) {
-    mongoose?.model('User', User?.schema);
+    mongoose?.model("User", User?.schema);
   }
 
   switch (method) {
@@ -31,12 +31,10 @@ export default async function handler(req, res) {
           error.keyPattern &&
           error.keyPattern.personalLink
         ) {
-          res
-            .status(400)
-            .json({
-              message:
-                "Personal link already exists. Please choose a different one.",
-            });
+          res.status(400).json({
+            message:
+              "Personal link already exists. Please choose a different one.",
+          });
         } else {
           res.status(500).json({ message: "Error creating landing page" });
         }
@@ -100,7 +98,7 @@ export default async function handler(req, res) {
           id,
           { ...req.body, dateModified: new Date() },
           { new: true }
-        ).populate('userId', 'variant_name');
+        ).populate("userId", "variant_name");
 
         if (!updatedLandingPage) {
           return res.status(404).json({
@@ -110,7 +108,9 @@ export default async function handler(req, res) {
 
         return res.status(200).json({
           landingPage: updatedLandingPage,
-          userPlan: updatedLandingPage?.userId ? updatedLandingPage?.userId?.variant_name : null
+          userPlan: updatedLandingPage?.userId
+            ? updatedLandingPage?.userId?.variant_name
+            : null,
         });
       } catch (error) {
         console.error("Error updating landing page:", error);
@@ -136,6 +136,50 @@ export default async function handler(req, res) {
       } catch (error) {
         console.error("Error deleting landing page:", error);
         res.status(500).json({ message: "Error deleting landing page" });
+      }
+      break;
+
+    case "PATCH":
+      try {
+        const { id } = req.query;
+        const { email } = req.body;
+
+        if (!id || !email) {
+          return res.status(400).json({ message: "Missing id or email" });
+        }
+
+        const landingPage = await LandingPage.findById(id);
+
+        if (!landingPage) {
+          return res.status(404).json({ message: "Landing page not found" });
+        }
+
+        const checkUser = await LandingPage.findOne({ "subscribers.email": email });
+
+        if (checkUser) {
+          return res.status(400).json({ message: "Email already exists" });
+        }
+
+        const updatedLandingPage = await LandingPage.findByIdAndUpdate(
+          id,
+          {
+            $push: { subscribers: { email } },
+            dateModified: new Date(),
+          },
+          { new: true }
+        );
+
+        if (!updatedLandingPage) {
+          return res.status(404).json({ message: "Landing page not found" });
+        }
+
+        return res.status(200).json({
+          message: "Subscriber added successfully",
+          landingPage: updatedLandingPage,
+        });
+      } catch (error) {
+        console.error("Error adding subscriber:", error);
+        res.status(500).json({ message: "Error adding subscriber" });
       }
       break;
 

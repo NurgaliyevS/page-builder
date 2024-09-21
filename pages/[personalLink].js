@@ -3,6 +3,7 @@ import clientPromise from "../backend/mongodbClient";
 import Image from "next/image";
 import Link from "next/link";
 import UpgradeModal from "@/components/UpgradeModal";
+import axios from "axios";
 
 export async function getServerSideProps(context) {
   const { personalLink } = context.params;
@@ -39,6 +40,8 @@ export async function getServerSideProps(context) {
 function LandingPageTemplate({ landingPage, user }) {
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     // Check if the user's account is not free
@@ -49,7 +52,34 @@ function LandingPageTemplate({ landingPage, user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement email submission logic here
+    setSubmitStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      const response = await axios.patch(
+        `/api/admin/landing-page?id=${landingPage._id}`,
+        { email }
+      );
+
+      if (response.status === 200) {
+        setSubmitStatus("success");
+        setEmail("");
+      } else {
+        setSubmitStatus("error");
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      if (
+        error?.response &&
+        error?.response?.data &&
+        error?.response?.data?.message
+      ) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("An error occurred. Please try again.");
+      }
+    }
   };
 
   const hasProducts = landingPage?.content?.products?.some(
@@ -189,12 +219,27 @@ function LandingPageTemplate({ landingPage, user }) {
                     onChange={(e) => setEmail(e.target.value)}
                     className="input input-bordered w-full"
                     placeholder="example@gmail.com"
+                    required
                   />
                 </div>
                 {landingPage?.content?.showCTAButton && (
-                  <button type="submit" className="btn btn-primary mt-2 w-full">
-                    {landingPage?.content?.ctaButtonText || "Subscribe"}
+                  <button
+                    type="submit"
+                    className="btn btn-primary mt-2 w-full"
+                    disabled={submitStatus === "submitting"}
+                  >
+                    {submitStatus === "submitting"
+                      ? "Submitting..."
+                      : landingPage?.content?.ctaButtonText || "Subscribe"}
                   </button>
+                )}
+                {submitStatus === "success" && (
+                  <p className="text-success mt-2">
+                    Thank you for subscribing!
+                  </p>
+                )}
+                {submitStatus === "error" && (
+                  <p className="text-error mt-2">{errorMessage}</p>
                 )}
               </form>
             )}

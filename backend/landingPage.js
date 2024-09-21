@@ -32,6 +32,9 @@ const LandingPageSchema = new mongoose.Schema({
     }],
     isOpenProduct: { type: Boolean, default: false }
   },
+  subscribers: [{
+    email: { type: String, unique: true },
+  }],
   personalLink: { type: String, unique: true },
   isPaid: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
