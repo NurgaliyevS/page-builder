@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clientPromise from "../backend/mongodbClient";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +18,15 @@ export async function getServerSideProps(context) {
       return { notFound: true };
     }
 
+    // Fetch user data
+    const user = await db
+      .collection("users")
+      .findOne({ _id: landingPage.userId });
+
     return {
       props: {
         landingPage: JSON.parse(JSON.stringify(landingPage)),
+        user: JSON.parse(JSON.stringify(user)),
       },
     };
   } catch (error) {
@@ -29,8 +35,29 @@ export async function getServerSideProps(context) {
   }
 }
 
-function LandingPageTemplate({ landingPage }) {
+const UpgradeModal = () => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+      <h2 className="text-2xl font-bold mb-4">Upgrade Your Account</h2>
+      <p className="mb-6">
+        Upgrade your account to deploy your SubPage. Showcase your startups, get
+        more customers, grow on 𝕏
+      </p>
+      <button className="btn btn-primary">Publish my Subpage</button>
+    </div>
+  </div>
+);
+
+function LandingPageTemplate({ landingPage, user }) {
   const [email, setEmail] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Check if the user's account is not free
+    if (user && user.variant_name === "free") {
+      setShowModal(true);
+    }
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +74,7 @@ function LandingPageTemplate({ landingPage }) {
       data-theme={landingPage?.customizations?.theme}
       style={{ fontFamily: landingPage?.customizations?.font }}
     >
+      {showModal && <UpgradeModal />}
       <div
         className="relative min-h-screen bg-base-200"
         data-theme={landingPage?.customizations?.theme}
