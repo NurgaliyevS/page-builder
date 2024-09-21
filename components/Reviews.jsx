@@ -235,6 +235,58 @@ function Reviews(props) {
             ></script>
           </div>
         </div>
+
+        <div>
+          <div>
+            <blockquote
+              class="twitter-tweet"
+              data-conversation="none"
+              data-dnt="true"
+              data-theme="dark"
+            >
+              <p lang="en" dir="ltr">
+                So easy to use! 👌
+                <br />
+                <br />
+                Took me not more than 2 minutes to set it up.
+              </p>
+              &mdash; Timo 🍋 (@timodlg){" "}
+              <a href="https://twitter.com/timodlg/status/1837207735160525021?ref_src=twsrc%5Etfw">
+                September 20, 2024
+              </a>
+            </blockquote>{" "}
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <blockquote
+              class="twitter-tweet"
+              data-conversation="none"
+              data-lang="en"
+              data-dnt="true"
+              data-theme="dark"
+            >
+              <p lang="en" dir="ltr">
+                Congrats on the launch 🔥
+              </p>
+              &mdash; Praveen Kumar (@PraveenInPublic){" "}
+              <a href="https://twitter.com/PraveenInPublic/status/1837321742097756473?ref_src=twsrc%5Etfw">
+                September 21, 2024
+              </a>
+            </blockquote>{" "}
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </div>
+        </div>
       </div>
     </section>
   );
