@@ -43,6 +43,8 @@ function LandingPageTemplate({ landingPage, user }) {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   useEffect(() => {
     // Check if the user's account is not free
     if (user && user.variant_name === "free") {
@@ -54,6 +56,13 @@ function LandingPageTemplate({ landingPage, user }) {
     e.preventDefault();
     setSubmitStatus("submitting");
     setErrorMessage("");
+
+    // Validate email before submitting
+    if (!emailRegex.test(email)) {
+      setSubmitStatus("error");
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
 
     try {
       const response = await axios.patch(
