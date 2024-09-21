@@ -1,7 +1,9 @@
 # *
 User-agent: *
-Disallow: /meal/
 Allow: /
+
+# Host
+Host: https://subpage.io
 
 # Sitemaps
 Sitemap: https://subpage.io/sitemap.xml
