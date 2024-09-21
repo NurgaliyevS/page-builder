@@ -25,7 +25,7 @@ function CTAButton(props) {
         </Link>
       ) : (
         <Link
-          href="/admin"
+          href={"/admin" + (personalLink ? `?personalLink=${personalLink}` : "")}
           className={`btn btn-primary btn-wide no-underline ${customStyle}`}
           title="Admin page"
           rel="nofollow"
