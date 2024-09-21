@@ -73,7 +73,7 @@ export default async function handler(req, res) {
         if (userId) {
           const landingPages = await LandingPage.find({
             userId,
-          }).sort({ dateModified: -1 });
+          }).populate("userId", "variant_name").sort({ dateModified: -1 });
           return res.status(200).json(landingPages);
         }
 
