@@ -216,37 +216,43 @@ function LandingPageTemplate({ landingPage, user }) {
             </div>
             {landingPage?.content?.showEmailInput && (
               <form onSubmit={handleSubmit}>
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      {landingPage?.content?.emailInputValue}
-                    </span>
-                  </label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="input input-bordered w-full"
-                    placeholder="example@gmail.com"
-                    required
-                  />
-                </div>
-                {landingPage?.content?.showCTAButton && (
-                  <button
-                    type="submit"
-                    className="btn btn-primary mt-2 w-full"
-                    disabled={submitStatus === "submitting"}
-                  >
-                    {submitStatus === "submitting"
-                      ? "Submitting..."
-                      : landingPage?.content?.ctaButtonText || "Subscribe"}
-                  </button>
+                {submitStatus !== "success" && (
+                  <>
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">
+                          {landingPage?.content?.emailInputValue}
+                        </span>
+                      </label>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="input input-bordered w-full"
+                        placeholder="example@gmail.com"
+                        required
+                      />
+                    </div>
+                    {landingPage?.content?.showCTAButton && (
+                      <button
+                        type="submit"
+                        className="btn btn-primary mt-2 w-full"
+                        disabled={submitStatus === "submitting"}
+                      >
+                        {submitStatus === "submitting"
+                          ? "Submitting..."
+                          : landingPage?.content?.ctaButtonText || "Subscribe"}
+                      </button>
+                    )}
+                  </>
                 )}
+
                 {submitStatus === "success" && (
                   <p className="text-success mt-2">
                     Thank you for subscribing!
                   </p>
                 )}
+
                 {submitStatus === "error" && (
                   <p className="text-error mt-2">{errorMessage}</p>
                 )}
