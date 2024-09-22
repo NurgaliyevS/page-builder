@@ -177,15 +177,17 @@ function LandingPageTemplate({ landingPage, user }) {
                 <div className="flex flex-col gap-1 lg:flex-row lg:gap-4"></div>
               </div>
 
-              <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-                <h1
-                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
-                    !hasProducts && "mx-auto"
-                  }`}
-                >
-                  {landingPage?.content?.mainHeadline}
-                </h1>
-              </div>
+              {landingPage?.content?.mainHeadline ? (
+                <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+                  <h1
+                    className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                      !hasProducts && "mx-auto"
+                    }`}
+                  >
+                    {landingPage?.content?.mainHeadline}
+                  </h1>
+                </div>
+              ) : null}
             </div>
 
             <div
