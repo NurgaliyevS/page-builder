@@ -23,6 +23,10 @@ const LandingPageSchema = new mongoose.Schema({
     showCTAButton: { type: Boolean, default: true },
     userName: { type: String },
     userImage: { type: String },
+    profileImage: {
+      data: Buffer,
+      contentType: String
+    },
     products: [{
       id: String,
       productDescription: String,

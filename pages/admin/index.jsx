@@ -27,6 +27,7 @@ function Admin() {
     showCTAButton: true,
     showEmailInput: true,
     emailInputValue: "Enter your email:",
+    profileImage: null,
   });
 
   const [productContent, setProductContent] = useState({
@@ -75,6 +76,7 @@ function Admin() {
           ...prevContent,
           ...landingPage.content,
           customizations: landingPage.customizations,
+          profileImage: landingPage.content.profileImage,
         }));
         setProductContent((prevProduct) => ({
           ...prevProduct,
@@ -236,7 +238,7 @@ function Admin() {
                 </svg>
               </button>
               {accordionState.constructor && (
-                <Constructor onUpdate={handleUpdate} content={pageContent} />
+                <Constructor onUpdate={handleUpdate} content={pageContent} landingPageId={landingPageId} />
               )}
             </div>
           </div>
@@ -295,6 +297,7 @@ function Admin() {
             content={pageContent}
             product={productContent}
             customizations={pageContent?.customizations}
+            landingPageId={landingPageId}
           />
         </div>
       </div>

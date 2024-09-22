@@ -5,6 +5,28 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
 
   const fontStyle = font ? { fontFamily: font } : {};
 
+  const renderProfileImage = () => {
+    if (content?.showUserIcon && content?.profileImage) {
+      const { data, contentType } = content.profileImage;
+      if (data && contentType) {
+        // Convert binary data to base64 more efficiently
+        const uint8Array = new Uint8Array(data.data);
+        const base64Image = btoa(
+          uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+        const imageSrc = `data:${contentType};base64,${base64Image}`;
+        return (
+          <img
+            src={imageSrc}
+            alt="Profile"
+            className="w-16 h-16 rounded-full object-cover mr-4"
+          />
+        );
+      }
+    }
+    return null;
+  };
+
   return (
     <div
       className={`mockup-phone border-neutral w-full h/2/3 sm:w-auto sm:h-auto fixed inset-0 z-50 sm:static min-w-96`}
@@ -23,15 +45,7 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
             </button>
           )}
           <div className="flex mt-4 sm:mt-8 gap-2 sm:gap-4 items-start justify-start ml-2">
-            {content?.showUserIcon && content?.userImage && (
-              <span className="relative">
-                <img
-                  src={content?.userImage}
-                  alt={content?.userName}
-                  className="w-8 h-8 sm:w-12 sm:h-12 rounded-full"
-                />
-              </span>
-            )}
+            {renderProfileImage()}
             <div className="flex-1">
               <h1 className="mb-1 text-lg sm:text-xl font-bold sm:mb-3 lg:text-3xl lg:font-extrabold text-base-content">
                 {content?.userName}
