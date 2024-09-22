@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Constructor = ({ onUpdate, content, landingPageId }) => {
   const [uploading, setUploading] = useState(false);
@@ -12,6 +13,11 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error("Invalid file type. Please upload an image file.");
+      return;
+    }
 
     setUploading(true);
     const formData = new FormData();
