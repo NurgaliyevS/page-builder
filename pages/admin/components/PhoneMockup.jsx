@@ -69,7 +69,7 @@ const PhoneMockup = ({ content, product, customizations, togglePreview }) => {
               </h2>
             )}
             {content?.mainDescription && (
-              <p className="mb-3 sm:mb-6 flex-grow text-sm sm:text-base text-center text-base-content">
+              <p className="mb-3 sm:mb-6 flex-grow text-sm sm:text-base text-base-content">
                 {content?.mainDescription}
               </p>
             )}
