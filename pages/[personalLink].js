@@ -299,7 +299,7 @@ function LandingPageTemplate({ landingPage, user }) {
                   >
                     {product?.productName && product?.productURL && (
                       <Link
-                        href={product?.productURL}
+                        href={product?.productURL + "?ref=subpage"}
                         target="_blank"
                         className="group rounded-box cursor-pointer p-4 duration-200 hover:scale-[1.02] hover:bg-base-300 lg:p-6 space-y-1 lg:space-y-2"
                       >
