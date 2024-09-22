@@ -211,26 +211,30 @@ function LandingPageTemplate({ landingPage, user }) {
                 </div>
               </div>
 
+              {landingPage?.content?.mainHeadline ? (
+                <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
+                  <h1
+                    className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                      !hasProducts && "mx-auto"
+                    }`}
+                  >
+                    {landingPage?.content?.mainHeadline}
+                  </h1>
+                </div>
+              ) : null}
+            </div>
+
+            {landingPage?.content?.mainHeadline ? (
               <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
                 <h1
-                  className={`hidden md:inline mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
+                  className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
                     !hasProducts && "mx-auto"
                   }`}
                 >
                   {landingPage?.content?.mainHeadline}
                 </h1>
               </div>
-            </div>
-
-            <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
-              <h1
-                className={`inline md:hidden mb-1 text-xl font-bold lg:mb-3 lg:text-4xl lg:font-extrabold ${
-                  !hasProducts && "mx-auto"
-                }`}
-              >
-                {landingPage?.content?.mainHeadline}
-              </h1>
-            </div>
+            ) : null}
 
             <div
               className={`reactMarkDown -space-y-4 leading-relaxed lg:text-lg ${
