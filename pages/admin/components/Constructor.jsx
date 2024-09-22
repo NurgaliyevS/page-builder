@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+// import { Camera } from "lucide-react";
 
 const Constructor = ({ onUpdate, content, landingPageId }) => {
   const [uploading, setUploading] = useState(false);
@@ -14,7 +15,7 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (!file.type.startsWith('image/')) {
+    if (!file.type.startsWith("image/")) {
       toast.error("Invalid file type. Please upload an image file.");
       return;
     }
@@ -47,6 +48,32 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
           <span className="label-text">User Name</span>
         </label>
         <div className="flex items-center space-x-2">
+          <div className="relative">
+            <img
+              src={`data:${content.profileImage.contentType};base64,${btoa(
+                String.fromCharCode.apply(
+                  null,
+                  new Uint8Array(content.profileImage.data.data)
+                )
+              )}`}
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <label
+              htmlFor="profileImage"
+              className="absolute bottom-0 right-0 cursor-pointer"
+            >
+              <input
+                type="file"
+                id="profileImage"
+                name="profileImage"
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+                disabled={uploading}
+              />
+            </label>
+          </div>
           <input
             type="text"
             id="userName"
@@ -55,42 +82,10 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
             onChange={handleInputChange}
             className="input input-bordered flex-grow"
           />
-          <label className="cursor-pointer label">
-            <span className="label-text mr-2">Show Icon</span>
-            <input
-              type="checkbox"
-              name="showUserIcon"
-              checked={content?.showUserIcon}
-              onChange={handleInputChange}
-              className="checkbox checkbox-primary"
-            />
-          </label>
-        </div>
-      </div>
-
-      <div className="form-control">
-        <label htmlFor="profileImage" className="label">
-          <span className="label-text">Profile Image</span>
-        </label>
-        <div className="flex items-center space-x-2">
-          <input
-            type="file"
-            id="profileImage"
-            name="profileImage"
-            onChange={handleFileChange}
-            className="file-input file-input-bordered w-full"
-            accept="image/*"
-            disabled={uploading}
-          />
           {uploading && (
             <span className="loading loading-spinner loading-md"></span>
           )}
         </div>
-        {content?.profileImage?.uploaded && (
-          <div className="mt-2">
-            <p>Profile image uploaded successfully</p>
-          </div>
-        )}
       </div>
 
       <div className="form-control">
