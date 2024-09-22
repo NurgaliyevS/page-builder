@@ -68,7 +68,6 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
                 id="profileImage"
                 name="profileImage"
                 onChange={handleFileChange}
-                className="hidden"
                 accept="image/*"
                 disabled={uploading}
               />
