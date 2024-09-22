@@ -48,7 +48,10 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
         // Convert binary data to base64 more efficiently
         const uint8Array = new Uint8Array(data.data);
         const base64Image = btoa(
-          uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), '')
+          uint8Array.reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
         );
         const imageSrc = `data:${contentType};base64,${base64Image}`;
         return (
@@ -60,7 +63,13 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
         );
       }
     }
-    return null;
+    return (
+      <img
+        src={content?.userImage}
+        alt={content?.userName}
+        className="w-8 h-8 sm:w-12 sm:h-12 rounded-full"
+      />
+    );
   };
 
   return (
