@@ -41,6 +41,28 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
     }
   };
 
+  const renderProfileImage = () => {
+    if (content?.showUserIcon && content?.profileImage) {
+      const { data, contentType } = content.profileImage;
+      if (data && contentType) {
+        // Convert binary data to base64 more efficiently
+        const uint8Array = new Uint8Array(data.data);
+        const base64Image = btoa(
+          uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+        const imageSrc = `data:${contentType};base64,${base64Image}`;
+        return (
+          <img
+            src={imageSrc}
+            alt="Profile"
+            className="inline-block h-12 w-12 rounded-full object-cover"
+          />
+        );
+      }
+    }
+    return null;
+  };
+
   return (
     <div className="space-y-4">
       <div className="form-control">
@@ -49,20 +71,24 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
         </label>
         <div className="flex items-center space-x-2">
           <div className="relative">
-            <img
-              src={`data:${content.profileImage.contentType};base64,${btoa(
-                String.fromCharCode.apply(
-                  null,
-                  new Uint8Array(content.profileImage.data.data)
-                )
-              )}`}
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover"
-            />
+            {renderProfileImage()}
             <label
               htmlFor="profileImage"
-              className="absolute bottom-0 right-0 cursor-pointer"
+              className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-transparent duration-200 group-hover:bg-base-300/50"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-4 h-4"
+              >
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
               <input
                 type="file"
                 id="profileImage"
@@ -70,6 +96,7 @@ const Constructor = ({ onUpdate, content, landingPageId }) => {
                 onChange={handleFileChange}
                 accept="image/*"
                 disabled={uploading}
+                className="hidden"
               />
             </label>
           </div>

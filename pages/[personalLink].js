@@ -25,9 +25,26 @@ export async function getServerSideProps(context) {
       .collection("users")
       .findOne({ _id: landingPage.userId });
 
+    let profileImageBase64 = null;
+    if (landingPage?.content?.profileImage?.data) {
+      const { data, contentType } = landingPage.content.profileImage;
+      const buffer = Buffer.from(data.buffer);
+      profileImageBase64 = `data:${contentType};base64,${buffer.toString(
+        "base64"
+      )}`;
+    }
+
     return {
       props: {
-        landingPage: JSON.parse(JSON.stringify(landingPage)),
+        landingPage: JSON.parse(
+          JSON.stringify({
+            ...landingPage,
+            content: {
+              ...landingPage.content,
+              profileImageBase64,
+            },
+          })
+        ),
         user: JSON.parse(JSON.stringify(user)),
       },
     };
@@ -95,6 +112,27 @@ function LandingPageTemplate({ landingPage, user }) {
     (product) => product?.productName && product?.productURL
   );
 
+  const renderProfileImage = () => {
+    if (landingPage?.content?.profileImageBase64) {
+      return (
+        <img
+          src={landingPage.content.profileImageBase64}
+          alt="Profile"
+          className="h-20 w-20 rounded-full object-cover"
+        />
+      );
+    }
+    return (
+      <img
+        alt={`${landingPage?.content?.userName} profile picture`}
+        src={landingPage?.content?.userImage}
+        width={176}
+        height={176}
+        className="h-20 w-20 rounded-full object-cover"
+      />
+    );
+  };
+
   return (
     <main
       className="min-h-screen"
@@ -125,14 +163,7 @@ function LandingPageTemplate({ landingPage, user }) {
             >
               {landingPage?.content?.showUserIcon && (
                 <span className="relative shrink-0 flex">
-                  <img
-                    alt={`${landingPage?.content?.userName} profile picture`}
-                    src={landingPage?.content?.userImage}
-                    width={176}
-                    height={176}
-                    className="h-20 w-20 rounded-full object-cover"
-                  />
-                  <div className="absolute inset-0 rounded-full shadow-[0_0_0px_1px_rgba(0,0,0,0.06)]"></div>
+                  {renderProfileImage()}
                 </span>
               )}
               <div className={!hasProducts ? "text-center flex-1" : "flex-1"}>
@@ -164,15 +195,7 @@ function LandingPageTemplate({ landingPage, user }) {
             >
               <div className="flex items-start justify-start md:justify-start gap-4 w-full">
                 {landingPage?.content?.showUserIcon && (
-                  <span className="relative flex">
-                    <img
-                      alt={`${landingPage?.content?.userName} profile picture`}
-                      src={landingPage?.content?.userImage}
-                      width={176}
-                      height={176}
-                      className="h-20 w-20 rounded-full object-cover"
-                    />
-                  </span>
+                  <span className="relative flex">{renderProfileImage()}</span>
                 )}
                 <div>
                   <h2
