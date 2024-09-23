@@ -21,7 +21,7 @@ function Ads2() {
         </video>
         <div className="max-w-lg space-y-6 md:space-y-8">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Create your landing page
+            Create your page
           </h2>
           <p className="leading-relaxed">
             Your Audience is Waiting. Start Building Today!
