@@ -74,7 +74,7 @@ function Pricing({ customStyle }) {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Build MVP in minutes</span>
+                <span>Build website in minutes</span>
               </li>
               <li className="flex gap-3 items-center">
                 <svg
