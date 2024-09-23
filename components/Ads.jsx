@@ -21,13 +21,12 @@ function Ads() {
         </video>
         <div className="max-w-lg space-y-6 md:space-y-8">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Build Minimal Valuable Product
+            Build Your Website
           </h2>
           <p className="leading-relaxed">
-            Collect emails right away. Just pick a template. Validate your idea
-            with minimal resources.
+            Just pick a template. Customize it the way you want. Publish it.
           </p>
-          <CTAButton ctaName="Build MVP" />
+          <CTAButton ctaName="Create website" />
         </div>
       </div>
     </section>

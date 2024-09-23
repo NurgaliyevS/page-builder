@@ -40,8 +40,11 @@ function Main() {
     changeImage();
 
     // Set up the interval
-    const intervalId = setInterval(changeImage, displayDuration + transitionDuration);
-  
+    const intervalId = setInterval(
+      changeImage,
+      displayDuration + transitionDuration
+    );
+
     return () => {
       clearInterval(intervalId);
     };
@@ -53,16 +56,18 @@ function Main() {
         <div className="flex flex-col gap-10 lg:gap-14 items-center lg:items-start text-center lg:text-left w-full lg:w-2/3">
           <h1 className="font-extrabold text-4xl lg:text-6xl tracking-tight md:-mb-4 flex justify-center items-center">
             <span className="whitespace-wrap lg:whitespace-nowrap relative">
-              Create your{" "}
-              <strong className="relative text-primary">page</strong>
+              Personal website{" "}
+              <strong className="relative text-primary">builder</strong>
             </span>
           </h1>
           <p className="text-xl opacity-90 leading-relaxed">
-            Our tool helps{" "}
-            <strong className="relative text-primary">you</strong> capture
-            <strong className="relative text-primary"> emails</strong> and grow
-            your <strong className="relative text-primary"> audience</strong>{" "}
-            fast.
+            Make your own{" "}
+            <strong className="relative text-primary">personal</strong> page in
+            seconds. Share your{" "}
+            <strong className="relative text-primary">story</strong>, showcase
+            your <strong className="relative text-primary">work</strong>, and
+            grow your <strong className="relative text-primary">online </strong>
+            presence.
           </p>
           <div className="flex gap-2">
             <form className="flex flex-wrap items-center gap-2">
@@ -95,15 +100,14 @@ function Main() {
 
         <div className="relative max-md:-m-4">
           <div className="mockup-phone max-h-96 lg:max-h-full">
-            <div className="camera">
-            </div>
+            <div className="camera"></div>
             <div className="display">
               <div className="artboard artboard-demo phone-1 cursor-not-allowed">
                 <img
                   src={images[currentImageIndex]}
                   alt="phone"
                   className={`phone-image w-full h-full object-cover transition-opacity duration-400 ${
-                    isTransitioning ? 'opacity-35' : 'opacity-100'
+                    isTransitioning ? "opacity-35" : "opacity-100"
                   }`}
                 />
               </div>
