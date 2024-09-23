@@ -29,6 +29,11 @@ export default function Home() {
           // example as Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
           content={customConfig.seo.description}
         />
+        <meta
+          name="description"
+          // Start monitoring in 30 seconds. Get notified by email, and SMS. Monitor your website, and server.
+          content={customConfig.seo.description}
+        />
       </Head>
       <header className={lato.className}>
         <Header />
