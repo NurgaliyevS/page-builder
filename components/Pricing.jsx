@@ -192,7 +192,7 @@ function Pricing({ customStyle }) {
                     href="/#signup"
                     onClick={(e) => {
                       e.preventDefault();
-                      buyProduct("529217");
+                      buyProduct("529285");
                     }}
                   >
                     {customStyle ? "Publish now" : "Start now"}
