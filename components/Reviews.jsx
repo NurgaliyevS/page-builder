@@ -24,7 +24,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -32,7 +32,7 @@ function Reviews(props) {
         <div>
           <div className="twitter-tweet twitter-tweet-rendered">
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -48,7 +48,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -56,7 +56,7 @@ function Reviews(props) {
         <div>
           <div className="twitter-tweet twitter-tweet-rendered">
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-lang="en"
               data-dnt="true"
@@ -81,7 +81,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -89,7 +89,7 @@ function Reviews(props) {
         <div>
           <div className="twitter-tweet twitter-tweet-rendered">
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-lang="en"
               data-dnt="true"
               data-theme="dark"
@@ -107,7 +107,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -115,7 +115,7 @@ function Reviews(props) {
         <div>
           <div className="twitter-tweet twitter-tweet-rendered">
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -131,7 +131,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -139,7 +139,7 @@ function Reviews(props) {
         <div>
           <div className="twitter-tweet twitter-tweet-rendered">
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -155,7 +155,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -163,7 +163,7 @@ function Reviews(props) {
         <div>
           <div>
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -188,7 +188,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -196,7 +196,7 @@ function Reviews(props) {
         <div>
           <div>
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -212,14 +212,14 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
 
         <div>
           <div>
-            <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
+            <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
               <p lang="en" dir="ltr">
                 Always keep building
               </p>
@@ -231,7 +231,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -239,7 +239,7 @@ function Reviews(props) {
         <div>
           <div>
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-dnt="true"
               data-theme="dark"
@@ -258,7 +258,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
@@ -266,7 +266,7 @@ function Reviews(props) {
         <div>
           <div>
             <blockquote
-              class="twitter-tweet"
+              className="twitter-tweet"
               data-conversation="none"
               data-lang="en"
               data-dnt="true"
@@ -283,7 +283,7 @@ function Reviews(props) {
             <script
               async
               src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
+              charSet="utf-8"
             ></script>
           </div>
         </div>
