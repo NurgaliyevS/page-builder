@@ -36,8 +36,7 @@ export const customConfig = {
   },
   blog: {
     title: "SubPage Blog",
-    description:
-      "Learn about building landing pages, creating MVPs, growing your audience, and leveraging digital marketing strategies for your startup or personal brand.",
+    description: "Learn about building website, creating page, and creating your portfolio",
     canonical: "https://subpage.io/blog",
     author: {
       name: "Sabyr Nurgaliyev",
