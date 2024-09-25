@@ -58,7 +58,7 @@ function Pricing({ customStyle }) {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Collect emails
+                Easy setup for small businesses
               </li>
 
               <li className="flex gap-3 items-center">
@@ -89,7 +89,9 @@ function Pricing({ customStyle }) {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span>Manage your subscriptions list</span>
+                <span>
+                  Professional templates designed for small businesses
+                </span>
               </li>
               <li className="flex gap-3 items-center">
                 <svg
@@ -104,7 +106,7 @@ function Pricing({ customStyle }) {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Personal Link
+                Responsive design for mobile-friendly business websites
               </li>
               <li className="flex gap-3 items-center">
                 <svg
@@ -119,7 +121,7 @@ function Pricing({ customStyle }) {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Boost SEO to your projects
+                Built-in SEO tools to help your small business grow
               </li>
               <li className="flex gap-3 items-center">
                 <svg
