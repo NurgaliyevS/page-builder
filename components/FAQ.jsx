@@ -28,12 +28,11 @@ const faqList = [
     ),
   },
   {
-    question: "How quickly can I build my Minimal Viable Product (MVP)?",
+    question: "How quickly can I build my page?",
     answer: (
       <p>
-        You can build your MVP in minutes! Just pick a template, customize it,
-        and start collecting emails right away. It’s the fastest way to validate
-        your idea with minimal resources.
+        You can build your page in minutes! Just pick a template, customize it,
+        and start collecting emails right away.
       </p>
     ),
   },
@@ -166,8 +165,7 @@ function FAQ() {
         </ul>
       </div>
 
-      <div className="flex items-center justify-center mt-20">
-      </div>
+      <div className="flex items-center justify-center mt-20"></div>
     </section>
   );
 }
