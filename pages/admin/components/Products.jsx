@@ -90,13 +90,13 @@ function Products({ onUpdate, product }) {
                   }`}
                   onClick={() => switchToProduct(crumb.id)}
                 >
-                  Product {crumb.number}
+                  Link {crumb.number}
                 </button>
                 {breadcrumbs.length > 1 && (
                   <button
                     onClick={() => removeProduct(crumb.id)}
                     className="btn btn-ghost btn-xs ml-2"
-                    aria-label="Remove product"
+                    aria-label="Remove link"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@ function Products({ onUpdate, product }) {
             htmlFor={`productURL-${currentProductId}`}
             className="label"
           >
-            <span className="label-text">Product URL</span>
+            <span className="label-text">Link URL</span>
           </label>
           <input
             type="text"
@@ -164,13 +164,13 @@ function Products({ onUpdate, product }) {
             htmlFor={`productName-${currentProductId}`}
             className="label"
           >
-            <span className="label-text">Product Name</span>
+            <span className="label-text">Link Name</span>
           </label>
           <input
             type="text"
             id={`productName-${currentProductId}`}
             name="productName"
-            placeholder="Product Name"
+            placeholder="Link Name"
             value={currentProduct.productName || ""}
             onChange={(e) => handleInputChange(e, currentProductId)}
             className="input input-bordered w-full"
@@ -181,13 +181,13 @@ function Products({ onUpdate, product }) {
             htmlFor={`productDescription-${currentProductId}`}
             className="label"
           >
-            <span className="label-text">Product Description</span>
+            <span className="label-text">Link Description</span>
           </label>
           <input
             type="text"
             id={`productDescription-${currentProductId}`}
             name="productDescription"
-            placeholder="Product Description"
+            placeholder="Link Description"
             value={currentProduct.productDescription || ""}
             onChange={(e) => handleInputChange(e, currentProductId)}
             className="input input-bordered w-full"
@@ -198,7 +198,7 @@ function Products({ onUpdate, product }) {
             htmlFor={`productStage-${currentProductId}`}
             className="label"
           >
-            <span className="label-text">Product Stage</span>
+            <span className="label-text">Link Stage</span>
           </label>
           <select
             id={`productStage-${currentProductId}`}
@@ -207,12 +207,13 @@ function Products({ onUpdate, product }) {
             onChange={(e) => handleInputChange(e, currentProductId)}
             className="select select-bordered w-full"
           >
-            <option value="">Select product stage</option>
+            <option value="">Select Link stage</option>
             <option value="development">🛠️ Development</option>
             <option value="testing">🧪 Testing</option>
             <option value="production">🚀 Production</option>
             <option value="forsale">💰 For Sale</option>
             <option value="disconnected">🔌 Disconnected</option>
+            <option value="other">🔗 Other</option>
           </select>
         </div>
       </div>

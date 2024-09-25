@@ -321,6 +321,8 @@ function LandingPageTemplate({ landingPage, user }) {
                                     ? "badge-secondary"
                                     : product.productStage === "disconnected"
                                     ? "badge-error"
+                                    : product.productStage === "other"
+                                    ? "badge-accent"
                                     : ""
                                 }`}
                               >
@@ -330,6 +332,7 @@ function LandingPageTemplate({ landingPage, user }) {
                                 {product.productStage === "forsale" && "💰"}
                                 {product.productStage === "disconnected" &&
                                   "🔌"}{" "}
+                                {product.productStage === "other" && "🔗"}{" "}
                                 {product?.productStage
                                   ?.charAt(0)
                                   .toUpperCase() +

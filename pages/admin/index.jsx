@@ -258,7 +258,7 @@ function Admin() {
                   }));
                 }}
               >
-                Product Constructor
+                Link Constructor
                 <svg
                   className={`w-6 h-6 transform transition-transform ${
                     accordionState.products ? "rotate-180" : ""
