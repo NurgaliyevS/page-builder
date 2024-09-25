@@ -19,8 +19,8 @@ const LandingPageSchema = new mongoose.Schema({
     emailInputValue: { type: String },
     ctaButtonText: { type: String },
     showUserIcon: { type: Boolean, default: true },
-    showEmailInput: { type: Boolean, default: true },
-    showCTAButton: { type: Boolean, default: true },
+    showEmailInput: { type: Boolean, default: false },
+    showCTAButton: { type: Boolean, default: false },
     userName: { type: String },
     userImage: { type: String },
     profileImage: {

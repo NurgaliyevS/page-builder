@@ -18,14 +18,13 @@ function Admin() {
 
   const [pageContent, setPageContent] = useState({
     ctaButtonText: "Subscribe",
-    mainHeadline: "Join our Waitlist!",
-    mainDescription:
-      "Our new project is launching soon. Join our waitlist to be the first to know when we launch. Stay tuned!",
+    mainHeadline: "",
+    mainDescription: "",
     userName: "",
     userImage: "",
     showUserIcon: true,
-    showCTAButton: true,
-    showEmailInput: true,
+    showCTAButton: false,
+    showEmailInput: false,
     emailInputValue: "Enter your email:",
     profileImage: null,
   });
@@ -238,7 +237,11 @@ function Admin() {
                 </svg>
               </button>
               {accordionState.constructor && (
-                <Constructor onUpdate={handleUpdate} content={pageContent} landingPageId={landingPageId} />
+                <Constructor
+                  onUpdate={handleUpdate}
+                  content={pageContent}
+                  landingPageId={landingPageId}
+                />
               )}
             </div>
           </div>
