@@ -39,7 +39,7 @@ There are several website builders tailored for small business owners. The follo
 - Learn more about [Wix](https://www.wix.com/)
 - Explore [WordPress for businesses](https://wordpress.com/)
 - [Squarespace Pricing and Features](https://www.squarespace.com/)
-- Go to [SubPage](http://subpage.io/)
+- Go to [SubPage](https://subpage.io/)
 
 ### Understanding Website Hosting: Why It Matters
 
@@ -126,4 +126,4 @@ Choosing the right **website builder** and **hosting service** is essential for 
 - [Bluehost](https://www.bluehost.com)
 - [SiteGround](https://www.siteground.com)
 - [HostGator](https://www.hostgator.com)
-- [SubPage](http://subpage.io/)
+- [SubPage](https://subpage.io/)
