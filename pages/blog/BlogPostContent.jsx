@@ -132,7 +132,7 @@ function BlogPostContent({ post, relatedPosts }) {
         </article>
       </main>
       <footer>
-        <Footer />
+        <Footer bgColor={"bg-slate-200"} />
       </footer>
     </div>
   );
