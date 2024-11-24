@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { usePlausible } from "next-plausible";
 import CTAButton from "./CTAButton";
-import { signIn } from "next-auth/react";
 
 function Main() {
   const plausible = usePlausible();
@@ -22,33 +21,18 @@ function Main() {
     "/phone/subpage.io_titothemo.png",
   ];
 
-  useEffect(() => {
-    const transitionDuration = 200; // 200ms for the transition
-    const displayDuration = 1000; // 1.5 seconds display time for each image
-
-    const changeImage = () => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === images.length - 1 ? 0 : prevIndex + 1
-        );
-        setIsTransitioning(false);
-      }, transitionDuration);
-    };
-
-    // Start changing images immediately
-    changeImage();
-
-    // Set up the interval
-    const intervalId = setInterval(
-      changeImage,
-      displayDuration + transitionDuration
-    );
-
-    return () => {
-      clearInterval(intervalId);
-    };
+  const changeImage = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setIsTransitioning(false);
+    }, 200);
   }, [images.length]);
+
+  useEffect(() => {
+    const intervalId = setInterval(changeImage, 500);
+    return () => clearInterval(intervalId);
+  }, [changeImage]);
 
   return (
     <section className="container max-w-7xl mx-auto flex flex-col items-center justify-between px-8 py-8 gap-10">
@@ -101,14 +85,21 @@ function Main() {
           <div className="mockup-phone max-h-96 lg:max-h-full">
             <div className="camera"></div>
             <div className="display">
-              <div className="artboard artboard-demo phone-1 cursor-not-allowed">
-                <img
-                  src={images[currentImageIndex]}
-                  alt="phone"
-                  className={`phone-image w-full h-full object-cover transition-opacity duration-400 ${
-                    isTransitioning ? "opacity-35" : "opacity-100"
-                  }`}
-                />
+              <div className="artboard artboard-demo phone-1 cursor-not-allowed relative overflow-hidden">
+                {images.map((src, index) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Phone screenshot ${index + 1}`}
+                    layout="fill"
+                    objectFit="cover"
+                    className={`transition-opacity duration-200 absolute top-0 left-0 ${
+                      index === currentImageIndex
+                        ? "opacity-100 z-10"
+                        : "opacity-0 z-0"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </div>
