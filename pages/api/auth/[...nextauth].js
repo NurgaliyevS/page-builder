@@ -4,6 +4,16 @@ import EmailProvider from "next-auth/providers/email";
 import clientPromise from "@/backend/mongodbClient";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 
+const getAdapter = async () => {
+  try {
+    const client = await clientPromise;
+    return MongoDBAdapter(client);
+  } catch (error) {
+    console.error('Failed to create MongoDB adapter:', error);
+    return null;
+  }
+};
+
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -21,23 +31,12 @@ export const authOptions = {
         };
       },
     }),
-    ...(clientPromise
-      ? [
-          EmailProvider({
-            server: process.env.EMAIL_SERVER,
-            from: "noreply@mg.subpage.io",
-          }),
-        ]
-      : []),
+    EmailProvider({
+      server: process.env.EMAIL_SERVER,
+      from: "noreply@mg.subpage.io",
+    }),
   ],
-  adapter: (() => {
-    try {
-      return MongoDBAdapter(clientPromise);
-    } catch (error) {
-      console.error('Failed to create MongoDB adapter:', error);
-      return null;
-    }
-  })(),
+  adapter: await getAdapter(),
   callbacks: {
     session: async ({ session, token }) => {
       if (session?.user) {
@@ -52,7 +51,12 @@ export const authOptions = {
   theme: {
     logo: `https://subpage.io/logoAndName.jpeg`,
   },
-  debug: true, // Enable debug mode for more detailed logs
+  debug: true,
+  events: {
+    error: async (message, error) => {
+      console.error('NextAuth error:', message, error);
+    },
+  },
 };
 
 export default NextAuth(authOptions);
