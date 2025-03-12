@@ -146,17 +146,7 @@ function Footer({ bgColor }) {
                 >
                   MVPAgency
                 </Link>
-                <Link
-                  className="link link-hover"
-                  href="https://environmentaljobboards.com/"
-                  target="_blank"
-                  title="Environmental Job Boards - home page"
-                  onClick={() => {
-                    plausible("EnvironmentalJobBoards");
-                  }}
-                >
-                  Environmental Job Boards
-                </Link>
+
                 <Link
                   className="link link-hover"
                   href="https://pregnantmeal.com/"
@@ -167,6 +157,29 @@ function Footer({ bgColor }) {
                   }}
                 >
                   PregnantMeal
+                </Link>
+
+                <Link
+                  className="link link-hover"
+                  href="https://redditagency.com/"
+                  target="_blank"
+                  title="Reddit Agency - home page"
+                  onClick={() => {
+                    plausible("RedditAgency");
+                  }}
+                >
+                  RedditAgency
+                </Link>
+                <Link
+                  className="link link-hover"
+                  href="https://bestwebsitegames.com/"
+                  target="_blank"
+                  title="Best Websites Games - home page"
+                  onClick={() => {
+                    plausible("bestwebsitegames");
+                  }}
+                >
+                  Best Websites Games
                 </Link>
                 <Link
                   className="link link-hover"
@@ -200,6 +213,18 @@ function Footer({ bgColor }) {
                   }}
                 >
                   Weeealth
+                </Link>
+
+                <Link
+                  className="link link-hover"
+                  href="https://environmentaljobboards.com/"
+                  target="_blank"
+                  title="Environmental Job Boards - home page"
+                  onClick={() => {
+                    plausible("EnvironmentalJobBoards");
+                  }}
+                >
+                  Environmental Job Boards
                 </Link>
               </div>
             </div>
